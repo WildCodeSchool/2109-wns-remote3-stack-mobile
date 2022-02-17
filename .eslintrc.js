@@ -1,21 +1,21 @@
 module.exports = {
     extends: 'airbnb',
-    plugins: [
-        'react',
-        'react-native',
-        'react-hooks'
-    ],
+        plugins: [
+            'react',
+            'react-native',
+            'react-hooks'
+        ],
     parser: '@babel/eslint-parser',
-    parserOptions: {
-        sourceType: "module",
-        allowImportExportEverywhere: false,
-        ecmaFeatures: {
-            globalReturn: false,
+        parserOptions: {
+            sourceType: "module",
+            allowImportExportEverywhere: false,
+            ecmaFeatures: {
+                globalReturn: false,
+            },
+            babelOptions: {
+                configFile: "./babel.config.js",
+            },
         },
-        babelOptions: {
-            configFile: "./babel.config.js",
-        },
-    },
     env: {
         jest: true,
         'react-native/react-native': true,
