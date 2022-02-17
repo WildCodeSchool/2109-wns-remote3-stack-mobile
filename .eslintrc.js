@@ -1,41 +1,48 @@
 module.exports = {
-    extends: 'airbnb',
-        plugins: [
-            'react',
-            'react-native',
-            'react-hooks'
-        ],
-    parser: '@babel/eslint-parser',
-        parserOptions: {
-            sourceType: "module",
-            allowImportExportEverywhere: false,
-            ecmaFeatures: {
-                globalReturn: false,
-            },
-            babelOptions: {
-                configFile: "./babel.config.js",
-            },
-        },
-    env: {
-        jest: true,
-        'react-native/react-native': true,
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+  ],
+  plugins: [
+    'react',
+    'react-native',
+    'react-hooks',
+  ],
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    allowImportExportEverywhere: false,
+    ecmaFeatures: {
+      globalReturn: false,
+      jsx: true,
     },
-    rules: {
-        'no-use-before-define': 'off',
-        'react/jsx-filename-extension': 'off',
-        'react/prop-types': 'off',
-        'comma-dangle': 'off',
-        'padded-blocks': 'off',
-        'arrow-body-style': 'off',
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-native/no-unused-styles': 2,
-        'react-native/split-platform-components': 2,
-        'react-native/no-inline-styles': 2,
-        'react-native/no-color-literals': 2,
-        'react-native/no-raw-text': 2,
-        'react-native/no-single-element-style-arrays': 2,
+    babelOptions: {
+      configFile: './babel.config.js',
     },
-    globals: {
-        fetch: false
-    }
+  },
+  env: {
+    jest: true,
+    'react-native/react-native': true,
+    amd: true, // Enables require() and define() as global variables as per the amd spec.
+  },
+  rules: {
+    'no-use-before-define': 'off',
+    'react/jsx-filename-extension': 'off',
+    'react/prop-types': 'off',
+    'comma-dangle': 'off',
+    'padded-blocks': 'off',
+    'arrow-body-style': 'off',
+    'react-hooks/exhaustive-deps': 'warn',
+    'react-native/no-unused-styles': 2,
+    'react-native/split-platform-components': 2,
+    'react-native/no-inline-styles': 2,
+    'react-native/no-color-literals': 2,
+    'react-native/no-raw-text': 2,
+    'react-native/no-single-element-style-arrays': 2,
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
+  },
+  globals: {
+    fetch: false
+  }
 };
