@@ -1,41 +1,75 @@
 module.exports = {
-    extends: 'airbnb',
-        plugins: [
-            'react',
-            'react-native',
-            'react-hooks'
-        ],
-    parser: '@babel/eslint-parser',
-        parserOptions: {
-            sourceType: "module",
-            allowImportExportEverywhere: false,
-            ecmaFeatures: {
-                globalReturn: false,
-            },
-            babelOptions: {
-                configFile: "./babel.config.js",
-            },
-        },
-    env: {
-        jest: true,
-        'react-native/react-native': true,
+  root: true, // Make sure eslint picks up the config at the root of the directory
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020, // Use the latest ecmascript standard
+    sourceType: 'module', // Allows using import/export statements
+    ecmaFeatures: {
+      jsx: true, // Enable JSX since we're using React
     },
-    rules: {
-        'no-use-before-define': 'off',
-        'react/jsx-filename-extension': 'off',
-        'react/prop-types': 'off',
-        'comma-dangle': 'off',
-        'padded-blocks': 'off',
-        'arrow-body-style': 'off',
-        'react-hooks/exhaustive-deps': 'warn',
-        'react-native/no-unused-styles': 2,
-        'react-native/split-platform-components': 2,
-        'react-native/no-inline-styles': 2,
-        'react-native/no-color-literals': 2,
-        'react-native/no-raw-text': 2,
-        'react-native/no-single-element-style-arrays': 2,
+  },
+  plugins: [],
+  settings: {
+    react: {
+      version: 'detect', // Automatically detect the react version
     },
-    globals: {
-        fetch: false
-    }
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
+  env: {
+    browser: true, // Enables browser globals like window and document
+    amd: true, // Enables require() and define() as global variables as per the amd spec.
+    node: true, // Enables Node.js global variables and Node.js scoping.
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:import/typescript',
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:jsx-a11y/recommended',
+    'airbnb', // Import this BEFORE Prettier so prettier config overrides other formatting rules
+    'plugin:prettier/recommended',
+  ],
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+  ],
+  rules: {
+    'no-use-before-define': 'off',
+    'no-console': 1,
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', ignoreRestSiblings: true },
+    ],
+
+    'prettier/prettier': ['error', {}, { usePrettierrc: true }], // Use our .prettierrc file as source
+
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
+    'import/prefer-default-export': 'off',
+
+    'react/jsx-filename-extension': [2, { extensions: ['.tsx', '.jsx'] }],
+    'react/react-in-jsx-scope': 'off',
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'function-declaration' },
+    ],
+    'react/prop-types': 1,
+  },
 };
