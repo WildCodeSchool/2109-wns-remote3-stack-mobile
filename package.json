@@ -23,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint-config-airbnb-typescript": "^16.1.0",
+    "metro-react-native-babel-preset": "^0.68.0",
     "expo": "~44.0.0",
     "expo-asset": "~8.4.4",
     "expo-constants": "~13.0.0",
