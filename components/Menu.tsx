@@ -75,7 +75,7 @@ export default function Menu({
         {thirdLabel && <Text>{thirdLabel}</Text>}
       </View>
       <Pressable onPress={() => navigation.navigate('Createtask' as never)}>
-        <Text style={styles.text}> Add {addLabel}</Text>
+        <Text style={[styles.text, styles.textBold]}> Add {addLabel}</Text>
       </Pressable>
     </View>
   );

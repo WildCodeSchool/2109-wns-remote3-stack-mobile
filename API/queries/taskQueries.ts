@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 
-export const GetAllTasks = gql`
+export const GET_ALL_TASKS = gql`
   query GetAllTasks {
     getAllTasks {
       id
-      subject
+      name
+      description
       startDate
       endDate
       estimeeSpentTime
@@ -17,7 +18,8 @@ export const GetOneTask = gql`
   query getTaskByID($getTaskByIdId: String!) {
     getTaskByID(id: $getTaskByIdId) {
       id
-      subject
+      name
+      description
       projectId
       startDate
       endDate
