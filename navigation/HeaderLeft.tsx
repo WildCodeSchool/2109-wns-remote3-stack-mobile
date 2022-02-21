@@ -14,7 +14,7 @@ export default function HeaderLeft({ title }: { title: string }) {
     },
     date: {
       color: '#8790E0',
-      fontSize: 15,
+      fontSize: 13,
       paddingTop: 5,
     },
   });
