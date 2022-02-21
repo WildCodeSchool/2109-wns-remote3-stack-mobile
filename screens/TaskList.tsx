@@ -20,6 +20,7 @@ function TaskList() {
         secondLabel="New feed"
         addLabel="task"
         setIsActive={setIsActive}
+        isActive={isActive}
       />
       {isActive && <TaskListView />}
       {!isActive && <Text>newfeed</Text>}

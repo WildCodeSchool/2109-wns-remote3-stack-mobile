@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
@@ -9,6 +9,7 @@ interface MenuProps {
   addLabel: string;
   thirdLabel?: string;
   setIsActive: Dispatch<SetStateAction<boolean>>;
+  isActive: boolean;
 }
 
 const styles = StyleSheet.create({
@@ -33,21 +34,11 @@ export default function Menu({
   secondLabel,
   thirdLabel,
   addLabel,
+  isActive,
   setIsActive,
 }: MenuProps) {
-  const [list, setList] = useState(true);
-
   const navigation = useNavigation();
   const route = useRoute();
-
-  const tasklistClicked = () => {
-    setIsActive(true);
-    setList(true);
-  };
-  const newfeedClicked = () => {
-    setIsActive(false);
-    setList(false);
-  };
 
   return (
     <View
@@ -58,18 +49,18 @@ export default function Menu({
     >
       <View style={tw`flex-row`}>
         <Text
-          onPress={tasklistClicked}
+          onPress={() => setIsActive(true)}
           style={[
             styles.text,
             tw`mr-4`,
-            list ? styles.textBold : styles.textRegular,
+            isActive ? styles.textBold : styles.textRegular,
           ]}
         >
           {firstLabel}
         </Text>
         <Text
-          onPress={newfeedClicked}
-          style={[styles.text, list ? styles.textRegular : styles.textBold]}
+          onPress={() => setIsActive(false)}
+          style={[styles.text, isActive ? styles.textRegular : styles.textBold]}
         >
           {secondLabel}
         </Text>
