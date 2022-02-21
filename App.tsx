@@ -2,7 +2,6 @@ import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { KeyboardAvoidingView, Platform } from 'react-native';
-
 import Navigation from './navigation';
 import client from './API/client';
 import useColorScheme from './hooks/useColorSchema';
