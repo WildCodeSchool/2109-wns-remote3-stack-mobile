@@ -1,5 +1,6 @@
+import { StyleSheet, Text } from 'react-native';
 import React from 'react';
-import { SafeAreaView, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import tw from 'tailwind-react-native-classnames';
 
 const styles = StyleSheet.create({
@@ -11,12 +12,12 @@ const styles = StyleSheet.create({
   },
 });
 
-function Settings() {
+function ProjectList() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={tw`text-white font-bold text-2xl`}>Stack settings</Text>
+      <Text style={tw`text-white font-bold text-2xl`}>ProjectList</Text>
     </SafeAreaView>
   );
 }
 
-export default Settings;
+export default ProjectList;
