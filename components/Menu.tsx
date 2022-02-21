@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import React, { useState, Dispatch, SetStateAction } from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
