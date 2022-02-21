@@ -20,11 +20,25 @@ function TaskList() {
   if (error || !data) {
     return <Text> error </Text>;
   }
+  console.log(data.getAllTasks);
+
+  //   const Item = ({ getAllTasks }: IResponse) => (
+  //     <View>
+  //       <Text>{}</Text>
+  //     </View>
+  //   );
+
+  //   const App = () => {
+  //   const renderItem = ({ name }) => (
+  //     <Item name={man} />
+  //   );
   return (
     <View>
-      <Text>Tasklist</Text>
+      {/* <FlatList
+      data={data.getAllTasks}
+      keyExtractor={data.getAllTasks}
+    /> */}
     </View>
   );
 }
-
 export default TaskList;
