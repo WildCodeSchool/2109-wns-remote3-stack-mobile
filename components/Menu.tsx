@@ -35,18 +35,18 @@ export default function Menu({
   addLabel,
   setIsActive,
 }: MenuProps) {
-  const [taskList, setTaskList] = useState(true);
+  const [list, setList] = useState(true);
 
   const navigation = useNavigation();
   const route = useRoute();
 
   const tasklistClicked = () => {
     setIsActive(true);
-    setTaskList(true);
+    setList(true);
   };
   const newfeedClicked = () => {
     setIsActive(false);
-    setTaskList(false);
+    setList(false);
   };
 
   return (
@@ -62,14 +62,14 @@ export default function Menu({
           style={[
             styles.text,
             tw`mr-4`,
-            taskList ? styles.textBold : styles.textRegular,
+            list ? styles.textBold : styles.textRegular,
           ]}
         >
           {firstLabel}
         </Text>
         <Text
           onPress={newfeedClicked}
-          style={[styles.text, taskList ? styles.textRegular : styles.textBold]}
+          style={[styles.text, list ? styles.textRegular : styles.textBold]}
         >
           {secondLabel}
         </Text>
