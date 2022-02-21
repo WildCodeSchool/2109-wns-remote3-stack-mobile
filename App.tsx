@@ -10,6 +10,7 @@ import useColorScheme from './hooks/useColorSchema';
 function App() {
   const colorScheme = useColorScheme();
   return (
+    // Finish the redux store
     // <Provider store={store}>
     <ApolloProvider client={client}>
       <SafeAreaProvider>
