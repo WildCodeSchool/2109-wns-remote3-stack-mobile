@@ -19,6 +19,7 @@
       "supportsTablet": true
     },
     "android": {
+      "id": "appId",
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       }

@@ -33,4 +33,4 @@ jobs:
         run: yarn lint
 
       - name: 🚀 Build app
-        run: yes | expo build:ios --no-publish --no-wait --non-interactive
+        run: eas build --non-interactive --platform android
