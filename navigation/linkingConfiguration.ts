@@ -14,7 +14,7 @@ const linking: LinkingOptions<RootTabParamList> = {
   config: {
     screens: {
       Homepage: 'homepage',
-      TaskList: 'two',
+      TaskList: 'tasklist',
       Settings: 'settings',
       Projectlist: 'projectlist',
     },
