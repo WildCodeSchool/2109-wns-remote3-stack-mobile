@@ -8,8 +8,8 @@ interface MenuProps {
   secondLabel: string;
   addLabel: string;
   thirdLabel?: string;
-  setIsActive: Dispatch<SetStateAction<boolean>>;
-  isActive: boolean;
+  setIsActive: Dispatch<SetStateAction<string>>;
+  isActive: string;
 }
 
 const styles = StyleSheet.create({
@@ -49,22 +49,35 @@ export default function Menu({
     >
       <View style={tw`flex-row`}>
         <Text
-          onPress={() => setIsActive(true)}
+          onPress={() => setIsActive('list')}
           style={[
             styles.text,
             tw`mr-4`,
-            isActive ? styles.textBold : styles.textRegular,
+            isActive === 'list' ? styles.textBold : styles.textRegular,
           ]}
         >
           {firstLabel}
         </Text>
         <Text
-          onPress={() => setIsActive(false)}
-          style={[styles.text, isActive ? styles.textRegular : styles.textBold]}
+          onPress={() => setIsActive('feed')}
+          style={[
+            styles.text,
+            isActive === 'feed' ? styles.textBold : styles.textRegular,
+          ]}
         >
           {secondLabel}
         </Text>
-        {thirdLabel && <Text>{thirdLabel}</Text>}
+        {thirdLabel && (
+          <Text
+            onPress={() => setIsActive('assignuser')}
+            style={[
+              styles.text,
+              isActive === 'assignuser' ? styles.textBold : styles.textRegular,
+            ]}
+          >
+            {thirdLabel}
+          </Text>
+        )}
       </View>
       <Pressable
         onPress={

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 });
 
 function TaskList() {
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState('list');
   return (
     <SafeAreaView style={styles.container}>
       <Menu
@@ -22,8 +22,8 @@ function TaskList() {
         setIsActive={setIsActive}
         isActive={isActive}
       />
-      {isActive && <TaskListView />}
-      {!isActive && <Text>newfeed</Text>}
+      {isActive === 'list' && <TaskListView />}
+      {isActive === 'feed' && <Text>newfeed</Text>}
     </SafeAreaView>
   );
 }
