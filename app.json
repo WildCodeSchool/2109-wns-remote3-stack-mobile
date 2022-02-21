@@ -19,7 +19,7 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "wcs_stack_mobile",
+      "package": "com.stack.wcs_stack_mobile",
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       }
