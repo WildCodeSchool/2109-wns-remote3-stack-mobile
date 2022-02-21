@@ -12,13 +12,24 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+          cache: yarn
+
+      - name: setup expo
+        uses: expo/expo-github-action@v7
+        with:
+          expo-version: latest
+          eas-version: latest
+
       - name: 'native: yarn install'
         run: yarn --prefer-offline --frozen-lockfile
+
       - name: 'native: lint'
         run: yarn lint
-      - name: 'native: build'
-        run: CI=false yarn build
+
+      - name: 🚀 Build app
+        run: eas build --non-interactive
