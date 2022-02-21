@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import React, { useState, Dispatch, SetStateAction } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
 
 interface MenuProps {
@@ -36,6 +37,9 @@ export default function Menu({
   setIsActive,
 }: MenuProps) {
   const [taskList, setTaskList] = useState(true);
+
+  const navigation = useNavigation();
+
   const tasklistClicked = () => {
     setIsActive(true);
     setTaskList(true);
@@ -70,8 +74,9 @@ export default function Menu({
         </Text>
         {thirdLabel && <Text>{thirdLabel}</Text>}
       </View>
-      {/* TODO ADD ONPRESS CREATE TASK */}
-      <Text style={styles.text}> Add {addLabel}</Text>
+      <Pressable onPress={() => navigation.navigate('Createtask' as never)}>
+        <Text style={styles.text}> Add {addLabel}</Text>
+      </Pressable>
     </View>
   );
 }
