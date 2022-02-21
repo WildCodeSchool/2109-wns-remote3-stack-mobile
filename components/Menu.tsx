@@ -7,7 +7,7 @@ interface MenuProps {
   firstLabel: string;
   secondLabel: string;
   addLabel: string;
-  thirdLabel?: string;
+  thirdLabel: string;
   setIsActive: Dispatch<SetStateAction<string>>;
   isActive: string;
 }
@@ -67,17 +67,15 @@ export default function Menu({
         >
           {secondLabel}
         </Text>
-        {thirdLabel && (
-          <Text
-            onPress={() => setIsActive('assignuser')}
-            style={[
-              styles.text,
-              isActive === 'assignuser' ? styles.textBold : styles.textRegular,
-            ]}
-          >
-            {thirdLabel}
-          </Text>
-        )}
+        <Text
+          onPress={() => setIsActive('assignuser')}
+          style={[
+            styles.text,
+            isActive === 'assignuser' ? styles.textBold : styles.textRegular,
+          ]}
+        >
+          {thirdLabel}
+        </Text>
       </View>
       <Pressable
         onPress={
@@ -91,7 +89,3 @@ export default function Menu({
     </View>
   );
 }
-
-Menu.defaultProps = {
-  thirdLabel: null,
-};
