@@ -20,7 +20,7 @@ export default function HeaderLeft({ title }: { title: string }) {
   });
 
   return (
-    <View style={tw`px-5 pt-9 h-20 w-52`}>
+    <View style={tw`px-5 pt-9 h-20 w-96`}>
       {title === 'home' ? (
         <Pressable>
           <Image

@@ -9,7 +9,9 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "test": "jest --watchAll",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx"
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "generate:types": "rm -rf ./api/types && cd ./API && apollo codegen:generate --endpoint=http://localhost:4000/graphql  --target=typescript --outputFlat=types --includes=./*/**.ts"
+
   },
   "jest": {
     "preset": "jest-expo"
