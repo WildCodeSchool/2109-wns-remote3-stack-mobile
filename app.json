@@ -19,7 +19,7 @@
       "supportsTablet": true
     },
     "android": {
-      "id": "appId",
+      "package": "WCS Stack Mobile",
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       }
