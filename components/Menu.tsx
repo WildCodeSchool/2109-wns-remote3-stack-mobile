@@ -62,6 +62,7 @@ export default function Menu({
           onPress={() => setIsActive('feed')}
           style={[
             styles.text,
+            tw`mr-4`,
             isActive === 'feed' ? styles.textBold : styles.textRegular,
           ]}
         >
