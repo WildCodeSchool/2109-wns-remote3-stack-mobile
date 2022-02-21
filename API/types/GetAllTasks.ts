@@ -16,6 +16,7 @@ export interface GetAllTasks_getAllTasks {
   endDate: string;
   estimeeSpentTime: number;
   advancement: string;
+  projectId: string;
 }
 
 export interface GetAllTasks {

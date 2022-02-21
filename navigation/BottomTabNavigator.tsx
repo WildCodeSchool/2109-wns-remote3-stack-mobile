@@ -25,8 +25,8 @@ export default function BottomTabNavigator() {
           zIndex: 20,
           height: 90,
           paddingTop: 23,
-          marginBottom: 10,
           borderTopColor: '#8790E0',
+          backgroundColor: '#15192C',
         },
         tabBarBackground: () => <View />,
       }}

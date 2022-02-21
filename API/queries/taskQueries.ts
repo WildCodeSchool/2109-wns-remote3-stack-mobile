@@ -10,6 +10,7 @@ export const GET_ALL_TASKS = gql`
       endDate
       estimeeSpentTime
       advancement
+      projectId
     }
   }
 `;

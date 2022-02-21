@@ -18,7 +18,6 @@ function TaskList() {
       <Menu
         firstLabel="Task List"
         secondLabel="New feed"
-        thirdLabel="assign User"
         addLabel="task"
         setIsActive={setIsActive}
         isActive={isActive}

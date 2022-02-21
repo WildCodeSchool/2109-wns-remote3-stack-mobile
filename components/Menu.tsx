@@ -7,7 +7,6 @@ interface MenuProps {
   firstLabel: string;
   secondLabel: string;
   addLabel: string;
-  thirdLabel: string;
   setIsActive: Dispatch<SetStateAction<string>>;
   isActive: string;
 }
@@ -32,7 +31,6 @@ const styles = StyleSheet.create({
 export default function Menu({
   firstLabel,
   secondLabel,
-  thirdLabel,
   addLabel,
   isActive,
   setIsActive,
@@ -67,15 +65,6 @@ export default function Menu({
           ]}
         >
           {secondLabel}
-        </Text>
-        <Text
-          onPress={() => setIsActive('assignuser')}
-          style={[
-            styles.text,
-            isActive === 'assignuser' ? styles.textBold : styles.textRegular,
-          ]}
-        >
-          {thirdLabel}
         </Text>
       </View>
       <Pressable
