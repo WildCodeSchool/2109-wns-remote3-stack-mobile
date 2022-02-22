@@ -71,5 +71,11 @@ module.exports = {
       { namedComponents: 'function-declaration' },
     ],
     'react/prop-types': 1,
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      {
+        allowSingleExtends: false,
+      },
+    ],
   },
 };
