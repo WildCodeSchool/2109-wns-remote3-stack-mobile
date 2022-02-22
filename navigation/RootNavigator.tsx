@@ -36,7 +36,7 @@ export default function RootNavigator() {
         name="TaskDetails"
         component={TaskDetails}
         options={{
-          headerShown: true,
+          headerShown: false,
         }}
       />
     </Stack.Navigator>

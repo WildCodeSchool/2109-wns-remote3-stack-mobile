@@ -7,6 +7,13 @@
 // GraphQL query operation: GetAllTasks
 // ====================================================
 
+export interface GetAllTasks_getAllTasks_tags {
+  __typename: "ITag";
+  id: string;
+  label: string;
+  color: string;
+}
+
 export interface GetAllTasks_getAllTasks {
   __typename: "ITask";
   id: string;
@@ -17,6 +24,7 @@ export interface GetAllTasks_getAllTasks {
   estimeeSpentTime: number;
   advancement: string;
   projectId: string;
+  tags: GetAllTasks_getAllTasks_tags[];
 }
 
 export interface GetAllTasks {

@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, Pressable } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
-// eslint-disable-next-line camelcase
-import { getProjectByIdId_getProjectByID_tasks } from '../../API/types/getProjectByIdId';
 
 interface DescriptionTaskDetailsProps {
   // eslint-disable-next-line camelcase
-  getTaskByID: getProjectByIdId_getProjectByID_tasks;
+  description: string | undefined;
 }
 const styles = StyleSheet.create({
   borderBottom: {
@@ -23,10 +21,10 @@ const styles = StyleSheet.create({
 });
 // eslint-disable-next-line camelcase
 export default function DescriptionTaskDetails({
-  getTaskByID,
+  description,
 }: // eslint-disable-next-line camelcase
 DescriptionTaskDetailsProps) {
-  const [isDescription, setIsDescription] = useState(false);
+  const [isDescription, setIsDescription] = useState(true);
   return (
     <>
       <Pressable
@@ -53,9 +51,7 @@ DescriptionTaskDetailsProps) {
         />
       </Pressable>
       {isDescription && (
-        <Text style={[styles.text, tw`px-3 mt-3`]}>
-          {getTaskByID.description}
-        </Text>
+        <Text style={[styles.text, tw`px-3 mt-3`]}> {description} </Text>
       )}
     </>
   );

@@ -27,6 +27,7 @@ function TaskList() {
   return (
     <View style={{ flex: 1, height: '100%' }}>
       <FlatList
+        inverted
         data={data.getAllTasks}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

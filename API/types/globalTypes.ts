@@ -7,6 +7,12 @@
 // START Enums and Input Objects
 //==============================================================
 
+export interface ITagPayload {
+  id?: string | null;
+  label: string;
+  color: string;
+}
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

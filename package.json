@@ -11,7 +11,6 @@
     "test": "jest --watchAll",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "generate:types": "rm -rf ./api/types && cd ./API && apollo codegen:generate --endpoint=http://localhost:4000/graphql  --target=typescript --outputFlat=types --includes=./*/**.ts"
-
   },
   "jest": {
     "preset": "jest-expo"
@@ -19,6 +18,7 @@
   "dependencies": {
     "@apollo/client": "^3.5.9",
     "@expo/vector-icons": "^12.0.0",
+    "@react-native-community/datetimepicker": "4.0.0",
     "@react-navigation/bottom-tabs": "^6.0.5",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
@@ -42,7 +42,9 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+    "react-native-date-picker": "^4.1.5",
     "react-native-elements": "^3.4.2",
+    "react-native-picker-select": "^8.0.4",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
     "react-native-web": "0.17.1",

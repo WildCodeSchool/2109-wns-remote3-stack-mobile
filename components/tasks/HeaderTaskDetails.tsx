@@ -1,12 +1,22 @@
 import React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import {
+  View,
+  StyleSheet,
+  Text,
+  Image,
+  FlatList,
+  Pressable,
+} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
+import { useNavigation } from '@react-navigation/native';
 // eslint-disable-next-line camelcase
-import { getProjectByIdId_getProjectByID_tasks } from '../../API/types/getProjectByIdId';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import OneTag from '../tag/OneTag';
 
 interface HeaderTaskDetailsProps {
   // eslint-disable-next-line camelcase
-  getTaskByID: getProjectByIdId_getProjectByID_tasks;
+  data: getTaskByID_getTaskByID | undefined;
 }
 const styles = StyleSheet.create({
   container: {
@@ -28,16 +38,29 @@ const styles = StyleSheet.create({
 });
 // eslint-disable-next-line camelcase
 export default function HeaderTaskDetails({
-  getTaskByID,
+  data,
 }: // eslint-disable-next-line camelcase
 HeaderTaskDetailsProps) {
+  const navigation = useNavigation();
+  const renderItem = ({ item }: any) => <OneTag item={item} />;
   return (
     <View style={tw`flex-row w-full mb-2 px-5 items-center justify-between`}>
       <View>
-        <Text style={styles.title}>
-          {getTaskByID ? getTaskByID.name : `TaskDetails`}
-        </Text>
-        <Text style={styles.title}>Tags</Text>
+        <Pressable
+          onPress={() => navigation.navigate('Root' as never)}
+          style={tw`flex-row items-center mb-3`}
+        >
+          <Ionicons name="arrow-back-circle-outline" color="white" size={24} />
+          <Text style={[{ width: 'auto' }, tw`text-white ml-2`]}>Back</Text>
+        </Pressable>
+        <Text style={styles.title}> {data ? data.name : `TaskDetails`} </Text>
+        <FlatList
+          horizontal
+          data={data?.tags}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          style={[{ width: 'auto' }, tw`flex-row `]}
+        />
       </View>
       <Image
         style={styles.image}

@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet, Pressable } from 'react-native';
+import React from 'react';
+import { Text, SafeAreaView, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { useRoute } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
-import tw from 'tailwind-react-native-classnames';
+import { RouteProp, useRoute } from '@react-navigation/native';
 // eslint-disable-next-line camelcase
-import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
 import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetails';
+import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
+import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
 
+type paramsProps = {
+  id: { id: string };
+};
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -29,15 +32,15 @@ const styles = StyleSheet.create({
   },
 });
 function TaskDetails() {
-  const route = useRoute();
+  const route = useRoute<RouteProp<paramsProps>>();
 
   const {
     loading: loadingTask,
     error: errorTask,
     data: dataTask,
     // eslint-disable-next-line camelcase
-  } = useQuery<getTaskByID_getTaskByID>(GetOneTask, {
-    variables: { taskId: route?.params?.id },
+  } = useQuery<getTaskByID>(GetOneTask, {
+    variables: { taskId: route.params.id },
   });
   if (loadingTask) {
     return <Text>...loading</Text>;
@@ -47,8 +50,10 @@ function TaskDetails() {
   }
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderTaskDetails getTaskByID={dataTask?.getTaskByID} />
-      <DescriptionTaskDetails getTaskByID={dataTask?.getTaskByID} />
+      <HeaderTaskDetails data={dataTask?.getTaskByID} />
+      <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
+      <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
+      <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
     </SafeAreaView>
   );
 }
