@@ -8,6 +8,7 @@
 // ====================================================
 
 export interface getTaskByID_getTaskByID {
+  getTaskByID: any;
   __typename: "ITask";
   id: string;
   name: string;

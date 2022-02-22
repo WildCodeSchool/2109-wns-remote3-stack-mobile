@@ -1,7 +1,8 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import { useQuery } from '@apollo/client';
 import tw from 'tailwind-react-native-classnames';
+import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import {
   // eslint-disable-next-line camelcase
@@ -38,6 +39,9 @@ const styles = StyleSheet.create({
 });
 
 function OneTask({ item }: OneTaskProps) {
+  const navigation = useNavigation();
+
+  // Fetch Project Name by ProjectId
   const {
     loading: loadingProject,
     error: errorProject,
@@ -54,33 +58,44 @@ function OneTask({ item }: OneTaskProps) {
   if (errorProject || !dataProject) {
     return <Text> error </Text>;
   }
+
   return (
-    <View style={[styles.container, tw`mx-3 p-5 border mt-5`]}>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('TaskDetails' as never, { id: item.id } as never)
+      }
+      style={[styles.container, tw`mx-3 p-5 border mt-5`]}
+    >
       <View style={tw`flex-row w-full mb-2 justify-between`}>
         <View>
           <Text style={[tw`text-lg`, styles.text]}>{item.name}</Text>
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
-        <Text
-          style={[
-            tw`ml-1 py-1 px-2 h-7 text-xs`,
-            styles.text,
-            item.advancement === 'TODO' && styles.advancementTodo,
-            item.advancement === 'IN_PROGRESS' && styles.advancementInProgress,
-            item.advancement === 'DONE' && styles.advancementDone,
-          ]}
-        >
-          {item.advancement}
-        </Text>
+        <View>
+          <Text
+            style={[
+              tw`ml-1 py-1 px-2 h-7 text-xs`,
+              styles.text,
+              item.advancement === 'TODO' && styles.advancementTodo,
+              item.advancement === 'IN_PROGRESS' &&
+                styles.advancementInProgress,
+              item.advancement === 'DONE' && styles.advancementDone,
+            ]}
+          >
+            {item.advancement}
+          </Text>
+        </View>
       </View>
-      <View style={tw`flex-row w-full justify-between`}>
-        <Text style={styles.text}>Created at: {item.startDate}</Text>
+      <View style={tw`flex-row justify-between`}>
+        <Text style={styles.text}>
+          Created at: {new Date(item.startDate).toLocaleDateString()}
+        </Text>
         <View style={tw`flex-row items-center`}>
           <Ionicons name="mail" size={20} color="white" />
           <Text style={[tw`ml-1`, styles.text]}> 12 </Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 export default OneTask;

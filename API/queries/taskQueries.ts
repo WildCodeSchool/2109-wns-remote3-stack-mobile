@@ -16,8 +16,8 @@ export const GET_ALL_TASKS = gql`
 `;
 
 export const GetOneTask = gql`
-  query getTaskByID($getTaskByIdId: String!) {
-    getTaskByID(id: $getTaskByIdId) {
+  query getTaskByID($taskId: String!) {
+    getTaskByID(id: $taskId) {
       id
       name
       description

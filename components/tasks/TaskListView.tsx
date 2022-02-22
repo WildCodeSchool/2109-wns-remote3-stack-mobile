@@ -25,7 +25,7 @@ function TaskList() {
   const renderItem = ({ item }: any) => <OneTask item={item} />;
 
   return (
-    <View>
+    <View style={{ flex: 1, height: '100%' }}>
       <FlatList
         data={data.getAllTasks}
         renderItem={renderItem}

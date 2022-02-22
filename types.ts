@@ -10,6 +10,7 @@ export type RootStackParamList = {
   Root: undefined;
   Userprofil: undefined;
   Createtask: undefined;
+  TaskDetails: undefined;
 };
 
 // export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
