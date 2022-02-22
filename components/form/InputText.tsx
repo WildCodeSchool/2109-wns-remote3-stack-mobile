@@ -1,12 +1,12 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { FieldValues, UseFormRegister, Controller, Control } from 'react-hook-form';
+import React from 'react';
+import { FieldValues, Controller, Control } from 'react-hook-form';
 import { TextInput, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 interface inputTextProps {
   label: string;
   name: string;
-  control: Control<FieldValues, any>;
+  control: Control<FieldValues, string>;
 }
 
 const styles = StyleSheet.create({
@@ -23,9 +23,8 @@ function InputText({ label, name, control }: inputTextProps) {
     <Controller
       name={name}
       control={control}
-      render={({ onChange, value }) => (
+      render={({ field: { onChange, value } }: FieldValues) => (
         <TextInput
-          // eslint-disable-next-line react/jsx-props-no-spreading
           multiline
           numberOfLines={10}
           placeholderTextColor="#8790E0"

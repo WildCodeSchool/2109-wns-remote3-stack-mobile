@@ -29,6 +29,9 @@ function InputDate({ setDate, date }: inputTextProps) {
     const currentDate = selectedDate || date;
     setDate(currentDate);
   };
+
+  console.log(date);
+
   const showPicker = () => {
     if (isPickerShow === true) {
       setIsPickerShow(false);
