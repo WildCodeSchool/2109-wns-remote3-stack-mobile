@@ -1,10 +1,12 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { FieldValues, UseFormRegister, Controller, Control } from 'react-hook-form';
 import { TextInput, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 interface inputTextProps {
   label: string;
-  setLabel: Dispatch<SetStateAction<string>>;
+  name: string;
+  control: Control<FieldValues, any>;
 }
 
 const styles = StyleSheet.create({
@@ -16,15 +18,23 @@ const styles = StyleSheet.create({
   },
 });
 
-function InputText({ label, setLabel }: inputTextProps) {
+function InputText({ label, name, control }: inputTextProps) {
   return (
-    <TextInput
-      multiline
-      numberOfLines={10}
-      placeholderTextColor="#8790E0"
-      style={[styles.input, tw`py-3 pl-3 mt-3`]}
-      placeholder={label}
-      onChangeText={(newText) => setLabel(newText)}
+    <Controller
+      name={name}
+      control={control}
+      render={({ onChange, value }) => (
+        <TextInput
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          multiline
+          numberOfLines={10}
+          placeholderTextColor="#8790E0"
+          style={[styles.input, tw`py-3 pl-3 mt-3`]}
+          placeholder={label}
+          value={value}
+          onChangeText={(newText) => onChange(newText)}
+        />
+      )}
     />
   );
 }
