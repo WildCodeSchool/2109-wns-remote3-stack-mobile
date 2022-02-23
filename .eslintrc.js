@@ -43,6 +43,8 @@ module.exports = {
     },
   ],
   rules: {
+    camelcase: 'off',
+    'global-require': 'off',
     'no-use-before-define': 'off',
     'no-console': 1,
     'no-unused-vars': 'off',

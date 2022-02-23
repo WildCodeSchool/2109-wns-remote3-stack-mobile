@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-curly-brace-presence */
 import { Text, View } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';

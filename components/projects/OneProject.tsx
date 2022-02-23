@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable global-require */
 import { Text, View } from 'react-native';
 import React from 'react';
 import dateFormat from 'dateformat';

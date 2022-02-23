@@ -1,4 +1,3 @@
-/* eslint-disable global-require */
 import { Image } from 'react-native';
 import React from 'react';
 
