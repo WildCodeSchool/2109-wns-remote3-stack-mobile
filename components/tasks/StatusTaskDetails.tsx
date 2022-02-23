@@ -22,16 +22,16 @@ export default function StatusTaskDetails({ status }: StatusTaskDetailsProps) {
   return (
     <View style={tw`flex-row w-full justify-between items-center px-3 mt-5`}>
       <Text style={{ color: '#A29EAC' }}>Status</Text>
-      <Text
+      <View
         style={[
-          tw`ml-1 py-1 px-2 h-7 text-xs text-white`,
-          status === 'TODO' && styles.advancementTodo,
+          tw`ml-1 py-1 rounded-sm pl-2 pr-3`,
+          status === 'TO_DO' && styles.advancementTodo,
           status === 'IN_PROGRESS' && styles.advancementInProgress,
           status === 'DONE' && styles.advancementDone,
         ]}
       >
-        {status}
-      </Text>
+        <Text style={tw`text-xs text-white text-center`}> {status} </Text>
+      </View>
     </View>
   );
 }

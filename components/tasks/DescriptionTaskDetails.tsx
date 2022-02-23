@@ -26,11 +26,7 @@ export default function DescriptionTaskDetails({
   return (
     <>
       <Pressable
-        onPress={
-          isDescription === true
-            ? () => setIsDescription(false)
-            : () => setIsDescription(true)
-        }
+        onPress={() => setIsDescription(!isDescription)}
         style={[
           styles.borderBottom,
           tw`flex-row justify-between w-full mt-5 w-11/12 pb-1`,

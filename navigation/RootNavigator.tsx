@@ -5,8 +5,8 @@ import UserProfil from '../screens/UserProfil';
 
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
-import TaskDetails from '../screens/tasks/TaskDetails';
 import CreateTask from '../screens/tasks/CreateTask';
+import TaskDetails from '../screens/tasks/TaskDetails';
 
 export default function RootNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();

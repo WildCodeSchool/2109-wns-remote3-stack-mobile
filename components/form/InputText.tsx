@@ -3,7 +3,7 @@ import { FieldValues, Controller, Control } from 'react-hook-form';
 import { TextInput, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
-interface inputTextProps {
+interface InputTextProps {
   label: string;
   name: string;
   control: Control<FieldValues, string>;
@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     color: '#8790E0',
-    width: '90%',
+    width: 350,
     borderColor: '#8790E0',
   },
 });
 
-function InputText({ label, name, control }: inputTextProps) {
+function InputText({ label, name, control }: InputTextProps) {
   return (
     <Controller
       name={name}
