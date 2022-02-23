@@ -43,7 +43,7 @@ export default function ProjectInformations({ project }: IProps) {
               navigation.navigate('CreateUpdateproject', { id: project.id })
             }
           >
-            <AntDesign style={tw`mr-2`} name="edit" size={25} color="white" />
+            <AntDesign style={tw`mr-3`} name="edit" size={25} color="white" />
           </Pressable>
           <Pressable
             onPress={() =>
