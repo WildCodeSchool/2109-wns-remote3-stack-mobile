@@ -7,6 +7,13 @@
 // GraphQL query operation: getTaskByID
 // ====================================================
 
+export interface getTaskByID_getTaskByID_tags {
+  __typename: "ITag";
+  id: string;
+  label: string;
+  color: string;
+}
+
 export interface getTaskByID_getTaskByID {
   __typename: "ITask";
   id: string;
@@ -17,6 +24,7 @@ export interface getTaskByID_getTaskByID {
   endDate: string;
   estimeeSpentTime: number;
   advancement: string;
+  tags: getTaskByID_getTaskByID_tags[];
 }
 
 export interface getTaskByID {
@@ -24,5 +32,5 @@ export interface getTaskByID {
 }
 
 export interface getTaskByIDVariables {
-  getTaskByIdId: string;
+  taskId: string;
 }

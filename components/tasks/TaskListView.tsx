@@ -1,44 +1,36 @@
 import React from 'react';
-// import { useQuery } from '@apollo/client';
-import { Text, View } from 'react-native';
+import { useQuery } from '@apollo/client';
+import { Text, View, FlatList } from 'react-native';
 
-// import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
-// // eslint-disable-next-line camelcase
-// import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
+import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
+import OneTask from './OneTask';
 
-// interface IResponse {
-//   // eslint-disable-next-line camelcase
-//   getAllTasks: GetAllTasks_getAllTasks[];
-// }
+import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
+
+interface IResponse {
+  getAllTasks: GetAllTasks_getAllTasks[];
+}
 function TaskList() {
-  //   // FETCH THE TASK LIST
-  //   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
+  // FETCH THE TASK LIST
+  const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
 
-  //   if (loading) {
-  //     return <Text>...loading </Text>;
-  //   }
-  //   if (error || !data) {
-  //     return <Text> error </Text>;
-  //   }
-  //   console.log(data.getAllTasks);
+  if (loading) {
+    return <Text>...loading </Text>;
+  }
+  if (error || !data) {
+    return <Text> error </Text>;
+  }
+  // TODO REPLACE ANY TYPES
+  const renderItem = ({ item }: any) => <OneTask item={item} />;
 
-  //   const Item = ({ getAllTasks }: IResponse) => (
-  //     <View>
-  //       <Text>{}</Text>
-  //     </View>
-  //   );
-
-  //   const App = () => {
-  //   const renderItem = ({ name }) => (
-  //     <Item name={man} />
-  //   );
   return (
-    <View>
-      <Text>tasklist view</Text>
-      {/* <FlatList
-      data={data.getAllTasks}
-      keyExtractor={data.getAllTasks}
-    /> */}
+    <View style={{ flex: 1, height: '100%' }}>
+      <FlatList
+        inverted
+        data={data.getAllTasks}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 }

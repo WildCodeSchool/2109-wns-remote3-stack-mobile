@@ -10,13 +10,19 @@ export const GET_ALL_TASKS = gql`
       endDate
       estimeeSpentTime
       advancement
+      projectId
+      tags {
+        id
+        label
+        color
+      }
     }
   }
 `;
 
 export const GetOneTask = gql`
-  query getTaskByID($getTaskByIdId: String!) {
-    getTaskByID(id: $getTaskByIdId) {
+  query getTaskByID($taskId: String!) {
+    getTaskByID(id: $taskId) {
       id
       name
       description
@@ -25,6 +31,11 @@ export const GetOneTask = gql`
       endDate
       estimeeSpentTime
       advancement
+      tags {
+        id
+        label
+        color
+      }
     }
   }
 `;
