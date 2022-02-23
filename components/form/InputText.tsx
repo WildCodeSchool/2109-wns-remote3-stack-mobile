@@ -28,7 +28,7 @@ function InputText({ label, name, control }: inputTextProps) {
           multiline
           numberOfLines={10}
           placeholderTextColor="#8790E0"
-          style={[styles.input, tw`py-3 pl-3 mt-3`]}
+          style={[styles.input, tw`py-3 pl-3 my-3 rounded-md`]}
           placeholder={label}
           value={value}
           onChangeText={(newText) => onChange(newText)}

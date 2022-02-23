@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: Mutation
+// GraphQL mutation operation: updateProject
 // ====================================================
 
-export interface Mutation_createProject {
+export interface updateProject_updateProject {
   __typename: "IProject";
   id: string;
   name: string;
@@ -18,15 +18,16 @@ export interface Mutation_createProject {
   estimeeSpentTime: number;
 }
 
-export interface Mutation {
-  createProject: Mutation_createProject;
+export interface updateProject {
+  updateProject: updateProject_updateProject;
 }
 
-export interface MutationVariables {
+export interface updateProjectVariables {
+  updateProjectId: string;
   name: string;
   description: string;
   status: string;
   startDate: any;
-  endDate: string;
+  endDate: any;
   estimeeSpentTime: number;
 }

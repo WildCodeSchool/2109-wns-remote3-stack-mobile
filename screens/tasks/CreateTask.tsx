@@ -9,11 +9,11 @@ import tw from 'tailwind-react-native-classnames';
 
 import CREATE_TASK from '../../API/mutation/createTask';
 
-import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
 import { GET_ALL_PROJECTS } from '../../API/queries/projectQueries';
 import InputText from '../../components/form/InputText';
 import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
+import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
@@ -97,7 +97,7 @@ export default function CreateTask() {
         name="description"
         label="Task Description"
       />
-      <InputDate setDate={setEndDateTask} date={endDateTask} />
+      <InputDate label="EndDate" setDate={setEndDateTask} date={endDateTask} />
       <InputNumeric
         name="estimeeSpentTime"
         label="Estimee Spent Time"
