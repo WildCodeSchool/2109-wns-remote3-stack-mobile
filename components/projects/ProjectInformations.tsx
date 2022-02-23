@@ -50,7 +50,7 @@ export default function ProjectInformations({ project }: IProps) {
               navigation.navigate('DeleteProject', { id: project.id })
             }
           >
-            <Entypo name="trash" size={25} color="white" />
+            <Entypo name="trash" size={22} color="white" />
           </Pressable>
         </View>
       </View>
