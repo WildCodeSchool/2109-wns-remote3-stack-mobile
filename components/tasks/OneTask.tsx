@@ -9,7 +9,7 @@ import {
   getProjectByIdId_getProjectByID_tasks,
   getProjectByIdId,
 } from '../../API/types/getProjectByIdId';
-import { GetOneProject } from '../../API/queries/projectQueries';
+import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 
 interface OneTaskProps {
   // eslint-disable-next-line camelcase
@@ -46,7 +46,7 @@ function OneTask({ item }: OneTaskProps) {
     loading: loadingProject,
     error: errorProject,
     data: dataProject,
-  } = useQuery<getProjectByIdId>(GetOneProject, {
+  } = useQuery<getProjectByIdId>(GET_ONE_PROJECT, {
     variables: {
       getProjectByIdId: item.projectId,
     },

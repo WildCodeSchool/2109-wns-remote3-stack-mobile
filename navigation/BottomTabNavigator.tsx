@@ -8,7 +8,7 @@ import HeaderLeft from './HeaderLeft';
 import UserIcon from './UserIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TaskList from '../screens/TaskList';
-import ProjectList from '../screens/ProjectList';
+import ProjectList from '../screens/projects/ProjectList';
 import Settings from '../screens/Settings';
 
 export default function BottomTabNavigator() {
@@ -57,9 +57,9 @@ export default function BottomTabNavigator() {
         name="Projectlist"
         component={ProjectList}
         options={{
-          title: '',
           headerLeft: () => <HeaderLeft title="Projects" />,
           headerRight: () => <UserIcon />,
+          title: '',
           tabBarIcon: () => (
             <Ionicons name="ios-rocket-sharp" size={24} color="white" />
           ),

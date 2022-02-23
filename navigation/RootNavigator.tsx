@@ -1,11 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
-import CreateTask from '../screens/tasks/CreateTask';
+import ProjectDetails from '../screens/projects/ProjectDetails';
 import UserProfil from '../screens/UserProfil';
 
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import TaskDetails from '../screens/tasks/TaskDetails';
+import CreateTask from '../screens/tasks/CreateTask';
 
 export default function RootNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +36,13 @@ export default function RootNavigator() {
       <Stack.Screen
         name="TaskDetails"
         component={TaskDetails}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ProjectDetails"
+        component={ProjectDetails}
         options={{
           headerShown: false,
         }}
