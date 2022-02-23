@@ -6,9 +6,9 @@ import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
-// eslint-disable-next-line camelcase
+
 import CREATE_TASK from '../../API/mutation/createTask';
-// eslint-disable-next-line camelcase
+
 import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
 import { GET_ALL_PROJECTS } from '../../API/queries/projectQueries';
 import InputText from '../../components/form/InputText';
@@ -16,7 +16,6 @@ import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
 
 interface IResponseProjects {
-  // eslint-disable-next-line camelcase
   getAllProjects: GetAllProjects_getAllProjects[];
 }
 const styles = StyleSheet.create({
@@ -42,7 +41,6 @@ export default function CreateTask() {
   const navigation = useNavigation();
   const { handleSubmit, control } = useForm();
   const [dataProjects, setDataProjects] = useState<
-    // eslint-disable-next-line camelcase
     GetAllProjects_getAllProjects[]
   >([]);
   const [projectIdTask, setProjectIdTask] = useState<string>('');

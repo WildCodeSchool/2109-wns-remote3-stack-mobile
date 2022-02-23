@@ -1,11 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
-// eslint-disable-next-line camelcase
+
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 
 interface OneTagProps {
-  // eslint-disable-next-line camelcase
   item: getTaskByID_getTaskByID_tags;
 }
 

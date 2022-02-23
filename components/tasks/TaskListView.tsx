@@ -4,11 +4,10 @@ import { Text, View, FlatList } from 'react-native';
 
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
-// eslint-disable-next-line camelcase
+
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 
 interface IResponse {
-  // eslint-disable-next-line camelcase
   getAllTasks: GetAllTasks_getAllTasks[];
 }
 function TaskList() {
@@ -21,7 +20,7 @@ function TaskList() {
   if (error || !data) {
     return <Text> error </Text>;
   }
-  // eslint-disable-next-line camelcase
+  // TODO REPLACE ANY TYPES
   const renderItem = ({ item }: any) => <OneTask item={item} />;
 
   return (

@@ -4,7 +4,6 @@ import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
 
 interface DescriptionTaskDetailsProps {
-  // eslint-disable-next-line camelcase
   description: string | undefined;
 }
 const styles = StyleSheet.create({
@@ -19,11 +18,10 @@ const styles = StyleSheet.create({
     color: '#A29EAC',
   },
 });
-// eslint-disable-next-line camelcase
+
 export default function DescriptionTaskDetails({
   description,
-}: // eslint-disable-next-line camelcase
-DescriptionTaskDetailsProps) {
+}: DescriptionTaskDetailsProps) {
   const [isDescription, setIsDescription] = useState(true);
   return (
     <>

@@ -3,7 +3,6 @@ import { Text, View, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 interface StatusTaskDetailsProps {
-  // eslint-disable-next-line camelcase
   status: string | undefined;
 }
 
@@ -19,10 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function StatusTaskDetails({
-  status,
-}: // eslint-disable-next-line camelcase
-StatusTaskDetailsProps) {
+export default function StatusTaskDetails({ status }: StatusTaskDetailsProps) {
   return (
     <View style={tw`flex-row w-full justify-between items-center px-3 mt-5`}>
       <Text style={{ color: '#A29EAC' }}>Status</Text>

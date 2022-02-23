@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import { StyleSheet, View, Platform } from 'react-native';
 import dateFormat from 'dateformat';
 import { Button } from 'react-native-elements/dist/buttons/Button';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import tw from 'tailwind-react-native-classnames';
 
 interface inputTextProps {
@@ -25,12 +25,10 @@ const styles = StyleSheet.create({
 function InputDate({ setDate, date }: inputTextProps) {
   const [isPickerShow, setIsPickerShow] = useState(false);
 
-  const onChange = (event: any, selectedDate: any) => {
+  const onChange = (event: Event, selectedDate: Date | undefined) => {
     const currentDate = selectedDate || date;
     setDate(currentDate);
   };
-
-  console.log(date);
 
   const showPicker = () => {
     if (isPickerShow === true) {

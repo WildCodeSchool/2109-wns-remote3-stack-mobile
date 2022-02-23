@@ -5,14 +5,12 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import {
-  // eslint-disable-next-line camelcase
   getProjectByIdId_getProjectByID_tasks,
   getProjectByIdId,
 } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 
 interface OneTaskProps {
-  // eslint-disable-next-line camelcase
   item: getProjectByIdId_getProjectByID_tasks;
 }
 const styles = StyleSheet.create({

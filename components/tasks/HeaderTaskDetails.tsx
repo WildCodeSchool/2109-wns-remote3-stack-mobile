@@ -10,12 +10,11 @@ import {
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
-// eslint-disable-next-line camelcase
+
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import OneTag from '../tag/OneTag';
 
 interface HeaderTaskDetailsProps {
-  // eslint-disable-next-line camelcase
   data: getTaskByID_getTaskByID | undefined;
 }
 const styles = StyleSheet.create({
@@ -36,12 +35,10 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
 });
-// eslint-disable-next-line camelcase
-export default function HeaderTaskDetails({
-  data,
-}: // eslint-disable-next-line camelcase
-HeaderTaskDetailsProps) {
+
+export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
   const navigation = useNavigation();
+  // TODO REPLACE ANY TYPES
   const renderItem = ({ item }: any) => <OneTag item={item} />;
   return (
     <View style={tw`flex-row w-full mb-2 px-5 items-center justify-between`}>

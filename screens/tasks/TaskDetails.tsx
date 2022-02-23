@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { RouteProp, useRoute } from '@react-navigation/native';
-// eslint-disable-next-line camelcase
+
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -38,7 +38,6 @@ function TaskDetails() {
     loading: loadingTask,
     error: errorTask,
     data: dataTask,
-    // eslint-disable-next-line camelcase
   } = useQuery<getTaskByID>(GetOneTask, {
     variables: { taskId: route.params.id },
   });
