@@ -10,7 +10,7 @@ const CREATE_TASK = gql`
     $advancement: String!
     $estimeeSpentTime: Float!
   ) {
-    createTask(
+    createTaskWithTags(
       tags: $tags
       name: $name
       description: $description

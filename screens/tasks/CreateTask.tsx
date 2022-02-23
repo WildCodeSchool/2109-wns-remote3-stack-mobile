@@ -1,4 +1,4 @@
-import { SubmitHandler, useForm, FieldValues } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
 import { useMutation, useQuery } from '@apollo/client';
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
 });
 export default function CreateTask() {
+  const navigation = useNavigation();
   const { handleSubmit, control } = useForm();
   const [dataProjects, setDataProjects] = useState<
     // eslint-disable-next-line camelcase
@@ -47,57 +48,36 @@ export default function CreateTask() {
   const [projectIdTask, setProjectIdTask] = useState<string>('');
   const [endDateTask, setEndDateTask] = useState<Date>(new Date());
 
-  // CREATE A TASK
-  const [createTask, { loading, error }] = useMutation(CREATE_TASK, {
-    onCompleted: () => {
-      console.log('prout');
-    },
-  });
-  if (loading) return <Text>loading</Text>;
-  if (error) return <Text>{error.message}</Text>;
-
-  const onSubmit: SubmitHandler<FieldValues> = (d: FieldValues) => {
-    // const dataTask = {
-    //   name: d.name,
-    //   description: d.description,
-    //   projectId: projectIdTask,
-    //   advancement: 'TO_DO',
-    //   endDate: date,
-    //   tags: [
-    //     {
-    //       id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
-    //       label: 'important',
-    //       color: '#A13D3D',
-    //     },
-    //   ],
-    //   estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
-    // };
-    createTask({
-      variables: {
-        name: d.name,
-        description: d.description,
-        projectId: projectIdTask,
-        advancement: 'TO_DO',
-        endDate: new Date(endDateTask),
-        tags: [
-          {
-            id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
-            label: 'important',
-            color: '#A13D3D',
-          },
-        ],
-        estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
-      },
-    });
-  };
-
   // FETCH PROJECTS
   useQuery<IResponseProjects>(GET_ALL_PROJECTS, {
     onCompleted: (d) => {
       setDataProjects(d.getAllProjects);
     },
   });
-  const navigation = useNavigation();
+  // CREATE A TASK
+  const [createTask, { loading, error }] = useMutation(CREATE_TASK);
+  if (loading) return <Text>loading</Text>;
+  if (error) return <Text>{error.message}</Text>;
+
+  const onSubmit = (d: any) => {
+    const dataTask = {
+      name: d.name,
+      description: d.description,
+      projectId: projectIdTask,
+      advancement: 'TO_DO',
+      endDate: endDateTask,
+      tags: [
+        {
+          id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
+          label: 'important',
+          color: '#A13D3D',
+        },
+      ],
+      estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
+    };
+    createTask({ variables: dataTask });
+  };
+
   return (
     <View style={styles.container}>
       <View
