@@ -2,6 +2,8 @@ import { View, Image, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
 
 const styles = StyleSheet.create({
   image: {
@@ -13,12 +15,14 @@ const styles = StyleSheet.create({
   },
 });
 
+type ProfilScreenProp = StackNavigationProp<RootStackParamList, 'Userprofil'>;
+
 export default function UserIcon() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<ProfilScreenProp>();
 
   return (
     <View style={tw`flex-1 flex px-5 py-4`}>
-      <Pressable onPress={() => navigation.navigate('Userprofil' as never)}>
+      <Pressable onPress={() => navigation.navigate('Userprofil')}>
         <Image
           style={styles.image}
           source={{

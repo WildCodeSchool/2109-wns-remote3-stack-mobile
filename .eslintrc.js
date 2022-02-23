@@ -43,6 +43,8 @@ module.exports = {
     },
   ],
   rules: {
+    camelcase: 'off',
+    'global-require': 'off',
     'no-use-before-define': 'off',
     'no-console': 1,
     'no-unused-vars': 'off',
@@ -71,5 +73,11 @@ module.exports = {
       { namedComponents: 'function-declaration' },
     ],
     'react/prop-types': 1,
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      {
+        allowSingleExtends: false,
+      },
+    ],
   },
 };
