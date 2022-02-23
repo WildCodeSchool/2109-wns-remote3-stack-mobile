@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 const CREATE_TASK = gql`
-  mutation CreateTask(
+  mutation createTask(
     $tags: [ITagPayload!]!
     $name: String!
     $description: String!
@@ -10,7 +10,7 @@ const CREATE_TASK = gql`
     $advancement: String!
     $estimeeSpentTime: Float!
   ) {
-    createTaskWithTags(
+    createTask(
       tags: $tags
       name: $name
       description: $description

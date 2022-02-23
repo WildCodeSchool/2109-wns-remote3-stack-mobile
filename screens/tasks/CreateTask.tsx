@@ -1,11 +1,11 @@
-import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
+import { SubmitHandler, useForm, FieldValues } from 'react-hook-form';
 import React, { useState } from 'react';
-import tw from 'tailwind-react-native-classnames';
+import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
+import { useMutation, useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
-import { SubmitHandler, useForm, FieldValues } from 'react-hook-form';
 import { Ionicons } from '@expo/vector-icons';
-import { useMutation, useQuery } from '@apollo/client';
+import tw from 'tailwind-react-native-classnames';
 // eslint-disable-next-line camelcase
 import CREATE_TASK from '../../API/mutation/createTask';
 // eslint-disable-next-line camelcase
@@ -39,45 +39,46 @@ const styles = StyleSheet.create({
   },
 });
 export default function CreateTask() {
+  const { handleSubmit, control } = useForm();
   const [dataProjects, setDataProjects] = useState<
     // eslint-disable-next-line camelcase
     GetAllProjects_getAllProjects[]
   >([]);
-  const { handleSubmit, control } = useForm();
-  // const [nameTask, setNameTask] = useState('task Name');
-  // const [descriptionTask, setDescriptionTask] = useState('task Description');
-  const [endDateTask, setEndDateTask] = useState(new Date());
-  // const [estimeeSpentTimeTask, onChangeEstimeeSpentTimeTask] = useState(10);
-  const [projectIdTask, setProjectIdTask] = useState('');
+  const [projectIdTask, setProjectIdTask] = useState<string>('');
+  const [endDateTask, setEndDateTask] = useState<Date>(new Date());
 
   // CREATE A TASK
-  const [create, { loading, error }] = useMutation(CREATE_TASK);
+  const [createTask, { loading, error }] = useMutation(CREATE_TASK, {
+    onCompleted: () => {
+      console.log('prout');
+    },
+  });
   if (loading) return <Text>loading</Text>;
   if (error) return <Text>{error.message}</Text>;
 
-  const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
-    console.log({
-      name: data.taskname,
-      description: data.taskdescription,
-      projectId: projectIdTask,
-      advancement: 'TO_DO',
-      endDate: endDateTask,
-      tags: [
-        {
-          id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
-          label: 'important',
-          color: '#A13D3D',
-        },
-      ],
-      estimeeSpentTime: parseFloat(`${data.estimeespenttime}`),
-    });
-    create({
+  const onSubmit: SubmitHandler<FieldValues> = (d: FieldValues) => {
+    // const dataTask = {
+    //   name: d.name,
+    //   description: d.description,
+    //   projectId: projectIdTask,
+    //   advancement: 'TO_DO',
+    //   endDate: date,
+    //   tags: [
+    //     {
+    //       id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
+    //       label: 'important',
+    //       color: '#A13D3D',
+    //     },
+    //   ],
+    //   estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
+    // };
+    createTask({
       variables: {
-        name: data.taskname,
-        description: data.taskdescription,
+        name: d.name,
+        description: d.description,
         projectId: projectIdTask,
         advancement: 'TO_DO',
-        endDate: endDateTask,
+        endDate: new Date(endDateTask),
         tags: [
           {
             id: '2472b301-689c-4e76-8d5d-1c497ebf776a',
@@ -85,7 +86,7 @@ export default function CreateTask() {
             color: '#A13D3D',
           },
         ],
-        estimeeSpentTime: parseFloat(`${data.estimeespenttime}`),
+        estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
       },
     });
   };
@@ -108,20 +109,19 @@ export default function CreateTask() {
         <Pressable onPress={() => navigation.navigate('TaskList' as never)}>
           <Ionicons name="chevron-back-outline" size={25} color="white" />
         </Pressable>
-        {/* TODO FUNCTION SUBMIT CREATE TASK */}
         <Button onPress={handleSubmit(onSubmit)} title="submit">
           <Text style={tw`text-white font-bold text-lg`}> Create Task </Text>
         </Button>
       </View>
-      <InputText control={control} label="Task Name" name="taskname" />
+      <InputText control={control} label="Task Name" name="name" />
       <InputText
         control={control}
-        name="taskdescription"
+        name="description"
         label="Task Description"
       />
       <InputDate setDate={setEndDateTask} date={endDateTask} />
       <InputNumeric
-        name="estimeespenttime"
+        name="estimeeSpentTime"
         label="Estimee Spent Time"
         control={control}
       />
