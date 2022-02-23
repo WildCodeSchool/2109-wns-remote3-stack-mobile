@@ -9,6 +9,7 @@ import {
   getProjectByIdId,
 } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
+import Loader from '../Loader';
 
 interface OneTaskProps {
   item: getProjectByIdId_getProjectByID_tasks;
@@ -51,7 +52,7 @@ function OneTask({ item }: OneTaskProps) {
   });
 
   if (loadingProject) {
-    return <Text>...loading </Text>;
+    return <Loader />;
   }
   if (errorProject || !dataProject) {
     return <Text> error </Text>;

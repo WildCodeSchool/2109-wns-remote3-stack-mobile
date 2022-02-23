@@ -4,6 +4,7 @@ import { Text, View, FlatList } from 'react-native';
 
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
+import Loader from '../Loader';
 
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 
@@ -15,7 +16,7 @@ function TaskList() {
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
 
   if (loading) {
-    return <Text>...loading </Text>;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text> error </Text>;

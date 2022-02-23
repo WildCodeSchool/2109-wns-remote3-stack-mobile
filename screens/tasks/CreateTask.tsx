@@ -14,6 +14,7 @@ import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
 import SelectTags from '../../components/tasks/SelectTags';
 import { ITagPayload } from '../../API/types/globalTypes';
+import Loader from '../../components/Loader';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
@@ -98,7 +99,7 @@ export default function CreateTask() {
   });
   // CREATE A TASK
   const [createTask, { loading, error }] = useMutation(CREATE_TASK);
-  if (loading) return <Text>loading</Text>;
+  if (loading) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
 
   const onSubmit = (d: any) => {

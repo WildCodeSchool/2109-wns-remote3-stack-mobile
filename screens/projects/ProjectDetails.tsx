@@ -11,6 +11,7 @@ import ProjectNavigation from './ProjectNavigation';
 import ProjectTasks from './navOptions /ProjectTasks';
 import NewsFeed from './navOptions /NewsFeed';
 import AssignedUser from './navOptions /AssignedUser';
+import Loader from '../../components/Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -42,7 +43,7 @@ export default function ProjectDetails() {
   });
 
   if (loading) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

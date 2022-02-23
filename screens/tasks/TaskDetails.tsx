@@ -9,6 +9,7 @@ import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
 import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetails';
 import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
 import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
+import Loader from '../../components/Loader';
 
 type paramsProps = {
   id: { id: string };
@@ -42,7 +43,7 @@ function TaskDetails() {
     variables: { taskId: route.params.id },
   });
   if (loadingTask) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (errorTask) {
     return <Text>erreur</Text>;
