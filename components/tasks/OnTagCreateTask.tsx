@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { Text, Pressable } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
@@ -12,8 +12,6 @@ interface OneTagProps {
 }
 
 function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
-  const [isActive, setActive] = useState(false);
-
   const handleClick = (tag: ITagPayload) => {
     let isItem = false;
     for (let i = 0; i < tags.length; i += 1) {
@@ -33,7 +31,6 @@ function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
       //   onPress={() => setActive(!isActive)}
       onPress={() => {
         handleClick(item);
-        setActive(!isActive);
       }}
       style={[
         tags.includes(item)
