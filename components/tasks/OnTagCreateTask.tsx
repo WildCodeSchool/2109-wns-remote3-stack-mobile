@@ -3,16 +3,15 @@ import { Text, Pressable } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
-import { ITagPayload } from '../../API/types/globalTypes';
 
 interface OneTagProps {
   item: getTaskByID_getTaskByID_tags;
-  setTags: Dispatch<SetStateAction<ITagPayload[]>>;
-  tags: ITagPayload[];
+  setTags: Dispatch<SetStateAction<getTaskByID_getTaskByID_tags[]>>;
+  tags: getTaskByID_getTaskByID_tags[];
 }
 
 function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
-  const handleClick = (tag: ITagPayload) => {
+  const handleClick = (tag: getTaskByID_getTaskByID_tags) => {
     let isItem = false;
     for (let i = 0; i < tags.length; i += 1) {
       if (tags[i].id === tag.id) {

@@ -14,10 +14,10 @@ import InputText from '../../components/form/InputText';
 import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
 import SelectTags from '../../components/tasks/SelectTags';
-import { ITagPayload } from '../../API/types/globalTypes';
 import Loader from '../../components/Loader';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import { RootTabParamList } from '../../types';
+import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
@@ -77,7 +77,7 @@ export default function CreateTask() {
   >([]);
   const [projectIdTask, setProjectIdTask] = useState<string>('');
   const [advancementTask, setAdvancement] = useState<string>('');
-  const [dataTags, setTags] = useState<ITagPayload[]>([]);
+  const [dataTags, setTags] = useState<getTaskByID_getTaskByID_tags[]>([]);
   const [isModal, setIsModal] = useState<boolean>(false);
   const [endDateTask, setEndDateTask] = useState<Date>(new Date());
   const arrayStatus = [

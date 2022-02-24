@@ -14,14 +14,14 @@ import { useQuery } from '@apollo/client';
 import { getTags_getAllTags } from '../../API/types/getTags';
 import OneTagCreateTask from './OnTagCreateTask';
 import { GET_ALL_TAGS } from '../../API/queries/tagsQueries';
-import { ITagPayload } from '../../API/types/globalTypes';
 import OneTag from '../tag/OneTag';
+import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 
 interface SelectTagsProps {
   setIsModal: Dispatch<SetStateAction<boolean>>;
   isModal: boolean;
-  setTags: Dispatch<SetStateAction<ITagPayload[]>>;
-  tags: ITagPayload[];
+  setTags: Dispatch<SetStateAction<getTaskByID_getTaskByID_tags[]>>;
+  tags: getTaskByID_getTaskByID_tags[];
 }
 interface IResponseTags {
   getAllTags: getTags_getAllTags[];
@@ -73,8 +73,10 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
       setDataTagsList(d.getAllTags);
     },
   });
-  const tagsActive = ({ item }: { item: any }) => <OneTag item={item} />;
-  const renderItem = ({ item }: { item: any }) => (
+  const tagsActive = ({ item }: { item: getTaskByID_getTaskByID_tags }) => (
+    <OneTag item={item} />
+  );
+  const renderItem = ({ item }: { item: getTaskByID_getTaskByID_tags }) => (
     <OneTagCreateTask tags={tags} setTags={setTags} item={item} />
   );
   return (
