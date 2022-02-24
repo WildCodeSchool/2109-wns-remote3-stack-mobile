@@ -113,6 +113,7 @@ export default function CreateTask() {
       estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
     };
     createTask({ variables: dataTask });
+    navigation.navigate('Homepage' as never);
   };
   return (
     <View style={styles.container}>
