@@ -73,8 +73,8 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
       setDataTagsList(d.getAllTags);
     },
   });
-  const tagsActive = ({ item }: any) => <OneTag item={item} />;
-  const renderItem = ({ item }: any) => (
+  const tagsActive = ({ item }: { item: any }) => <OneTag item={item} />;
+  const renderItem = ({ item }: { item: any }) => (
     <OneTagCreateTask tags={tags} setTags={setTags} item={item} />
   );
   return (

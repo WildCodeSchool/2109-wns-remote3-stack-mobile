@@ -1,9 +1,10 @@
-import { useForm } from 'react-hook-form';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
 import { useMutation, useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import CREATE_TASK from '../../API/mutation/taks';
@@ -15,10 +16,13 @@ import InputNumeric from '../../components/form/InputNumeric';
 import SelectTags from '../../components/tasks/SelectTags';
 import { ITagPayload } from '../../API/types/globalTypes';
 import Loader from '../../components/Loader';
+import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
+import { RootTabParamList } from '../../types';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
 }
+type taskScreenProps = StackNavigationProp<RootTabParamList, 'TaskList'>;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,7 +70,7 @@ const pickerStyle = StyleSheet.create({
   underline: { borderTopWidth: 0 },
 });
 export default function CreateTask() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<taskScreenProps>();
   const { handleSubmit, control } = useForm();
   const [dataProjects, setDataProjects] = useState<
     GetAllProjects_getAllProjects[]
@@ -98,11 +102,16 @@ export default function CreateTask() {
     },
   });
   // CREATE A TASK
-  const [createTask, { loading, error }] = useMutation(CREATE_TASK);
+  const [createTask, { loading, error }] = useMutation(CREATE_TASK, {
+    onCompleted: () => {
+      navigation.navigate('TaskList');
+    },
+    refetchQueries: [GET_ALL_TASKS],
+  });
   if (loading) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
 
-  const onSubmit = (d: any) => {
+  const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const dataTask = {
       name: d.name,
       description: d.description,
@@ -113,7 +122,6 @@ export default function CreateTask() {
       estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
     };
     createTask({ variables: dataTask });
-    navigation.navigate('Homepage' as never);
   };
   return (
     <View style={styles.container}>
@@ -126,7 +134,7 @@ export default function CreateTask() {
       >
         <Pressable
           style={isModal ? tw`opacity-50` : tw`opacity-100`}
-          onPress={() => navigation.navigate('TaskList' as never)}
+          onPress={() => navigation.navigate('TaskList')}
         >
           <Ionicons name="chevron-back-outline" size={25} color="white" />
         </Pressable>

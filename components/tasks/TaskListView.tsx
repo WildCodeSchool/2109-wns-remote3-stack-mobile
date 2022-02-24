@@ -7,6 +7,7 @@ import OneTask from './OneTask';
 import Loader from '../Loader';
 
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
@@ -21,8 +22,9 @@ function TaskList() {
   if (error || !data) {
     return <Text> error </Text>;
   }
-  // TODO REPLACE ANY TYPES
-  const renderItem = ({ item }: any) => <OneTask item={item} />;
+  const renderItem = ({ item }: { item: getTaskByID_getTaskByID }) => (
+    <OneTask item={item} />
+  );
 
   return (
     <View style={{ flex: 1, height: '100%' }}>

@@ -16,6 +16,7 @@ export type RootStackParamList = {
   Createtask: undefined;
   TaskDetails: { id: string };
   ProjectDetails: { id: string };
+  CreateUpdateproject: { id: string | undefined };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =

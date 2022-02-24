@@ -2,6 +2,8 @@ import React, { Dispatch, SetStateAction } from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
 
 interface MenuProps {
   firstLabel: string;
@@ -10,6 +12,13 @@ interface MenuProps {
   setIsActive: Dispatch<SetStateAction<string>>;
   isActive: string;
 }
+
+type menuCreateProjectScreenProps = StackNavigationProp<
+  RootStackParamList,
+  'CreateUpdateproject'
+>;
+type menuScreenProps = StackNavigationProp<RootStackParamList, 'Createtask'> &
+  menuCreateProjectScreenProps;
 
 const styles = StyleSheet.create({
   text: {
@@ -35,7 +44,7 @@ export default function Menu({
   isActive,
   setIsActive,
 }: MenuProps) {
-  const navigation = useNavigation();
+  const navigation = useNavigation<menuScreenProps>();
   const route = useRoute();
 
   return (
@@ -70,8 +79,9 @@ export default function Menu({
       <Pressable
         onPress={
           route.name === 'TaskList'
-            ? () => navigation.navigate('Createtask' as never)
-            : () => navigation.navigate('Createproject' as never)
+            ? () => navigation.navigate('Createtask')
+            : () =>
+                navigation.navigate('CreateUpdateproject', { id: undefined })
         }
       >
         <Text style={[styles.text, styles.textBold]}> Add {addLabel}</Text>
