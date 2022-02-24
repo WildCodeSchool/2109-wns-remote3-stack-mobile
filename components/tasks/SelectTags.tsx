@@ -83,6 +83,17 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
       onSwipeUp={() => setIsModal(true)}
       onSwipeDown={() => setIsModal(false)}
     >
+      {tags.length > 0 && (
+        <View style={tw`flex-col w-full`}>
+          <FlatList
+            numColumns={3}
+            style={tw`flex-wrap flex-col w-full mt-16`}
+            data={tags}
+            renderItem={tagsActive}
+            keyExtractor={(item) => item.label}
+          />
+        </View>
+      )}
       <Pressable
         style={[styles.button, tw`py-2 mt-3`]}
         onPress={() => setIsModal(!isModal)}
