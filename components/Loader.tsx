@@ -1,4 +1,3 @@
-/* eslint-disable react/no-children-prop */
 import React from 'react';
 import { ActivityIndicator, View } from 'react-native';
 

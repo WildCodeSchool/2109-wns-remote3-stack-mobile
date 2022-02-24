@@ -27,7 +27,6 @@ function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
 
   return (
     <Pressable
-      //   onPress={() => setActive(!isActive)}
       onPress={() => {
         handleClick(item);
       }}

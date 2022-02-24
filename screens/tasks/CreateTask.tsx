@@ -7,7 +7,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
-import CREATE_TASK from '../../API/mutation/taks';
+import CREATE_TASK from '../../API/mutation/Task';
 import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
 import { GET_ALL_PROJECTS } from '../../API/queries/projectQueries';
 import InputText from '../../components/form/InputText';
