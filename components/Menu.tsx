@@ -71,7 +71,10 @@ export default function Menu({
         onPress={
           route.name === 'TaskList'
             ? () => navigation.navigate('Createtask' as never)
-            : () => navigation.navigate('Createproject' as never)
+            : () =>
+                navigation.navigate('CreateUpdateproject', {
+                  id: undefined,
+                } as never)
         }
       >
         <Text style={[styles.text, styles.textBold]}> Add {addLabel}</Text>
