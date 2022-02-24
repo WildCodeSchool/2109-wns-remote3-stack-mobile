@@ -1,18 +1,10 @@
-import {
-  ApolloClient,
-  InMemoryCache,
-  createHttpLink,
-  from,
-} from '@apollo/client';
-import { removeTypenameFromMutationLink } from 'apollo-remove-typename-mutation-link';
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:4000/graphql' });
-const link = from([removeTypenameFromMutationLink, httpLink]);
 // Initialize Apollo Client
 const client = new ApolloClient({
+  uri: 'http://localhost:4000/graphql',
   credentials: 'include',
   cache: new InMemoryCache(),
-  link,
 });
 
 export default client;

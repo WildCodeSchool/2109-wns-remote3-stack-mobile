@@ -112,13 +112,17 @@ export default function CreateTask() {
   if (error) return <Text>{error.message}</Text>;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
+    const tagsWithoutTypename = dataTags.map((tag) => {
+      const { __typename, ...item } = tag;
+      return item;
+    });
     const dataTask = {
       name: d.name,
       description: d.description,
       projectId: projectIdTask,
       advancement: advancementTask,
       endDate: endDateTask,
-      tags: dataTags,
+      tags: tagsWithoutTypename,
       estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
     };
     createTask({ variables: dataTask });
