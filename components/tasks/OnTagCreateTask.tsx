@@ -36,11 +36,8 @@ function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
         setActive(!isActive);
       }}
       style={[
-        !isActive
-          ? { borderColor: `${item.color}`, borderRadius: 6 }
-          : { borderColor: `white`, borderWidth: 2, borderRadius: 6 },
         { backgroundColor: `${item.color}` },
-        tw`flex-row w-full mb-2 justify-between pl-3 pr-2`,
+        tw`flex-row mb-4 mx-2 justify-between pl-3 pr-2`,
       ]}
     >
       <Text style={[{ color: '#ffff' }, tw`m-auto py-3`]}>{item.label}</Text>

@@ -15,6 +15,7 @@ import { getTags_getAllTags } from '../../API/types/getTags';
 import OneTagCreateTask from './OnTagCreateTask';
 import { GET_ALL_TAGS } from '../../API/queries/tagsQueries';
 import { ITagPayload } from '../../API/types/globalTypes';
+import OneTag from '../tag/OneTag';
 
 interface SelectTagsProps {
   setIsModal: Dispatch<SetStateAction<boolean>>;
@@ -29,7 +30,7 @@ interface IResponseTags {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 30,
     position: 'absolute',
     bottom: 10,
     backgroundColor: '#282D43',
@@ -72,6 +73,7 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
       setDataTagsList(d.getAllTags);
     },
   });
+  const tagsActive = ({ item }: any) => <OneTag item={item} />;
   const renderItem = ({ item }: any) => (
     <OneTagCreateTask tags={tags} setTags={setTags} item={item} />
   );
@@ -96,11 +98,26 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
         style={{ marginTop: 20 }}
       >
         <View style={styles.centeredView}>
+          <Text style={tw`text-white font-bold mb-3 text-center`}>
+            Select Tag(s)
+          </Text>
           <View style={styles.modalView}>
             <FlatList
               data={dataTagsList}
               renderItem={renderItem}
               keyExtractor={(item) => item.id}
+            />
+          </View>
+          {tags.length > 0 && (
+            <Text style={tw`text-white font-bold mb-3 text-center`}>Tags:</Text>
+          )}
+          <View style={tw`flex-col w-full`}>
+            <FlatList
+              numColumns={3}
+              style={tw`flex-wrap flex-col w-full pl-16`}
+              data={tags}
+              renderItem={tagsActive}
+              keyExtractor={(item) => item.label}
             />
           </View>
         </View>
