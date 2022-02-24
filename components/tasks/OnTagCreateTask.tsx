@@ -33,9 +33,7 @@ function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
         handleClick(item);
       }}
       style={[
-        tags.includes(item)
-          ? { borderColor: `white`, borderWidth: 2, borderRadius: 6 }
-          : { borderColor: `${item.color}`, borderRadius: 6 },
+        tags.includes(item) ? tw`opacity-100` : tw`opacity-70`,
         { backgroundColor: `${item.color}` },
         tw`flex-row mb-4 mx-2 justify-between pl-3 pr-2`,
       ]}
