@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { GET_ALL_PROJECTS } from '../API/queries/projectQueries';
 import OneProject from './projects/OneProject';
 import { GetAllProjects } from '../API/types/GetAllProjects';
+import Loader from './Loader';
 
 const styles = StyleSheet.create({
   card: {
@@ -34,7 +35,7 @@ export default function ProjectListView() {
   const navigation = useNavigation();
 
   if (loading) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

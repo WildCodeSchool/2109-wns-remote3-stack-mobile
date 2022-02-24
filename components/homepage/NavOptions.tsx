@@ -3,8 +3,19 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import React from 'react';
 import { Icon } from 'react-native-elements';
 import tw from 'tailwind-react-native-classnames';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
+import { RootTabParamList } from '../../types';
 
+type menuCreateProjectScreenProps = StackNavigationProp<
+  RootTabParamList,
+  'TaskList'
+>;
+type navOptionstaskListScreenProps = StackNavigationProp<
+  RootTabParamList,
+  'TaskList'
+> &
+  menuCreateProjectScreenProps;
 const styles = StyleSheet.create({
   card: {
     padding: 10,
@@ -28,11 +39,11 @@ const styles = StyleSheet.create({
   },
 });
 export default function NavOptions() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<navOptionstaskListScreenProps>();
   return (
     <View style={tw`flex flex-row`}>
       <TouchableOpacity
-        onPress={() => navigation.navigate('TaskList' as never)}
+        onPress={() => navigation.navigate('TaskList')}
         style={styles.card}
       >
         <Text style={styles.text}>Tasks</Text>
@@ -49,7 +60,7 @@ export default function NavOptions() {
         />
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigation.navigate('Projectlist' as never)}
+        onPress={() => navigation.navigate('Projectlist')}
         style={styles.card}
       >
         <Text style={styles.text}>Project</Text>

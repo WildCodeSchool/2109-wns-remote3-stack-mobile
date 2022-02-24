@@ -4,8 +4,10 @@ import { Text, View, FlatList } from 'react-native';
 
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
+import Loader from '../Loader';
 
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
@@ -15,13 +17,14 @@ function TaskList() {
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
 
   if (loading) {
-    return <Text>...loading </Text>;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text> error </Text>;
   }
-  // TODO REPLACE ANY TYPES
-  const renderItem = ({ item }: any) => <OneTask item={item} />;
+  const renderItem = ({ item }: { item: getTaskByID_getTaskByID }) => (
+    <OneTask item={item} />
+  );
 
   return (
     <View style={{ flex: 1, height: '100%' }}>

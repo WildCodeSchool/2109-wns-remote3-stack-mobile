@@ -9,6 +9,7 @@ import {
   getProjectByIdId,
 } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
+import Loader from '../Loader';
 
 interface OneTaskProps {
   item: getProjectByIdId_getProjectByID_tasks;
@@ -51,7 +52,7 @@ function OneTask({ item }: OneTaskProps) {
   });
 
   if (loadingProject) {
-    return <Text>...loading </Text>;
+    return <Loader />;
   }
   if (errorProject || !dataProject) {
     return <Text> error </Text>;
@@ -66,22 +67,23 @@ function OneTask({ item }: OneTaskProps) {
     >
       <View style={tw`flex-row w-full mb-2 justify-between`}>
         <View>
-          <Text style={[tw`text-lg`, styles.text]}>{item.name}</Text>
+          <Text style={[tw`text-xl font-bold`, styles.text]}>{item.name}</Text>
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
         <View>
-          <Text
+          <View
             style={[
-              tw`ml-1 py-1 px-2 h-7 text-xs`,
-              styles.text,
-              item.advancement === 'TODO' && styles.advancementTodo,
+              tw`ml-1 py-1 rounded-sm pl-2 pr-3`,
+              item.advancement === 'TO_DO' && styles.advancementTodo,
               item.advancement === 'IN_PROGRESS' &&
                 styles.advancementInProgress,
               item.advancement === 'DONE' && styles.advancementDone,
             ]}
           >
-            {item.advancement}
-          </Text>
+            <Text style={[tw`ml-1 py-1 px-2 text-xs`, styles.text]}>
+              {item.advancement}
+            </Text>
+          </View>
         </View>
       </View>
       <View style={tw`flex-row justify-between`}>

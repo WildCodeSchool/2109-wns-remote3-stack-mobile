@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements/dist/buttons/Button';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import tw from 'tailwind-react-native-classnames';
 
-interface inputTextProps {
+interface InputTextProps {
   date: Date;
   setDate: Dispatch<SetStateAction<Date>>;
   label: string;
@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     width: 350,
     height: 100,
     backgroundColor: 'transparent',
-    marginVertical: 6,
   },
   button: {
     backgroundColor: '#8790E0',
@@ -23,9 +22,12 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     width: 350,
   },
+  text: {
+    color: '#8790E0',
+  },
 });
 
-function InputDate({ setDate, date, label }: inputTextProps) {
+function InputDate({ setDate, date, label }: InputTextProps) {
   const [isPickerShow, setIsPickerShow] = useState(false);
 
   const onChange = (event: Event, selectedDate: Date | undefined) => {
@@ -41,8 +43,8 @@ function InputDate({ setDate, date, label }: inputTextProps) {
     }
   };
   return (
-    <View style={tw`my-1`}>
-      <Text style={tw`text-left text-white w-full`}>{label}</Text>
+    <View style={tw`mt-3`}>
+      <Text style={[styles.text, tw`text-left w-full mb-2`]}>{label}</Text>
       <View style={styles.button}>
         <Button
           title={dateFormat(new Date(date), 'dddd dd mmmm yyyy')}
