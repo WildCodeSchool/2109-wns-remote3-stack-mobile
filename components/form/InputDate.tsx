@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#8790E0',
     borderRadius: 5,
+    marginVertical: 6,
     width: 350,
   },
   text: {

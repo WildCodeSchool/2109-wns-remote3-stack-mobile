@@ -2,11 +2,12 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import ProjectDetails from '../screens/projects/ProjectDetails';
 import UserProfil from '../screens/UserProfil';
-
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
-import CreateTask from '../screens/tasks/CreateTask';
 import TaskDetails from '../screens/tasks/TaskDetails';
+import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
+import DeleteProject from '../screens/projects/DeleteProject';
+import CreateTask from '../screens/tasks/CreateTask';
 
 export default function RootNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,6 +34,22 @@ export default function RootNavigator() {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="CreateUpdateproject"
+        component={CreateUpdateProject}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name="DeleteProject"
+          component={DeleteProject}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Group>
       <Stack.Screen
         name="TaskDetails"
         component={TaskDetails}

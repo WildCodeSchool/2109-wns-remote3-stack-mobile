@@ -15,8 +15,9 @@ export type RootStackParamList = {
   Userprofil: undefined;
   Createtask: undefined;
   TaskDetails: { id: string };
+  DeleteProject: { id: string };
   ProjectDetails: { id: string };
-  CreateUpdateproject: { id: string | undefined };
+  CreateUpdateproject: { id: string };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
