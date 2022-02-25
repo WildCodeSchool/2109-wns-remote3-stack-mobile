@@ -14,11 +14,11 @@ import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
 import SelectTags from '../../components/tasks/SelectTags';
 import Loader from '../../components/Loader';
-import SelectStatus from '../../components/tasks/SelectStatus';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import { RootTabParamList } from '../../types';
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 import SelectProject from '../../components/tasks/SelectProject';
+import SelectStatus from '../../components/tasks/SelectStatus';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
