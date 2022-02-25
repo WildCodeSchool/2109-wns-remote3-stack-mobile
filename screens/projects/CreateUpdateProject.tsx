@@ -14,7 +14,6 @@ import InputNumeric from '../../components/form/InputNumeric';
 import CREATE_PROJECT from '../../API/mutation/createProject';
 import UPDATE_PROJECT from '../../API/mutation/updateProject';
 import { createProject } from '../../API/types/createProject';
-import { useUserFromStore } from '../../store/slices/user.slice';
 import {
   GET_ALL_PROJECTS,
   GET_ONE_PROJECT,
@@ -81,7 +80,6 @@ type RootStackParam = {
 };
 
 export default function CreateUpdateProject() {
-  const { user } = useUserFromStore();
   const route = useRoute<RouteProp<RootStackParam>>();
   const navigation = useNavigation<ProjectDetailsScreenProps>();
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -146,7 +144,7 @@ export default function CreateUpdateProject() {
       };
 
       if (id === undefined) {
-        create({ variables: { ...projectData, userId: user.id } });
+        create({ variables: { ...projectData } });
       } else {
         update({ variables: { ...projectData, updateProjectId: id } });
       }

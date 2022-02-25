@@ -54,11 +54,6 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
         <AntDesign name="left" size={24} color="#8790E0" style={tw`mr-1`} />
         <View>
           <Text style={styles.title}> {data ? data.name : `TaskDetails`} </Text>
-          <Pressable
-            onPress={() => navigation.navigate('DeleteTask', { id: data?.id })}
-          >
-            <Entypo name="trash" size={22} color="white" />
-          </Pressable>
           <FlatList
             horizontal
             data={data?.tags}
@@ -68,6 +63,12 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
           />
         </View>
       </TouchableOpacity>
+      <Pressable
+        style={tw`mt-2`}
+        onPress={() => navigation.navigate('DeleteTask', { id: data?.id })}
+      >
+        <Entypo name="trash" size={15} color="white" />
+      </Pressable>
       <Image
         style={styles.image}
         source={{

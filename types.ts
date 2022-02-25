@@ -14,6 +14,8 @@ export type RootStackParamList = {
   Root: undefined;
   Userprofil: undefined;
   Createtask: undefined;
+  Login: undefined;
+  Signup: undefined;
   TaskDetails: { id: string | undefined };
   DeleteProject: { id: string };
   ProjectDetails: { id: string };
