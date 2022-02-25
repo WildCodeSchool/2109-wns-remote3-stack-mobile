@@ -26,10 +26,12 @@ function TaskList() {
     <OneTask item={item} />
   );
 
+  const reversedData = [...data.getAllTasks].reverse();
+
   return (
     <View style={{ flex: 1, height: '100%' }}>
       <FlatList
-        data={data.getAllTasks}
+        data={reversedData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
