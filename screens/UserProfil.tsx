@@ -4,6 +4,7 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useMutation } from '@apollo/client';
+import * as SecureStore from 'expo-secure-store';
 import { RootTabParamList } from '../types';
 import { LOGOUT_MUTATION } from '../API/mutation/logout';
 import { useUserFromStore } from '../store/slices/user.slice';
@@ -19,7 +20,10 @@ export default function UserProfil() {
   });
   const { dispatchLogout } = useUserFromStore();
   const [logoutMutation] = useMutation(LOGOUT_MUTATION, {
-    onCompleted: () => dispatchLogout(),
+    onCompleted: () => {
+      SecureStore.deleteItemAsync('token');
+      dispatchLogout();
+    },
   });
 
   type navigationProps = StackNavigationProp<RootTabParamList, 'Homepage'>;
