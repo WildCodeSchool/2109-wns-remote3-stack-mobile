@@ -3,11 +3,10 @@ import React, { useState } from 'react';
 import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
 import { useMutation, useQuery } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import RNPickerSelect from 'react-native-picker-select';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
-import CREATE_TASK from '../../API/mutation/Task';
+import { CREATE_TASK } from '../../API/mutation/Task';
 import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
 import { GET_ALL_PROJECTS } from '../../API/queries/projectQueries';
 import InputText from '../../components/form/InputText';
@@ -18,6 +17,8 @@ import Loader from '../../components/Loader';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import { RootTabParamList } from '../../types';
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
+import SelectProject from '../../components/tasks/SelectProject';
+import SelectStatus from '../../components/tasks/SelectStatus';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
@@ -38,37 +39,6 @@ const styles = StyleSheet.create({
     color: '#8790E0',
   },
 });
-const pickerStyle = StyleSheet.create({
-  inputIOS: {
-    color: 'white',
-    backgroundColor: '#8790E0',
-    borderRadius: 6,
-    paddingTop: 13,
-    paddingHorizontal: 10,
-    paddingBottom: 12,
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    height: 40,
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  inputAndroid: {
-    color: '#8790E0',
-    backgroundColor: '#8790E0',
-    borderRadius: 6,
-    paddingTop: 13,
-    paddingHorizontal: 10,
-    paddingBottom: 12,
-    marginLeft: 20,
-    marginRight: 20,
-    marginTop: 10,
-    height: 40,
-    textAlign: 'center',
-    fontSize: 18,
-  },
-  underline: { borderTopWidth: 0 },
-});
 export default function CreateTask() {
   const navigation = useNavigation<taskScreenProps>();
   const { handleSubmit, control } = useForm();
@@ -80,20 +50,6 @@ export default function CreateTask() {
   const [dataTags, setTags] = useState<getTaskByID_getTaskByID_tags[]>([]);
   const [isModal, setIsModal] = useState<boolean>(false);
   const [endDateTask, setEndDateTask] = useState<Date>(new Date());
-  const arrayStatus = [
-    {
-      label: 'Todo',
-      value: 'TO_DO',
-    },
-    {
-      label: 'In Progress',
-      value: 'IN_PROGRESS',
-    },
-    {
-      label: 'Done',
-      value: 'DONE',
-    },
-  ];
 
   // FETCH PROJECTS
   useQuery<IResponseProjects>(GET_ALL_PROJECTS, {
@@ -168,26 +124,8 @@ export default function CreateTask() {
           date={endDateTask}
         />
       </View>
-      <RNPickerSelect
-        style={pickerStyle}
-        placeholder={{
-          label: 'Select project',
-        }}
-        onValueChange={(value) => setProjectIdTask(value)}
-        items={dataProjects.map((item) => {
-          return { label: item.name, value: item.id };
-        })}
-      />
-      <RNPickerSelect
-        style={pickerStyle}
-        placeholder={{
-          label: 'Select status',
-        }}
-        onValueChange={(value) => setAdvancement(value)}
-        items={arrayStatus.map((item) => {
-          return { label: item.label, value: item.value };
-        })}
-      />
+      <SelectProject setProjectIdTask={setProjectIdTask} data={dataProjects} />
+      <SelectStatus setAdvancement={setAdvancement} />
       <SelectTags
         setIsModal={setIsModal}
         isModal={isModal}

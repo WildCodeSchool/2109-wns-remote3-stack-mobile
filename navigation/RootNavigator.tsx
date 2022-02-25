@@ -7,15 +7,16 @@ import UserProfil from '../screens/UserProfil';
 import { RootStackParamList } from '../types';
 import BottomTabNavigator from './BottomTabNavigator';
 import TaskDetails from '../screens/tasks/TaskDetails';
-import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
 import DeleteProject from '../screens/projects/DeleteProject';
 import CreateTask from '../screens/tasks/CreateTask';
+import DeleteTask from '../screens/tasks/DeleteTask';
 import { useUserFromStore } from '../store/slices/user.slice';
 import LogIn from '../screens/auth/Login';
 import SignUp from '../screens/auth/Signup';
 import { GET_SELF } from '../API/queries/userQueries';
 import { GetSelf } from '../API/types/GetSelf';
 import Loader from '../components/Loader';
+import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
 
 const styles = StyleSheet.create({
   container: {
@@ -74,6 +75,15 @@ export default function RootNavigator() {
             <Stack.Screen
               name="DeleteProject"
               component={DeleteProject}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="DeleteTask"
+              component={DeleteTask}
               options={{
                 headerShown: false,
               }}
