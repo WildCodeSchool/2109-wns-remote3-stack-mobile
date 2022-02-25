@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 export interface UserState {
   id?: string;
-  username?: string;
+  firstName?: string;
+  lastName?: string;
   email?: string;
-  avatarUrl?: string;
+  avatar?: string | null;
 }
 
 interface UserStateWithLogged extends UserState {
@@ -14,7 +15,7 @@ interface UserStateWithLogged extends UserState {
 
 // TODO: improve dispatch types
 interface ReturnUseUserFromStore {
-  user: UserState;
+  user: UserStateWithLogged;
   dispatchLogin: (payload: UserState) => {
     type: string;
     payload: UserState;
@@ -30,9 +31,11 @@ interface ReturnUseUserFromStore {
 
 const initialState: UserStateWithLogged = {
   logged: false,
-  id: 'b9a950e4-0775-4a63-a0f8-dc8fda1ba749',
-  username: 'John',
-  email: 'john@gmail.com',
+  id: undefined,
+  firstName: undefined,
+  lastName: undefined,
+  email: undefined,
+  avatar: undefined,
 };
 
 export const userSlice = createSlice({
