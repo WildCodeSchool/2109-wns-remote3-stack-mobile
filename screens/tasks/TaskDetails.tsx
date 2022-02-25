@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, Pressable } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { RouteProp, useRoute } from '@react-navigation/native';
-
+import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import tw from 'tailwind-react-native-classnames';
+import { Entypo } from '@expo/vector-icons';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
 });
 function TaskDetails() {
   const route = useRoute<RouteProp<paramsProps>>();
-
+  const navigation = useNavigation();
   const {
     loading: loadingTask,
     error: errorTask,
@@ -51,6 +52,14 @@ function TaskDetails() {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTaskDetails data={dataTask?.getTaskByID} />
+      <Pressable
+        style={tw`mt-2 w-full w-11/12`}
+        onPress={() =>
+          navigation.navigate('DeleteTask', { id: dataTask?.getTaskByID.id })
+        }
+      >
+        <Entypo name="trash" size={15} color="white" />
+      </Pressable>
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
       <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
       <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
