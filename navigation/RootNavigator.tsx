@@ -1,5 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
+import { useQuery } from '@apollo/client';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import ProjectDetails from '../screens/projects/ProjectDetails';
 import UserProfil from '../screens/UserProfil';
 import { RootStackParamList } from '../types';
@@ -11,10 +13,31 @@ import CreateTask from '../screens/tasks/CreateTask';
 import { useUserFromStore } from '../store/slices/user.slice';
 import LogIn from '../screens/auth/Login';
 import SignUp from '../screens/auth/Signup';
+import { GET_SELF } from '../API/queries/userQueries';
+import { GetSelf } from '../API/types/GetSelf';
+import Loader from '../components/Loader';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#15192C',
+    alignItems: 'center',
+    paddingTop: 60,
+  },
+});
 
 export default function RootNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
-  const { user } = useUserFromStore();
+  const { user, dispatchSelf } = useUserFromStore();
+  const { loading } = useQuery<GetSelf>(GET_SELF, {
+    onCompleted: (data) => dispatchSelf(data.getSelf),
+  });
+  if (loading)
+    return (
+      <SafeAreaView style={styles.container}>
+        <Loader />
+      </SafeAreaView>
+    );
   return (
     <Stack.Navigator>
       {user.logged ? (
