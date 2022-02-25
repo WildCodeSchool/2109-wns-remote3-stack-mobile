@@ -12,7 +12,6 @@ import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 
 interface OneTaskProps {
   item: getProjectByIdId_getProjectByID_tasks;
-  setProjectsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const styles = StyleSheet.create({
   container: {
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function OneTask({ item, setProjectsLoading }: OneTaskProps) {
+function OneTask({ item }: OneTaskProps) {
   const navigation = useNavigation();
 
   // Fetch Project Name by ProjectId
@@ -50,10 +49,10 @@ function OneTask({ item, setProjectsLoading }: OneTaskProps) {
       getProjectByIdId: item.projectId,
     },
   });
+  if (loadingProject) return null;
   if (errorProject || !dataProject) {
     return <Text> error </Text>;
   }
-  setProjectsLoading(loadingProject);
   return (
     <TouchableOpacity
       onPress={() =>

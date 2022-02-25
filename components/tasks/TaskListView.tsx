@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Text, View, FlatList } from 'react-native';
 
@@ -15,16 +15,15 @@ interface IResponse {
 function TaskList() {
   // FETCH THE TASK LIST
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
-  const [projectsLoading, setProjectsLoading] = useState<boolean>(false);
 
-  if (loading || projectsLoading) {
+  if (loading) {
     return <Loader />;
   }
   if (error || !data) {
     return <Text> error </Text>;
   }
   const renderItem = ({ item }: { item: getTaskByID_getTaskByID }) => (
-    <OneTask item={item} setProjectsLoading={setProjectsLoading} />
+    <OneTask item={item} />
   );
 
   return (
