@@ -8,6 +8,7 @@ import TaskDetails from '../screens/tasks/TaskDetails';
 import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
 import DeleteProject from '../screens/projects/DeleteProject';
 import CreateTask from '../screens/tasks/CreateTask';
+import DeleteTask from '../screens/tasks/DeleteTask';
 
 export default function RootNavigator() {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -64,6 +65,15 @@ export default function RootNavigator() {
           headerShown: false,
         }}
       />
+      <Stack.Group screenOptions={{ presentation: 'modal' }}>
+        <Stack.Screen
+          name="DeleteTask"
+          component={DeleteTask}
+          options={{
+            headerShown: false,
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
