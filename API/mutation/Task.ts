@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const CREATE_TASK = gql`
+export const CREATE_TASK = gql`
   mutation createTask(
     $tags: [ITagPayload!]!
     $name: String!
@@ -36,4 +36,22 @@ const CREATE_TASK = gql`
   }
 `;
 
-export default CREATE_TASK;
+export const DELETE_TASK = gql`
+  mutation DeleteTaskById($taskId: String!) {
+    deleteTaskById(id: $taskId) {
+      id
+      name
+      description
+      projectId
+      startDate
+      endDate
+      estimeeSpentTime
+      advancement
+      tags {
+        id
+        label
+        color
+      }
+    }
+  }
+`;

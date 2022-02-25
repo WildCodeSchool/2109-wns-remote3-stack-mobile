@@ -1,5 +1,5 @@
 import React from 'react';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 import {
   View,
   StyleSheet,
@@ -7,6 +7,7 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
@@ -62,6 +63,12 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
           />
         </View>
       </TouchableOpacity>
+      <Pressable
+        style={tw`mt-2`}
+        onPress={() => navigation.navigate('DeleteTask', { id: data?.id })}
+      >
+        <Entypo name="trash" size={15} color="white" />
+      </Pressable>
       <Image
         style={styles.image}
         source={{

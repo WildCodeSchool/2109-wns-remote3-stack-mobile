@@ -48,9 +48,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   button: {
-    backgroundColor: '#8790E0',
+    backgroundColor: '#7950EC',
     width: 350,
     borderRadius: 6,
+    height: 40,
   },
   modalView: {
     backgroundColor: '#282D43',
@@ -97,7 +98,7 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
         </View>
       )}
       <Pressable
-        style={[styles.button, tw`py-2 mt-3`]}
+        style={[styles.button, tw`pt-1 mt-5`]}
         onPress={() => setIsModal(!isModal)}
       >
         <Text style={tw`text-white text-lg text-center`}>
