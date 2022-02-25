@@ -6,7 +6,7 @@ import tw from 'tailwind-react-native-classnames';
 interface InputAuthProps {
   label: string;
   name: string;
-  type: 'email' | 'password';
+  type: 'email' | 'password' | 'text';
   control: Control<FieldValues, string>;
 }
 

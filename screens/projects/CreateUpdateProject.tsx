@@ -13,7 +13,14 @@ import InputDate from '../../components/form/InputDate';
 import InputNumeric from '../../components/form/InputNumeric';
 import CREATE_PROJECT from '../../API/mutation/createProject';
 import UPDATE_PROJECT from '../../API/mutation/updateProject';
+<<<<<<< HEAD
 import { createProject } from '../../API/types/createProject';
+=======
+import {
+  createProject,
+  createProjectVariables,
+} from '../../API/types/createProject';
+>>>>>>> 447ea0bda5ceed479fa8e251237dd3122584fbae
 import {
   GET_ALL_PROJECTS,
   GET_ONE_PROJECT,
@@ -91,13 +98,15 @@ export default function CreateUpdateProject() {
   const projectStatus = ['TO_DO', 'IN_PROGRESS', 'BLOCKED', 'DONE'];
 
   // CREATE A NEW PROJECT
-  const [create, { loading: createLoading, error: createError }] =
-    useMutation<createProject>(CREATE_PROJECT, {
-      onCompleted: (d: createProject) => {
-        navigation.navigate('ProjectDetails', { id: d.createProject.id });
-      },
-      refetchQueries: [GET_ALL_PROJECTS],
-    });
+  const [create, { loading: createLoading, error: createError }] = useMutation<
+    createProject,
+    createProjectVariables
+  >(CREATE_PROJECT, {
+    onCompleted: (d: createProject) => {
+      navigation.navigate('ProjectDetails', { id: d.createProject.id });
+    },
+    refetchQueries: [GET_ALL_PROJECTS],
+  });
 
   // UPDATE A PROJECT
   const [update, { loading: updateLoading, error: updateError }] = useMutation<{
