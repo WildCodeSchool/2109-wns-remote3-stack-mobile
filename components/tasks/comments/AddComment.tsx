@@ -13,7 +13,10 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { getTaskByID_getTaskByID } from '../../../API/types/getTaskByID';
 import Loader from '../../Loader';
-import { CREATE_COMMENTS } from '../../../API/mutation/Comments';
+import {
+  CREATE_COMMENTS,
+  GET_ALL_COMMENTS,
+} from '../../../API/mutation/Comments';
 import { GetOneTask } from '../../../API/queries/taskQueries';
 
 interface AddCommentProps {
@@ -41,10 +44,16 @@ export default function AddComment({ data }: AddCommentProps) {
 
   // Create comment
   const [createComment, { loading, error }] = useMutation(CREATE_COMMENTS, {
+    refetchQueries: [
+      GET_ALL_COMMENTS,
+      {
+        query: GetOneTask,
+        variables: { id: data?.id },
+      },
+    ],
     onCompleted: () => {
       navigation.navigate('TaskDetails' as never, { id: data?.id } as never);
     },
-    refetchQueries: [GetOneTask],
   });
   if (loading) return <Loader />;
   if (error) return <Text>{error.message}</Text>;
