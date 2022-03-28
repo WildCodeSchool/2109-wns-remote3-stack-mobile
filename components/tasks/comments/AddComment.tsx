@@ -92,7 +92,7 @@ export default function AddComment({ data }: AddCommentProps) {
         )}
       />
       <Pressable onPress={handleSubmit(onSubmit)}>
-        <Ionicons name="chevron-up-circle-outline" size={25} color="white" />
+        <Ionicons name="paper-plane-outline" size={25} color="white" />
       </Pressable>
     </View>
   );
