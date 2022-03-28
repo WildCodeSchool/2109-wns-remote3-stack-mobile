@@ -5,6 +5,7 @@ import { getTaskByID_getTaskByID } from '../../../API/types/getTaskByID';
 import { GET_ALL_COMMENTS } from '../../../API/mutation/Comments';
 import Loader from '../../Loader';
 import OneComment from './OneComment';
+import { GetAllComments_getAllComments } from '../../../API/types/GetAllComments';
 
 interface CommentsListProps {
   dataTask: getTaskByID_getTaskByID | undefined;

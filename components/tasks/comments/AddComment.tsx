@@ -18,6 +18,7 @@ import {
   GET_ALL_COMMENTS,
 } from '../../../API/mutation/Comments';
 import { GetOneTask } from '../../../API/queries/taskQueries';
+import { GetUserByID_getUserByID } from '../../../API/types/GetUserByID';
 
 interface AddCommentProps {
   data: getTaskByID_getTaskByID | undefined;
@@ -40,7 +41,9 @@ export default function AddComment({ data }: AddCommentProps) {
   const { handleSubmit, control } = useForm();
   const navigation = useNavigation();
 
-  const user = useSelector((state: { user: any }) => state.user);
+  const user = useSelector(
+    (state: { user: GetUserByID_getUserByID }) => state.user
+  );
 
   // Create comment
   const [createComment, { loading, error }] = useMutation(CREATE_COMMENTS, {
