@@ -11,3 +11,18 @@ export const GET_SELF = gql`
     }
   }
 `;
+
+export const GET_USER_BY_ID = gql`
+  query GetUserByID($getUserByIdId: String!) {
+    getUserByID(id: $getUserByIdId) {
+      id
+      email
+      password
+      firstName
+      lastName
+      avatar
+      createdAt
+      updatedAt
+    }
+  }
+`;

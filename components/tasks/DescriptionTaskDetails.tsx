@@ -47,6 +47,7 @@ export default function DescriptionTaskDetails({
       {isDescription && (
         <Text style={[styles.text, tw`px-3 mt-3`]}> {description} </Text>
       )}
+      <Text>frjfr</Text>
     </>
   );
 }

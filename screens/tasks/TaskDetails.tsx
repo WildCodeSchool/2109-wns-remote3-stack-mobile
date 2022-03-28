@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { RouteProp, useRoute } from '@react-navigation/native';
@@ -10,6 +10,9 @@ import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetail
 import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
 import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
 import Loader from '../../components/Loader';
+import CommentsTaskDetails from '../../components/tasks/CommentsTaskDetails';
+import TaskNavigation from '../../components/tasks/TaskNavigation';
+import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
 
 type paramsProps = {
   id: { id: string };
@@ -34,6 +37,7 @@ const styles = StyleSheet.create({
 });
 function TaskDetails() {
   const route = useRoute<RouteProp<paramsProps>>();
+  const [nav, setNav] = useState('comments');
 
   const {
     loading: loadingTask,
@@ -51,9 +55,16 @@ function TaskDetails() {
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTaskDetails data={dataTask?.getTaskByID} />
+      <TagsTaskDetails data={dataTask?.getTaskByID} />
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
       <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
       <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
+      <TaskNavigation setNav={setNav} nav={nav} />
+      {nav === 'comments' && (
+        <CommentsTaskDetails data={dataTask?.getTaskByID} />
+      )}
+      {nav === 'assignedUser' && <Text>assignedUser</Text>}
+      {nav === 'newsFeed' && <Text>newsFeed</Text>}
     </SafeAreaView>
   );
 }

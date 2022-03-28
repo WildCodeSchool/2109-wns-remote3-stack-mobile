@@ -9,6 +9,8 @@ import {
   getProjectByIdId,
 } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
+// import { CREATE_COMMENTS } from '../../API/mutation/Comments';
+// import Loader from '../Loader';
 
 interface OneTaskProps {
   item: getProjectByIdId_getProjectByID_tasks;
@@ -17,10 +19,6 @@ const styles = StyleSheet.create({
   container: {
     borderColor: '#8790E0',
     borderRadius: 10,
-    shadowColor: '#8790E0',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   text: {
     color: '#ffff',
