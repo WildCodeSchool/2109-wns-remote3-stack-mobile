@@ -11,8 +11,9 @@ interface OneCommentProps {
 
 const styles = StyleSheet.create({
   comments: {
-    backgroundColor: '#2C3249',
+    backgroundColor: '#15192C',
     borderRadius: 5,
+    width: 360,
   },
   image: {
     width: 20,
@@ -37,7 +38,7 @@ export default function OneComment({ item }: OneCommentProps) {
   }
   return (
     <View>
-      <View style={[tw`flex-row mt-3`]}>
+      <View style={[tw`flex-row mt-3 ml-6`]}>
         <Image
           style={styles.image}
           source={{
@@ -51,7 +52,7 @@ export default function OneComment({ item }: OneCommentProps) {
           {dateFormat(new Date(item.createdAt), 'dddd dd mmmm yyyy')}
         </Text>
       </View>
-      <View style={[styles.comments, tw`text-white p-2 mt-4`]}>
+      <View style={[styles.comments, tw`text-white p-2 mt-4 ml-4`]}>
         <Text style={tw`text-white`}>{item.text}</Text>
       </View>
     </View>

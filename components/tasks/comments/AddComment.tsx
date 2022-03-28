@@ -26,14 +26,14 @@ interface AddCommentProps {
 const styles = StyleSheet.create({
   input: {
     color: '#8790E0',
-    backgroundColor: '#15192C',
+    backgroundColor: '#2C3249',
     marginRight: 20,
   },
   contentInput: {
     borderColor: '#8790E0',
     borderWidth: 1,
     borderRadius: 5,
-    width: 370,
+    width: 360,
   },
 });
 
@@ -73,7 +73,7 @@ export default function AddComment({ data }: AddCommentProps) {
     <View
       style={[
         styles.contentInput,
-        tw`py-2 px-3 mt-6 flex flex-row justify-between items-center rounded-md`,
+        tw`py-2 px-3 mt-6 flex flex-row justify-between ml-3 items-center rounded-md`,
       ]}
     >
       <Controller
@@ -91,8 +91,15 @@ export default function AddComment({ data }: AddCommentProps) {
           />
         )}
       />
-      <Pressable onPress={handleSubmit(onSubmit)}>
-        <Ionicons name="paper-plane-outline" size={25} color="white" />
+      <Pressable
+        style={{
+          transform: [{ rotate: '40deg' }],
+        }}
+        onPress={handleSubmit(onSubmit)}
+      >
+        <View>
+          <Ionicons name="paper-plane-outline" size={20} color="white" />
+        </View>
       </Pressable>
     </View>
   );

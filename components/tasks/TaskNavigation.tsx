@@ -9,43 +9,82 @@ interface IProps {
 
 const styles = StyleSheet.create({
   container: {
-    width: 370,
-    marginTop: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#8790E0',
+    backgroundColor: '#15192C',
+    margin: 'auto',
   },
   selected: {
-    color: '#8790E0',
     fontWeight: 'bold',
-    marginRight: 20,
+    textAlign: 'center',
     fontSize: 16,
+    backgroundColor: '#8790E0',
+    color: 'white',
+    paddingRight: 23,
+    paddingLeft: 23,
+    padding: 10,
+    borderRadius: 5,
+  },
+  selectedText: {
+    color: '#15192C',
+  },
+  unSelectedText: {
+    color: 'white',
   },
   unSelected: {
+    paddingRight: 23,
+    paddingLeft: 23,
+    backgroundColor: '#15192C',
     color: 'white',
-    marginRight: 20,
+    textAlign: 'center',
     fontSize: 16,
+    padding: 10,
+    borderRadius: 5,
   },
 });
 
 export default function TaskNavigation({ setNav, nav }: IProps) {
   return (
-    <View style={[styles.container, tw`mx-4 mt-7 flex flex-row pb-1 mb-3`]}>
+    <View
+      style={[
+        tw`mx-2 mt-2 mb-2 flex flex-row rounded-lg bg-blue-300`,
+        styles.container,
+      ]}
+    >
       <Pressable onPress={() => setNav('comments')}>
-        <Text style={nav === 'comments' ? styles.selected : styles.unSelected}>
-          Comments
-        </Text>
+        <View style={nav === 'comments' ? styles.selected : styles.unSelected}>
+          <Text
+            style={
+              nav === 'comments' ? styles.selectedText : styles.unSelectedText
+            }
+          >
+            Comments
+          </Text>
+        </View>
       </Pressable>
       <Pressable onPress={() => setNav('assignedUser')}>
-        <Text
+        <View
           style={nav === 'assignedUser' ? styles.selected : styles.unSelected}
         >
-          Assigned Users
-        </Text>
+          <Text
+            style={
+              nav === 'assignedUser'
+                ? styles.selectedText
+                : styles.unSelectedText
+            }
+          >
+            Assigned Users
+          </Text>
+        </View>
       </Pressable>
       <Pressable onPress={() => setNav('newsFeed')}>
-        <Text style={nav === 'newsFeed' ? styles.selected : styles.unSelected}>
-          News feed
-        </Text>
+        <View style={nav === 'newsFeed' ? styles.selected : styles.unSelected}>
+          <Text
+            style={
+              nav === 'newsFeed' ? styles.selectedText : styles.unSelectedText
+            }
+          >
+            News feed
+          </Text>
+        </View>
       </Pressable>
     </View>
   );

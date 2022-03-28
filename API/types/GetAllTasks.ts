@@ -7,6 +7,16 @@
 // GraphQL query operation: GetAllTasks
 // ====================================================
 
+export interface GetAllTasks_getAllTasks_comments {
+  __typename: "IComment";
+  id: string;
+  text: string;
+  createdAt: any;
+  updatedAt: any;
+  userId: string;
+  taskId: string;
+}
+
 export interface GetAllTasks_getAllTasks_tags {
   __typename: "ITag";
   id: string;
@@ -24,6 +34,7 @@ export interface GetAllTasks_getAllTasks {
   estimeeSpentTime: number;
   advancement: string;
   projectId: string;
+  comments: GetAllTasks_getAllTasks_comments[];
   tags: GetAllTasks_getAllTasks_tags[];
 }
 

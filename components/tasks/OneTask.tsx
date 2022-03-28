@@ -4,16 +4,12 @@ import { useQuery } from '@apollo/client';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import {
-  getProjectByIdId_getProjectByID_tasks,
-  getProjectByIdId,
-} from '../../API/types/getProjectByIdId';
+import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
-// import { CREATE_COMMENTS } from '../../API/mutation/Comments';
-// import Loader from '../Loader';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 
 interface OneTaskProps {
-  item: getProjectByIdId_getProjectByID_tasks;
+  item: getTaskByID_getTaskByID;
 }
 const styles = StyleSheet.create({
   container: {
@@ -85,7 +81,7 @@ function OneTask({ item }: OneTaskProps) {
         </Text>
         <View style={tw`flex-row items-center`}>
           <Ionicons name="mail" size={20} color="white" />
-          <Text style={[tw`ml-1`, styles.text]}> 12 </Text>
+          <Text style={[tw`ml-1`, styles.text]}> {item.comments.length} </Text>
         </View>
       </View>
     </TouchableOpacity>

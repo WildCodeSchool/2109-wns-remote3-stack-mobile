@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
+import tw from 'tailwind-react-native-classnames';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -18,6 +19,10 @@ type paramsProps = {
   id: { id: string };
 };
 const styles = StyleSheet.create({
+  navContainer: {
+    backgroundColor: '#2C3249',
+    width: 390,
+  },
   container: {
     flex: 1,
     backgroundColor: '#15192C',
@@ -59,12 +64,14 @@ function TaskDetails() {
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
       <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
       <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
-      <TaskNavigation setNav={setNav} nav={nav} />
-      {nav === 'comments' && (
-        <CommentsTaskDetails data={dataTask?.getTaskByID} />
-      )}
-      {nav === 'assignedUser' && <Text>assignedUser</Text>}
-      {nav === 'newsFeed' && <Text>newsFeed</Text>}
+      <View style={[tw`rounded-2xl h-full mt-5`, styles.navContainer]}>
+        <TaskNavigation setNav={setNav} nav={nav} />
+        {nav === 'comments' && (
+          <CommentsTaskDetails data={dataTask?.getTaskByID} />
+        )}
+        {nav === 'assignedUser' && <Text>assignedUser</Text>}
+        {nav === 'newsFeed' && <Text>newsFeed</Text>}
+      </View>
     </SafeAreaView>
   );
 }
