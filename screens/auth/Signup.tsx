@@ -92,7 +92,7 @@ function SignUp() {
         type="password"
       />
       <Pressable
-        style={[tw`my-5 w-10/12 py-3 rounded-md`, styles.button]}
+        style={[tw`my-5 w-11/12 py-3 rounded-md`, styles.button]}
         onPress={handleSubmit(onSubmit)}
       >
         <Text style={tw`text-white text-center font-bold text-lg`}>Signup</Text>

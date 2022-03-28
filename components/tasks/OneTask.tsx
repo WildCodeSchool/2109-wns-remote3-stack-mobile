@@ -70,7 +70,7 @@ function OneTask({ item }: OneTaskProps) {
         <View>
           <View
             style={[
-              tw`ml-1 py-1 rounded-sm pl-2 pr-3`,
+              tw`ml-1 py-1 rounded-md pl-2 pr-3`,
               item.advancement === 'TO_DO' && styles.advancementTodo,
               item.advancement === 'IN_PROGRESS' &&
                 styles.advancementInProgress,

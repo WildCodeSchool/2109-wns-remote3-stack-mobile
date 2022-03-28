@@ -32,7 +32,6 @@ function OneNotification({ item }: IProps) {
     TASK: 'task',
   };
 
-  console.log(item);
   return (
     <View style={[tw`flex flex-row items-center  my-3 p-2`, styles.container]}>
       <Image
@@ -47,9 +46,17 @@ function OneNotification({ item }: IProps) {
           <Text style={tw`text-white`}>{actionType[item.actionType]} a </Text>
           <Text style={tw`text-white font-bold`}>{objectType[item.type]} </Text>
         </View>
-        <Text style={tw`text-white font-bold mt-2`}>
-          {item.modifiedObjectName}{' '}
-        </Text>
+        <View style={tw`flex flex-row items-center mt-2`}>
+          {objectType[item.type] === 'task' && (
+            <Text style={tw`text-white`}>task name:</Text>
+          )}
+          {objectType[item.type] === 'project' && (
+            <Text style={tw`text-white`}>project name:</Text>
+          )}
+          <Text style={tw`text-white font-bold ml-1`}>
+            {item.modifiedObjectName}{' '}
+          </Text>
+        </View>
       </View>
     </View>
   );
