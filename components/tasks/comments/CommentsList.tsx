@@ -5,6 +5,8 @@ import { getTaskByID_getTaskByID } from '../../../API/types/getTaskByID';
 import { GET_ALL_COMMENTS } from '../../../API/mutation/Comments';
 import Loader from '../../Loader';
 import OneComment from './OneComment';
+import { GetAllComments_getAllComments } from '../../../API/types/GetAllComments';
+import { Query_getCommentByID } from '../../../API/types/Query';
 
 interface CommentsListProps {
   dataTask: getTaskByID_getTaskByID | undefined;
@@ -27,11 +29,17 @@ export default function CommentsList({ dataTask }: CommentsListProps) {
     return <Text> error </Text>;
   }
 
-  const commentsTaskId = data.getAllComments.filter((comments: any) => {
-    return comments.taskId.includes(dataTask?.id);
-  });
+  const commentsTaskId = data.getAllComments.filter(
+    (comments: GetAllComments_getAllComments) => {
+      return comments.taskId.includes(
+        dataTask !== undefined ? dataTask?.id : ''
+      );
+    }
+  );
 
-  const renderItem = ({ item }: { item: any }) => <OneComment item={item} />;
+  const renderItem = ({ item }: { item: Query_getCommentByID }) => (
+    <OneComment item={item} />
+  );
 
   return (
     <View>

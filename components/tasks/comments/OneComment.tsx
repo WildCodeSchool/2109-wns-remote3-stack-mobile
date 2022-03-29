@@ -4,9 +4,10 @@ import tw from 'tailwind-react-native-classnames';
 import { useQuery } from '@apollo/client';
 import dateFormat from 'dateformat';
 import { GET_USER_BY_ID } from '../../../API/queries/userQueries';
+import { Query_getCommentByID } from '../../../API/types/Query';
 
 interface OneCommentProps {
-  item: any;
+  item: Query_getCommentByID;
 }
 
 const styles = StyleSheet.create({

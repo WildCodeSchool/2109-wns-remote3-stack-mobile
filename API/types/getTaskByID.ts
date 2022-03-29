@@ -30,8 +30,8 @@ export interface getTaskByID_getTaskByID {
   name: string;
   description: string;
   projectId: string;
-  startDate: string;
-  endDate: string;
+  startDate: any;
+  endDate: any;
   estimeeSpentTime: number;
   advancement: string;
   comments: getTaskByID_getTaskByID_comments[];

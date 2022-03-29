@@ -58,6 +58,7 @@ function TaskDetails() {
   if (errorTask) {
     return <Text>erreur</Text>;
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTaskDetails data={dataTask?.getTaskByID} />
