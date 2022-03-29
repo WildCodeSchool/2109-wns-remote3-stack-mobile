@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Pressable, SafeAreaView, StyleSheet, View, Text } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -18,6 +18,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#15192C',
     alignItems: 'center',
     paddingTop: 60,
+  },
+  button: {
+    backgroundColor: '#8790E0',
+    shadowColor: '#8790E0',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 11.95,
+    elevation: 18,
   },
 });
 
@@ -52,41 +63,43 @@ function SignUp() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <InputAuth
-          control={control}
-          label="First name"
-          name="firstName"
-          type="text"
-        />
-        <InputAuth
-          control={control}
-          label="Last name"
-          name="lastName"
-          type="text"
-        />
-        <InputAuth control={control} label="Email" name="email" type="email" />
-        <InputAuth
-          control={control}
-          label="Password"
-          name="password"
-          type="password"
-        />
-        <InputAuth
-          control={control}
-          label="Confirm password"
-          name="confirmPassword"
-          type="password"
-        />
-        <Pressable onPress={handleSubmit(onSubmit)}>
-          <Text style={tw`text-white`}>Signup</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Login')}>
-          <Text style={tw`text-white`}>
-            Already have an account? Login here
-          </Text>
-        </Pressable>
-      </View>
+      <Text style={tw`text-white font-bold text-2xl mt-10 mb-5`}>
+        Create your account
+      </Text>
+      <InputAuth
+        control={control}
+        label="First name"
+        name="firstName"
+        type="text"
+      />
+      <InputAuth
+        control={control}
+        label="Last name"
+        name="lastName"
+        type="text"
+      />
+      <InputAuth control={control} label="Email" name="email" type="email" />
+      <InputAuth
+        control={control}
+        label="Password"
+        name="password"
+        type="password"
+      />
+      <InputAuth
+        control={control}
+        label="Confirm password"
+        name="confirmPassword"
+        type="password"
+      />
+      <Pressable
+        style={[tw`my-5 w-11/12 py-3 rounded-md`, styles.button]}
+        onPress={handleSubmit(onSubmit)}
+      >
+        <Text style={tw`text-white text-center font-bold text-lg`}>Signup</Text>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate('Login')}>
+        <Text style={tw`text-white`}>Already have an account? Login here</Text>
+      </Pressable>
     </SafeAreaView>
   );
 }

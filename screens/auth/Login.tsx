@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -17,7 +17,17 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#15192C',
     alignItems: 'center',
-    paddingTop: 60,
+  },
+  button: {
+    backgroundColor: '#8790E0',
+    shadowColor: '#8790E0',
+    shadowOffset: {
+      width: 0,
+      height: 9,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 11.95,
+    elevation: 18,
   },
 });
 
@@ -45,23 +55,34 @@ function LogIn() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View>
-        <InputAuth control={control} label="Email" name="email" type="email" />
-        <InputAuth
-          control={control}
-          label="Password"
-          name="password"
-          type="password"
-        />
-        <Pressable onPress={handleSubmit(onSubmit)}>
-          <Text style={tw`text-white`}>Se connecter</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Signup')}>
-          <Text style={tw`text-white`}>
-            Don&apos;t have an account? Signup here
-          </Text>
-        </Pressable>
-      </View>
+      <Image
+        style={tw`h-20 w-60 mt-8 mb-6`}
+        source={require('../../assets/images/logohome.png')}
+      />
+      <InputAuth control={control} label="Email" name="email" type="email" />
+      <InputAuth
+        control={control}
+        label="Password"
+        name="password"
+        type="password"
+      />
+      <Pressable
+        style={[tw`my-5 w-10/12 py-3 rounded-md`, styles.button]}
+        onPress={handleSubmit(onSubmit)}
+      >
+        <Text style={tw`text-white text-center font-bold text-lg`}>
+          Se connecter
+        </Text>
+      </Pressable>
+      <Pressable onPress={() => navigation.navigate('Signup')}>
+        <Text style={tw`text-white`}>
+          Don&apos;t have an account? Signup here
+        </Text>
+      </Pressable>
+      <Image
+        style={tw`relative bottom-0`}
+        source={require('../../assets/images/HomeAsset.png')}
+      />
     </SafeAreaView>
   );
 }

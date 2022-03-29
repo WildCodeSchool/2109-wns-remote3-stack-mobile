@@ -1,5 +1,5 @@
 import React from 'react';
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import {
   View,
   StyleSheet,
@@ -7,7 +7,6 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
-  Pressable,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
@@ -45,13 +44,15 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
   );
   return (
     <View
-      style={tw`flex-row w-full mb-2 mt-10 px-5 items-center justify-between`}
+      style={tw`flex-row w-full mb-2 mt-10 px-5 h-20 items-center justify-between`}
     >
-      <TouchableOpacity
-        onPress={() => navigation.navigate('Root')}
-        style={tw`h-16 flex flex-row items-center`}
-      >
-        <AntDesign name="left" size={24} color="#8790E0" style={tw`mr-1`} />
+      <View style={tw`flex flex-row w-8/12`}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Root')}
+          style={tw`h-16 flex flex-row items-center`}
+        >
+          <AntDesign name="left" size={24} color="#8790E0" style={tw`mr-1`} />
+        </TouchableOpacity>
         <View>
           <Text style={styles.title}> {data ? data.name : `TaskDetails`} </Text>
           <FlatList
@@ -59,16 +60,9 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
             data={data?.tags}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
-            style={[{ width: 'auto' }, tw`flex-row `]}
           />
         </View>
-      </TouchableOpacity>
-      <Pressable
-        style={tw`mt-2`}
-        onPress={() => navigation.navigate('DeleteTask', { id: data?.id })}
-      >
-        <Entypo name="trash" size={15} color="white" />
-      </Pressable>
+      </View>
       <Image
         style={styles.image}
         source={{

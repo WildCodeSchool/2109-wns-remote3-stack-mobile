@@ -62,13 +62,15 @@ function OneTask({ item }: OneTaskProps) {
     >
       <View style={tw`flex-row w-full mb-2 justify-between`}>
         <View>
-          <Text style={[tw`text-xl font-bold`, styles.text]}>{item.name}</Text>
+          <Text style={[tw`text-xl font-bold w-44`, styles.text]}>
+            {item.name}
+          </Text>
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
         <View>
           <View
             style={[
-              tw`ml-1 py-1 rounded-sm pl-2 pr-3`,
+              tw`ml-1 py-1 rounded-md pl-2 pr-3`,
               item.advancement === 'TO_DO' && styles.advancementTodo,
               item.advancement === 'IN_PROGRESS' &&
                 styles.advancementInProgress,
