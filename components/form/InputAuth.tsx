@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     color: '#8790E0',
-    width: 350,
+    width: '83.333333%',
     borderColor: '#8790E0',
   },
 });
@@ -28,7 +28,7 @@ function InputAuth({ label, name, type, control }: InputAuthProps) {
         <TextInput
           placeholderTextColor="#8790E0"
           secureTextEntry={type === 'password'}
-          style={[styles.input, tw`py-3 pl-3 my-3 rounded-md`]}
+          style={[styles.input, tw`py-3 pl-3 w-11/12 my-3 rounded-md`]}
           placeholder={label}
           value={value}
           onChangeText={(newText) => onChange(newText)}

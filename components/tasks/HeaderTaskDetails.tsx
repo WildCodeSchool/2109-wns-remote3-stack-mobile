@@ -1,12 +1,11 @@
 import React from 'react';
-import { AntDesign, Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import {
   View,
   StyleSheet,
   Text,
   Image,
   TouchableOpacity,
-  Pressable,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
@@ -40,7 +39,7 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
 
   return (
     <View
-      style={tw`flex-row w-full mb-2 mt-10 px-5 items-center justify-between`}
+      style={tw`flex-row w-full mb-2 mt-10 px-5 h-20 items-center justify-between`}
     >
       <TouchableOpacity
         onPress={() => navigation.navigate('Root')}
@@ -55,6 +54,7 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
           <Entypo name="trash" size={15} color="white" />
         </Pressable>
       </TouchableOpacity>
+
 
       <Image
         style={styles.image}
