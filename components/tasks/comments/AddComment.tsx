@@ -55,7 +55,7 @@ export default function AddComment({ data }: AddCommentProps) {
       },
     ],
     onCompleted: () => {
-      navigation.navigate('TaskDetails' as never, { id: data?.id } as never);
+      navigation.navigate('TaskDetails', { id: data?.id });
     },
   });
   if (loading) return <Loader />;

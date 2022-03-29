@@ -16,7 +16,7 @@ function OneTag({ item }: OneTagProps) {
         { backgroundColor: `${item.color}` },
       ]}
     >
-      <Text style={[{ color: '#ffff' }, tw``]}>{item.label}</Text>
+      <Text style={{ color: '#ffff' }}>{item.label}</Text>
     </View>
   );
 }

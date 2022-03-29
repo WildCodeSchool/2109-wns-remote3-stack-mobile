@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useQuery } from '@apollo/client';
