@@ -4,10 +4,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: Query
+// GraphQL query operation: getOneComment
 // ====================================================
 
-export interface Query_getCommentByID {
+export interface getOneComment_getCommentByID {
   __typename: "IComment";
   id: string;
   text: string;
@@ -17,10 +17,10 @@ export interface Query_getCommentByID {
   taskId: string;
 }
 
-export interface Query {
-  getCommentByID: Query_getCommentByID;
+export interface getOneComment {
+  getCommentByID: getOneComment_getCommentByID;
 }
 
-export interface QueryVariables {
+export interface getOneCommentVariables {
   getCommentByIdId: string;
 }

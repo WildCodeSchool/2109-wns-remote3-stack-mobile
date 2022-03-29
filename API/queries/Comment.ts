@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_ONE_COMMENT = gql`
-  query Query($getCommentByIdId: String!) {
+  query getOneComment($getCommentByIdId: String!) {
     getCommentByID(id: $getCommentByIdId) {
       id
       text
