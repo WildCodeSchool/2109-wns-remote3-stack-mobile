@@ -11,6 +11,14 @@ export const GET_ALL_TASKS = gql`
       estimeeSpentTime
       advancement
       projectId
+      comments {
+        id
+        text
+        createdAt
+        updatedAt
+        userId
+        taskId
+      }
       tags {
         id
         label
@@ -31,6 +39,14 @@ export const GetOneTask = gql`
       endDate
       estimeeSpentTime
       advancement
+      comments {
+        id
+        text
+        createdAt
+        updatedAt
+        userId
+        taskId
+      }
       tags {
         id
         label

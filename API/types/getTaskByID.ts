@@ -7,6 +7,16 @@
 // GraphQL query operation: getTaskByID
 // ====================================================
 
+export interface getTaskByID_getTaskByID_comments {
+  __typename: "IComment";
+  id: string;
+  text: string;
+  createdAt: any;
+  updatedAt: any;
+  userId: string;
+  taskId: string;
+}
+
 export interface getTaskByID_getTaskByID_tags {
   __typename: "ITag";
   id: string;
@@ -20,10 +30,11 @@ export interface getTaskByID_getTaskByID {
   name: string;
   description: string;
   projectId: string;
-  startDate: string;
-  endDate: string;
+  startDate: any;
+  endDate: any;
   estimeeSpentTime: number;
   advancement: string;
+  comments: getTaskByID_getTaskByID_comments[];
   tags: getTaskByID_getTaskByID_tags[];
 }
 

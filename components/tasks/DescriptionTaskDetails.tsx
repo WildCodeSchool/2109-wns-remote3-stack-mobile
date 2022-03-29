@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#ffff',
+    width: 390,
   },
   textGray: {
     color: '#A29EAC',
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
 export default function DescriptionTaskDetails({
   description,
 }: DescriptionTaskDetailsProps) {
-  const [isDescription, setIsDescription] = useState(true);
+  const [isDescription, setIsDescription] = useState(false);
   return (
     <>
       <Pressable

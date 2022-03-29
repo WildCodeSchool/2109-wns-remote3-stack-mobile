@@ -1,9 +1,11 @@
-import React from 'react';
-import { Text, SafeAreaView, StyleSheet, Pressable } from 'react-native';
+import React, { useState } from 'react';
+import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
+
 import tw from 'tailwind-react-native-classnames';
-import { Entypo } from '@expo/vector-icons';
+import dateFormat from 'dateformat';
+
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -11,11 +13,18 @@ import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetail
 import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
 import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
 import Loader from '../../components/Loader';
+import CommentsTaskDetails from '../../components/tasks/CommentsTaskDetails';
+import TaskNavigation from '../../components/tasks/TaskNavigation';
+import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
 
 type paramsProps = {
   id: { id: string };
 };
 const styles = StyleSheet.create({
+  navContainer: {
+    backgroundColor: '#2C3249',
+    width: 390,
+  },
   container: {
     flex: 1,
     backgroundColor: '#15192C',
@@ -35,7 +44,8 @@ const styles = StyleSheet.create({
 });
 function TaskDetails() {
   const route = useRoute<RouteProp<paramsProps>>();
-  const navigation = useNavigation();
+  const [nav, setNav] = useState('comments');
+
   const {
     loading: loadingTask,
     error: errorTask,
@@ -49,20 +59,31 @@ function TaskDetails() {
   if (errorTask) {
     return <Text>erreur</Text>;
   }
+
   return (
     <SafeAreaView style={styles.container}>
       <HeaderTaskDetails data={dataTask?.getTaskByID} />
-      <Pressable
-        style={tw`mt-2 w-full w-11/12`}
-        onPress={() =>
-          navigation.navigate('DeleteTask', { id: dataTask?.getTaskByID.id })
-        }
-      >
-        <Entypo name="trash" size={15} color="white" />
-      </Pressable>
+      <TagsTaskDetails data={dataTask?.getTaskByID} />
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
-      <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
+      <EndDateTaskDetails
+        date={dateFormat(
+          new Date(
+            dataTask !== undefined
+              ? dataTask.getTaskByID.endDate
+              : '2021-02-07T21:04:39.573Z '
+          ),
+          'dddd dd mmmm yyyy'
+        )}
+      />
       <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
+      <View style={[tw`rounded-2xl h-full mt-5`, styles.navContainer]}>
+        <TaskNavigation setNav={setNav} nav={nav} />
+        {nav === 'comments' && (
+          <CommentsTaskDetails data={dataTask?.getTaskByID} />
+        )}
+        {nav === 'assignedUser' && <Text>assignedUser</Text>}
+        {nav === 'newsFeed' && <Text>newsFeed</Text>}
+      </View>
     </SafeAreaView>
   );
 }

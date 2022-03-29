@@ -6,35 +6,27 @@
 import { ITagPayload } from "./globalTypes";
 
 // ====================================================
-// GraphQL mutation operation: createTask
+// GraphQL mutation operation: UpdateTaskById
 // ====================================================
 
-export interface createTask_createTaskWithTags_tags {
-  __typename: "ITag";
-  id: string;
-  label: string;
-  color: string;
-}
-
-export interface createTask_createTaskWithTags {
+export interface UpdateTaskById_updateTaskById {
   __typename: "ITask";
   id: string;
   name: string;
   description: string;
   projectId: string;
-  startDate: any;
   endDate: any;
   advancement: string;
   estimeeSpentTime: number;
-  tags: createTask_createTaskWithTags_tags[];
 }
 
-export interface createTask {
-  createTaskWithTags: createTask_createTaskWithTags;
+export interface UpdateTaskById {
+  updateTaskById: UpdateTaskById_updateTaskById;
 }
 
-export interface createTaskVariables {
+export interface UpdateTaskByIdVariables {
   tags: ITagPayload[];
+  updateTaskByIdId: string;
   name: string;
   description: string;
   projectId: string;
