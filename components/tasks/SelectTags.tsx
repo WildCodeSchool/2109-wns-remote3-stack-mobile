@@ -6,6 +6,7 @@ import {
   View,
   StyleSheet,
   Modal,
+  TouchableOpacity,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import GestureRecognizer from 'react-native-swipe-gestures';
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
     paddingTop: 30,
+    alignItems: 'center',
     position: 'absolute',
     bottom: 10,
     backgroundColor: '#282D43',
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     backgroundColor: '#282D43',
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 20,
     padding: 10,
     width: 390,
@@ -63,6 +65,9 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+  },
+  button2: {
+    backgroundColor: '#8790E0',
   },
 });
 function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
@@ -98,7 +103,7 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
         </View>
       )}
       <Pressable
-        style={[styles.button, tw`pt-1 mt-5`]}
+        style={[styles.button, tw`pt-1  mt-5`]}
         onPress={() => setIsModal(!isModal)}
       >
         <Text style={tw`text-white text-lg text-center`}>
@@ -112,7 +117,25 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
         style={{ marginTop: 20 }}
       >
         <View style={styles.centeredView}>
-          <Text style={tw`text-white font-bold mb-3 text-center`}>
+          {tags.length > 0 && (
+            <Text
+              style={tw`text-white font-bold mb-1 text-xl font-bold text-center`}
+            >
+              Tags:
+            </Text>
+          )}
+          <View style={tw`flex flex-row flex-wrap w-11/12`}>
+            <FlatList
+              numColumns={3}
+              style={tw``}
+              data={tags}
+              renderItem={tagsActive}
+              keyExtractor={(item) => item.label}
+            />
+          </View>
+          <Text
+            style={tw`text-white font-bold mt-5 mb-1 text-xl font-bold text-center`}
+          >
             Select Tag(s)
           </Text>
           <View style={styles.modalView}>
@@ -122,18 +145,12 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
               keyExtractor={(item) => item.id}
             />
           </View>
-          {tags.length > 0 && (
-            <Text style={tw`text-white font-bold mb-3 text-center`}>Tags:</Text>
-          )}
-          <View style={tw`flex-col w-full`}>
-            <FlatList
-              numColumns={3}
-              style={tw`flex-wrap flex-col w-full pl-16`}
-              data={tags}
-              renderItem={tagsActive}
-              keyExtractor={(item) => item.label}
-            />
-          </View>
+          <TouchableOpacity
+            onPress={() => setIsModal(false)}
+            style={[tw`my-5 w-11/12 py-3 rounded-md`, styles.button2]}
+          >
+            <Text style={tw`text-white text-center font-bold text-lg`}>Ok</Text>
+          </TouchableOpacity>
         </View>
       </Modal>
     </GestureRecognizer>

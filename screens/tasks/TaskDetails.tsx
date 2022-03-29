@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import { useQuery } from '@apollo/client';
@@ -5,6 +6,7 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 
 import tw from 'tailwind-react-native-classnames';
 import dateFormat from 'dateformat';
+
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
