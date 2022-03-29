@@ -1,11 +1,12 @@
 import React from 'react';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Entypo } from '@expo/vector-icons';
 import {
   View,
   StyleSheet,
   Text,
   Image,
   TouchableOpacity,
+  Pressable,
 } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
@@ -54,7 +55,6 @@ export default function HeaderTaskDetails({ data }: HeaderTaskDetailsProps) {
           <Entypo name="trash" size={15} color="white" />
         </Pressable>
       </TouchableOpacity>
-
 
       <Image
         style={styles.image}
