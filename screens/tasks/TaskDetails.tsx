@@ -4,6 +4,7 @@ import { useQuery } from '@apollo/client';
 import { RouteProp, useRoute } from '@react-navigation/native';
 
 import tw from 'tailwind-react-native-classnames';
+import dateFormat from 'dateformat';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -62,7 +63,16 @@ function TaskDetails() {
       <HeaderTaskDetails data={dataTask?.getTaskByID} />
       <TagsTaskDetails data={dataTask?.getTaskByID} />
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
-      <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
+      <EndDateTaskDetails
+        date={dateFormat(
+          new Date(
+            dataTask !== undefined
+              ? dataTask.getTaskByID.endDate
+              : '2021-02-07T21:04:39.573Z '
+          ),
+          'dddd dd mmmm yyyy'
+        )}
+      />
       <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
       <View style={[tw`rounded-2xl h-full mt-5`, styles.navContainer]}>
         <TaskNavigation setNav={setNav} nav={nav} />
