@@ -11,7 +11,7 @@ import {
 } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
-import Pastille from '../Pastille';
+// import Pastille from '../Pastille';
 
 interface OneTaskProps {
   item: getTaskByID_getTaskByID | getProjectByIdId_getProjectByID_tasks;
@@ -65,9 +65,7 @@ function OneTask({ item }: OneTaskProps) {
           </Text>
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
-        <View>
-          <Pastille status={item.advancement} />
-        </View>
+        <View>{/* <Pastille status={item.advancement} /> */}</View>
       </View>
       <View style={tw`flex-row justify-between`}>
         <Text style={styles.text}>
