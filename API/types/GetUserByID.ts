@@ -15,8 +15,6 @@ export interface GetUserByID_getUserByID {
   firstName: string;
   lastName: string;
   avatar: string | null;
-  createdAt: any;
-  updatedAt: any;
 }
 
 export interface GetUserByID {

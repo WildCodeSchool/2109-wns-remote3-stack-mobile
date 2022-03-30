@@ -1,11 +1,10 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
-
+import tw from 'tailwind-react-native-classnames';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
 import Loader from '../Loader';
-
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 
@@ -38,7 +37,7 @@ function TaskList() {
   return (
     <View style={{ flex: 1, height: '100%' }}>
       <FlatList
-        style={styles.flatlist}
+        style={[styles.flatlist, tw`mx-3`]}
         data={reversedData}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

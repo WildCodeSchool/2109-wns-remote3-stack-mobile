@@ -21,8 +21,18 @@ export const GET_USER_BY_ID = gql`
       firstName
       lastName
       avatar
-      createdAt
-      updatedAt
+    }
+  }
+`;
+
+export const GET_USER_WITH_PROJECT = gql`
+  query GetUserWithProjects($getUserWithProjectsId: String!) {
+    getUserWithProjects(id: $getUserWithProjectsId) {
+      projects {
+        userId
+        projectId
+        projectRole
+      }
     }
   }
 `;

@@ -21,6 +21,10 @@ import CommentsTaskDetails from '../screens/tasks/CommentsTaskDetails';
 import NewFeedTaskDetails from '../screens/tasks/NewFeedTaskDetails';
 import AssignUsersTaskDetails from '../screens/tasks/AssignUsersTaskDetails';
 import DeleteComment from '../screens/tasks/DeleteComment';
+import UpdateStatus from '../screens/UpdateStatus';
+import AssignedUser from '../screens/projects/navOptions /AssignedUser';
+import NewsFeed from '../screens/projects/navOptions /NewsFeed';
+import ProjectTasks from '../screens/projects/navOptions /ProjectTasks';
 
 const styles = StyleSheet.create({
   container: {
@@ -125,6 +129,42 @@ export default function RootNavigator() {
             <Stack.Screen
               name="DeleteTask"
               component={DeleteTask}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="UpdateStatus"
+              component={UpdateStatus}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="AssignedUserProject"
+              component={AssignedUser}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="NewsFeedProject"
+              component={NewsFeed}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="ProjectTasks"
+              component={ProjectTasks}
               options={{
                 headerShown: false,
               }}
