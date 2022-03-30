@@ -67,7 +67,7 @@ function LogIn() {
         type="password"
       />
       <Pressable
-        style={[tw`my-5 w-10/12 py-3 rounded-md`, styles.button]}
+        style={[tw`mt-5 w-11/12 py-3 rounded-md`, styles.button]}
         onPress={handleSubmit(onSubmit)}
       >
         <Text style={tw`text-white text-center font-bold text-lg`}>
@@ -75,7 +75,7 @@ function LogIn() {
         </Text>
       </Pressable>
       <Pressable onPress={() => navigation.navigate('Signup')}>
-        <Text style={tw`text-white`}>
+        <Text style={tw`text-white mt-2`}>
           Don&apos;t have an account? Signup here
         </Text>
       </Pressable>

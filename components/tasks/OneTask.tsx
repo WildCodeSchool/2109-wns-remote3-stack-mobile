@@ -4,12 +4,17 @@ import { useQuery } from '@apollo/client';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
-import { getProjectByIdId } from '../../API/types/getProjectByIdId';
+import dateFormat from 'dateformat';
+import {
+  getProjectByIdId,
+  getProjectByIdId_getProjectByID_tasks,
+} from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import Status from '../Status';
 
 interface OneTaskProps {
-  item: getTaskByID_getTaskByID;
+  item: getTaskByID_getTaskByID | getProjectByIdId_getProjectByID_tasks;
 }
 const styles = StyleSheet.create({
   container: {
@@ -47,39 +52,25 @@ function OneTask({ item }: OneTaskProps) {
   if (errorProject || !dataProject) {
     return <Text> error </Text>;
   }
+
   return (
     <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('TaskDetails' as never, { id: item.id } as never)
-      }
-      style={[styles.container, tw`mx-3 p-5 border mt-5`]}
+      onPress={() => navigation.navigate('TaskDetails', { id: item.id })}
+      style={[styles.container, tw` p-5 border mt-3`]}
     >
       <View style={tw`flex-row w-full mb-2 justify-between`}>
         <View>
-          <Text style={[tw`text-xl font-bold w-44`, styles.text]}>
+          <Text style={[tw`text-base font-bold w-44`, styles.text]}>
             {item.name}
           </Text>
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
-        <View>
-          <View
-            style={[
-              tw`ml-1 py-1 rounded-md pl-2 pr-3`,
-              item.advancement === 'TO_DO' && styles.advancementTodo,
-              item.advancement === 'IN_PROGRESS' &&
-                styles.advancementInProgress,
-              item.advancement === 'DONE' && styles.advancementDone,
-            ]}
-          >
-            <Text style={[tw`ml-1 py-1 px-2 text-xs`, styles.text]}>
-              {item.advancement}
-            </Text>
-          </View>
-        </View>
+        <Status status={item.advancement} />
       </View>
       <View style={tw`flex-row justify-between`}>
         <Text style={styles.text}>
-          Created at: {new Date(item.startDate).toLocaleDateString()}
+          Created at:{' '}
+          {dateFormat(new Date(item.startDate), 'dddd dd mmmm yyyy')}
         </Text>
         <View style={tw`flex-row items-center`}>
           <Ionicons name="mail" size={20} color="white" />

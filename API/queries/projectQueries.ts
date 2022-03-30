@@ -26,10 +26,20 @@ export const GET_ONE_PROJECT = gql`
         projectId
         startDate
         endDate
+        comments {
+          id
+          text
+          createdAt
+          updatedAt
+          userId
+          taskId
+        }
         estimeeSpentTime
         advancement
       }
       members {
+        projectId
+        projectRole
         userId
       }
       startDate
