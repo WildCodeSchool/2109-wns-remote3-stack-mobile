@@ -7,6 +7,16 @@
 // GraphQL query operation: getProjectByIdId
 // ====================================================
 
+export interface getProjectByIdId_getProjectByID_tasks_comments {
+  __typename: "IComment";
+  id: string;
+  text: string;
+  createdAt: any;
+  updatedAt: any;
+  userId: string;
+  taskId: string;
+}
+
 export interface getProjectByIdId_getProjectByID_tasks {
   __typename: "ITask";
   id: string;
@@ -15,6 +25,7 @@ export interface getProjectByIdId_getProjectByID_tasks {
   projectId: string;
   startDate: any;
   endDate: any;
+  comments: getProjectByIdId_getProjectByID_tasks_comments[];
   estimeeSpentTime: number;
   advancement: string;
 }

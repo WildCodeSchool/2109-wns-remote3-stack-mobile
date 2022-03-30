@@ -11,11 +11,11 @@ import tw from 'tailwind-react-native-classnames';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
 import { AntDesign } from '@expo/vector-icons';
-import OneTask from '../../../components/tasks/OneTask';
-import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 import StatusNavigation from '../../../components/StatusNavigation';
 import { GET_ONE_PROJECT } from '../../../API/queries/projectQueries';
 import Loader from '../../../components/Loader';
+import OneTask from '../../../components/tasks/OneTask';
+import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 
 type RootStackParam = {
   id: { id: string };

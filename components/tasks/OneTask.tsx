@@ -5,13 +5,16 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import dateFormat from 'dateformat';
-import { getProjectByIdId } from '../../API/types/getProjectByIdId';
+import {
+  getProjectByIdId,
+  getProjectByIdId_getProjectByID_tasks,
+} from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import Status from '../Status';
 
 interface OneTaskProps {
-  item: getTaskByID_getTaskByID;
+  item: getTaskByID_getTaskByID | getProjectByIdId_getProjectByID_tasks;
 }
 const styles = StyleSheet.create({
   container: {
