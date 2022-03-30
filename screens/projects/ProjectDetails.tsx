@@ -55,14 +55,6 @@ export default function ProjectDetails() {
       <HeaderOneProject />
       <ProjectInformations project={data.getProjectByID} />
       <ProjectDescription description={data.getProjectByID.description} />
-      {/* <View style={[tw`rounded-2xl h-full mt-5`, styles.navContainer]}>
-        <ProjectNavigation setNav={setNav} nav={nav} />
-        {nav === 'tasks' && <ProjectTasks data={data.getProjectByID.tasks} />}
-        {nav === 'assignedUser' && (
-          <AssignedUser data={data.getProjectByID.members} />
-        )}
-        {nav === 'newsFeed' && <NewsFeed />}
-      </View> */}
       <ButtonsNavigation projectId={data.getProjectByID.id} />
     </SafeAreaView>
   );
