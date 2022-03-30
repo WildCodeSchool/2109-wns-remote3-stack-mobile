@@ -35,6 +35,10 @@ const styles = StyleSheet.create({
     shadowRadius: 11.95,
     elevation: 18,
   },
+  flatlist: {
+    height: '88%',
+    flexGrow: 0,
+  },
 });
 
 export default function ProjectListView() {
