@@ -16,7 +16,7 @@ import {
   CREATE_COMMENTS,
   GET_ALL_COMMENTS,
 } from '../../../API/mutation/Comments';
-import { GetOneTask } from '../../../API/queries/taskQueries';
+import { GetOneTask, GET_ALL_TASKS } from '../../../API/queries/taskQueries';
 import { GetUserByID_getUserByID } from '../../../API/types/GetUserByID';
 
 interface AddCommentProps {
@@ -33,7 +33,6 @@ const styles = StyleSheet.create({
     borderColor: '#8790E0',
     borderWidth: 1,
     borderRadius: 5,
-    width: 360,
   },
 });
 
@@ -53,6 +52,7 @@ export default function AddComment({ idTask }: AddCommentProps) {
         query: GetOneTask,
         variables: { id: idTask },
       },
+      GET_ALL_TASKS,
     ],
     onCompleted: () => {
       navigation.navigate('CommentsTaskDetails', { id: idTask });
