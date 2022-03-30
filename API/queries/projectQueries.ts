@@ -30,6 +30,8 @@ export const GET_ONE_PROJECT = gql`
         advancement
       }
       members {
+        projectId
+        projectRole
         userId
       }
       startDate

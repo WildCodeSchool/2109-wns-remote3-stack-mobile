@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     color: '#8790E0',
-    width: '83.333333%',
     borderColor: '#8790E0',
   },
 });
