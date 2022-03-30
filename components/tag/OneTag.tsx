@@ -12,11 +12,11 @@ function OneTag({ item }: OneTagProps) {
   return (
     <View
       style={[
-        tw`flex-row mb-2 justify-between p-1 h-7 px-4 rounded-full mt-2 ml-2`,
+        tw`rounded-full pt-1 h-6 px-3 mr-2`,
         { backgroundColor: `${item.color}` },
       ]}
     >
-      <Text style={tw`text-white text-sm`}>{item.label}</Text>
+      <Text style={{ color: '#ffff' }}>{item.label}</Text>
     </View>
   );
 }

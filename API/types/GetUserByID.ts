@@ -8,7 +8,7 @@
 // ====================================================
 
 export interface GetUserByID_getUserByID {
-  __typename: "IUser";
+  __typename: 'IUser';
   id: string;
   email: string;
   password: string;

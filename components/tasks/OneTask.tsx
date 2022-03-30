@@ -5,24 +5,18 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import dateFormat from 'dateformat';
+import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import Status from '../Status';
-import {
-  getProjectByIdId,
-  getProjectByIdId_getProjectByID_tasks,
-} from '../../API/types/getProjectByIdId';
 
 interface OneTaskProps {
-  item: getProjectByIdId_getProjectByID_tasks;
+  item: getTaskByID_getTaskByID;
 }
 const styles = StyleSheet.create({
   container: {
     borderColor: '#8790E0',
     borderRadius: 10,
-    shadowColor: '#8790E0',
-    shadowOffset: { width: 4, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
   },
   text: {
     color: '#ffff',
@@ -77,7 +71,7 @@ function OneTask({ item }: OneTaskProps) {
         </Text>
         <View style={tw`flex-row items-center`}>
           <Ionicons name="mail" size={20} color="white" />
-          <Text style={[tw`ml-1`, styles.text]}> 12 </Text>
+          <Text style={[tw`ml-1`, styles.text]}> {item.comments.length} </Text>
         </View>
       </View>
     </TouchableOpacity>
