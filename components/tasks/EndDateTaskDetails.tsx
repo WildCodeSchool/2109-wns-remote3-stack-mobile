@@ -80,11 +80,10 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
       </View>
       {isPickerShow && (
         <DateTimePicker
-          textColor="#8790E0"
           style={styles.datePicker}
           display={Platform.OS === 'ios' ? 'spinner' : 'calendar'}
           value={endDateUpdate}
-          onChange={onChange}
+          onChange={() => onChange}
           mode="date"
         />
       )}

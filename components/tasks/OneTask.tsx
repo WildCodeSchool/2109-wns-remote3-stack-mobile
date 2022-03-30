@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import Pastille from '../pastille';
 
 interface OneTaskProps {
   item: getTaskByID_getTaskByID;
@@ -62,19 +63,7 @@ function OneTask({ item }: OneTaskProps) {
           <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
         </View>
         <View>
-          <View
-            style={[
-              tw`ml-1 py-1 rounded-md pl-2 pr-3`,
-              item.advancement === 'TO_DO' && styles.advancementTodo,
-              item.advancement === 'IN_PROGRESS' &&
-                styles.advancementInProgress,
-              item.advancement === 'DONE' && styles.advancementDone,
-            ]}
-          >
-            <Text style={[tw`ml-1 py-1 px-2 text-xs`, styles.text]}>
-              {item.advancement}
-            </Text>
-          </View>
+          <Pastille status={item.advancement} />
         </View>
       </View>
       <View style={tw`flex-row justify-between`}>
