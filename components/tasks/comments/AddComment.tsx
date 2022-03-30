@@ -11,7 +11,6 @@ import { useSelector } from 'react-redux';
 import { Ionicons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
-import { getTaskByID_getTaskByID } from '../../../API/types/getTaskByID';
 import Loader from '../../Loader';
 import {
   CREATE_COMMENTS,
@@ -21,13 +20,14 @@ import { GetOneTask } from '../../../API/queries/taskQueries';
 import { GetUserByID_getUserByID } from '../../../API/types/GetUserByID';
 
 interface AddCommentProps {
-  data: getTaskByID_getTaskByID | undefined;
+  idTask: string;
 }
 const styles = StyleSheet.create({
   input: {
     color: '#8790E0',
-    backgroundColor: '#2C3249',
+    backgroundColor: '#15192C',
     marginRight: 20,
+    paddingBottom: 8,
   },
   contentInput: {
     borderColor: '#8790E0',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function AddComment({ data }: AddCommentProps) {
+export default function AddComment({ idTask }: AddCommentProps) {
   const { handleSubmit, control } = useForm();
   const navigation = useNavigation();
 
@@ -51,11 +51,11 @@ export default function AddComment({ data }: AddCommentProps) {
       GET_ALL_COMMENTS,
       {
         query: GetOneTask,
-        variables: { id: data?.id },
+        variables: { id: idTask },
       },
     ],
     onCompleted: () => {
-      navigation.navigate('TaskDetails', { id: data?.id });
+      navigation.navigate('CommentsTaskDetails', { id: idTask });
     },
   });
   if (loading) return <Loader />;
@@ -64,7 +64,7 @@ export default function AddComment({ data }: AddCommentProps) {
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const dataComments = {
       text: d.text,
-      taskId: data?.id,
+      taskId: idTask,
       userId: user.id,
     };
     createComment({ variables: dataComments });
@@ -73,7 +73,7 @@ export default function AddComment({ data }: AddCommentProps) {
     <View
       style={[
         styles.contentInput,
-        tw`py-2 px-3 mt-6 flex flex-row justify-between ml-3 items-center rounded-md`,
+        tw`py-2 px-3 mt-6 flex absolute bottom-12 w-11/12 flex-row justify-between ml-3 items-center rounded-md`,
       ]}
     >
       <Controller
@@ -85,7 +85,7 @@ export default function AddComment({ data }: AddCommentProps) {
             multiline
             numberOfLines={10}
             placeholderTextColor="#8790E0"
-            placeholder="add a comment..."
+            placeholder="Add a comment..."
             value={value}
             onChangeText={(newText) => onChange(newText)}
           />

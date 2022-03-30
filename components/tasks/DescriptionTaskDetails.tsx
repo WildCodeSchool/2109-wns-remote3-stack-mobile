@@ -33,7 +33,7 @@ export default function DescriptionTaskDetails({
           tw`flex-row justify-between w-full mt-5 w-11/12 pb-1`,
         ]}
       >
-        <Text style={styles.textGray}>Description</Text>
+        <Text style={[styles.textGray, tw`text-lg`]}>Description</Text>
         <Ionicons
           style={
             isDescription
@@ -41,12 +41,12 @@ export default function DescriptionTaskDetails({
               : { transform: [{ rotate: '0deg' }] }
           }
           name="chevron-down-outline"
-          size={20}
+          size={22}
           color="white"
         />
       </Pressable>
       {isDescription && (
-        <Text style={[styles.text, tw`px-3 mt-3`]}> {description} </Text>
+        <Text style={[styles.text, tw`w-11/12 mt-3`]}> {description} </Text>
       )}
     </>
   );

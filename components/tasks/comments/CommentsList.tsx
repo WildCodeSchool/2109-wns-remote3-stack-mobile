@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { getTaskByID_getTaskByID } from '../../../API/types/getTaskByID';
 import { GET_ALL_COMMENTS } from '../../../API/mutation/Comments';
 import Loader from '../../Loader';
 import OneComment from './OneComment';
@@ -9,17 +8,18 @@ import { GetAllComments_getAllComments } from '../../../API/types/GetAllComments
 import { getOneComment_getCommentByID } from '../../../API/types/getOneComment';
 
 interface CommentsListProps {
-  dataTask: getTaskByID_getTaskByID | undefined;
+  idTask: string | undefined;
 }
 
 const styles = StyleSheet.create({
   flatlist: {
-    height: 250,
+    marginTop: 20,
+    height: '80%',
     flexGrow: 0,
   },
 });
 
-export default function CommentsList({ dataTask }: CommentsListProps) {
+export default function CommentsList({ idTask }: CommentsListProps) {
   const { loading, error, data } = useQuery(GET_ALL_COMMENTS);
 
   if (loading) {
@@ -31,9 +31,7 @@ export default function CommentsList({ dataTask }: CommentsListProps) {
 
   const commentsTaskId = data.getAllComments.filter(
     (comments: GetAllComments_getAllComments) => {
-      return comments.taskId.includes(
-        dataTask !== undefined ? dataTask?.id : ''
-      );
+      return comments.taskId.includes(idTask !== undefined ? idTask : '');
     }
   );
 
@@ -42,10 +40,10 @@ export default function CommentsList({ dataTask }: CommentsListProps) {
   );
 
   return (
-    <View>
+    <View style={[styles.flatlist]}>
       <FlatList
-        style={styles.flatlist}
-        data={commentsTaskId}
+        inverted
+        data={commentsTaskId.reverse()}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />

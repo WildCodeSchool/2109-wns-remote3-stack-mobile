@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
@@ -11,6 +11,13 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
 }
+
+const styles = StyleSheet.create({
+  flatlist: {
+    height: '88%',
+    flexGrow: 0,
+  },
+});
 function TaskList() {
   // FETCH THE TASK LIST
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
@@ -30,8 +37,8 @@ function TaskList() {
   return (
     <View style={{ flex: 1, height: '100%' }}>
       <FlatList
+        style={[styles.flatlist, tw`mx-3`]}
         data={reversedData}
-        style={tw`mx-3`}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
       />
