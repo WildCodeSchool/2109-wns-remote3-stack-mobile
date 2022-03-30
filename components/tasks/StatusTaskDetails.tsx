@@ -16,22 +16,28 @@ const styles = StyleSheet.create({
   advancementInProgress: {
     backgroundColor: '#E4AC65',
   },
+  text: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 12,
+  },
 });
 
 export default function StatusTaskDetails({ status }: StatusTaskDetailsProps) {
   return (
-    <View style={tw`flex-row w-full justify-between items-center px-3 mt-5`}>
-      <Text style={{ color: '#A29EAC' }}>Status</Text>
-      <View
-        style={[
-          tw`ml-1 py-1 rounded-sm pl-2 pr-3`,
-          status === 'TO_DO' && styles.advancementTodo,
-          status === 'IN_PROGRESS' && styles.advancementInProgress,
-          status === 'DONE' && styles.advancementDone,
-        ]}
-      >
-        <Text style={tw`text-xs text-white text-center`}> {status} </Text>
-      </View>
+    <View
+      style={[
+        tw` py-1 rounded-sm pl-2 pr-3`,
+        status === 'TO_DO' && styles.advancementTodo,
+        status === 'IN_PROGRESS' && styles.advancementInProgress,
+        status === 'DONE' && styles.advancementDone,
+      ]}
+    >
+      {status === 'TO_DO' && <Text style={styles.text}> Todo </Text>}
+      {status === 'IN_PROGRESS' && (
+        <Text style={styles.text}> In Progress </Text>
+      )}
+      {status === 'DONE' && <Text style={styles.text}> Done </Text>}
     </View>
   );
 }

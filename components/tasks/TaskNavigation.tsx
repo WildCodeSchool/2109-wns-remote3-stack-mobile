@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: '#8790E0',
     color: 'white',
-    paddingRight: 23,
-    paddingLeft: 23,
+    paddingRight: 20,
+    paddingLeft: 20,
     padding: 10,
     borderRadius: 5,
   },
@@ -30,8 +30,8 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   unSelected: {
-    paddingRight: 23,
-    paddingLeft: 23,
+    paddingRight: 20,
+    paddingLeft: 20,
     backgroundColor: '#15192C',
     color: 'white',
     textAlign: 'center',
@@ -45,7 +45,7 @@ export default function TaskNavigation({ setNav, nav }: IProps) {
   return (
     <View
       style={[
-        tw`mx-2 mt-2 mb-2 flex flex-row rounded-lg bg-blue-300`,
+        tw`mt-2 mb-4 mt-6 flex mx-4 flex-row rounded-lg`,
         styles.container,
       ]}
     >

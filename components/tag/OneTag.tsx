@@ -12,7 +12,7 @@ function OneTag({ item }: OneTagProps) {
   return (
     <View
       style={[
-        tw`rounded-full pt-1 h-6 px-3 mr-2`,
+        tw`rounded-full h-4 px-2 mr-2`,
         { backgroundColor: `${item.color}` },
       ]}
     >

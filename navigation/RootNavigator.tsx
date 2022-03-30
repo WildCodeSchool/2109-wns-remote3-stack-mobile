@@ -17,6 +17,10 @@ import { GET_SELF } from '../API/queries/userQueries';
 import { GetSelf } from '../API/types/GetSelf';
 import Loader from '../components/Loader';
 import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
+import CommentsTaskDetails from '../screens/tasks/CommentsTaskDetails';
+import NewFeedTaskDetails from '../screens/tasks/NewFeedTaskDetails';
+import AssignUsersTaskDetails from '../screens/tasks/AssignUsersTaskDetails';
+import DeleteComment from '../screens/tasks/DeleteComment';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,6 +68,43 @@ export default function RootNavigator() {
               headerShown: false,
             }}
           />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="CommentsTaskDetails"
+              component={CommentsTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="DeleteComment"
+              component={DeleteComment}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="NewFeedTaskDetails"
+              component={NewFeedTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="AssignUsersTaskDetails"
+              component={AssignUsersTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
           <Stack.Screen
             name="CreateUpdateproject"
             component={CreateUpdateProject}
