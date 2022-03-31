@@ -7,16 +7,12 @@ import tw from 'tailwind-react-native-classnames';
 import { GET_NEW_FEED_TASK } from '../../API/queries/newFeedTasks';
 import { GetNotificationByID_getNotificationByID } from '../../API/types/GetNotificationByID';
 import CloseModal from '../../components/CloseModal';
-import { getProjectByIdId } from '../../API/types/getProjectByIdId';
-import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import Loader from '../../components/Loader';
 import OneFeedTask from '../../components/tasks/newfeed/OneFeedTask';
 import { getNewFeedTask_getAllNotificationsFromObject } from '../../API/types/getNewFeedTask';
-import { getTaskByID } from '../../API/types/getTaskByID';
-import { GetOneTask } from '../../API/queries/taskQueries';
 
 type paramsProps = {
-  id: { id: string };
+  id: { id: string; nameProject: string };
 };
 
 const styles = StyleSheet.create({
@@ -30,7 +26,6 @@ const styles = StyleSheet.create({
 });
 export default function NewFeedTaskDetails() {
   const route = useRoute<RouteProp<paramsProps>>();
-
   // FETCH NEW FEED
   const { loading, error, data } = useQuery(GET_NEW_FEED_TASK, {
     variables: { objectId: route.params.id },
@@ -49,35 +44,11 @@ export default function NewFeedTaskDetails() {
     }
   );
 
-  const {
-    loading: loadingTask,
-    error: errorTask,
-    data: dataTask,
-  } = useQuery<getTaskByID>(GetOneTask, {
-    variables: { taskId: route.params.id },
-  });
-
-  const {
-    loading: loadingProject,
-    error: errorProject,
-    data: dataProject,
-  } = useQuery<getProjectByIdId>(GET_ONE_PROJECT, {
-    variables: { getProjectByIdId: dataTask?.getTaskByID.projectId },
-  });
-  if (loadingProject || loadingTask) {
-    return <Loader />;
-  }
-  if (errorProject || !dataProject || errorTask || !dataTask) {
-    return <Text>erreur</Text>;
-  }
-
   const renderItem = ({
     item,
   }: {
     item: GetNotificationByID_getNotificationByID;
-  }) => (
-    <OneFeedTask item={item} projectName={dataProject.getProjectByID.name} />
-  );
+  }) => <OneFeedTask item={item} projectName={route.params.nameProject} />;
   return (
     <View style={[styles.container, tw`w-full h-full`]}>
       <CloseModal path="TaskDetails" id={route.params.id} />

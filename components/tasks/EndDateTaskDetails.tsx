@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { LogBox, Text, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
@@ -20,6 +20,10 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
     const { __typename, ...item } = tag;
     return item;
   });
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+  }, []);
 
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
