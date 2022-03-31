@@ -57,7 +57,6 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
           {dateFormat(new Date(data.endDate), 'dddd dd mmmm yyyy')}
         </Text>
       </View>
-
       <DatePicker
         date={data.endDate} // Initial date from state
         mode="date" // The enum of date, datetime and time

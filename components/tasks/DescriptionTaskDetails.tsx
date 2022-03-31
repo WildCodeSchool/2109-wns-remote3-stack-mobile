@@ -85,7 +85,7 @@ export default function DescriptionTaskDetails({
         <Text style={[styles.text, tw`w-11/12 mt-3`]}>{data.description}</Text>
       ) : (
         <View style={tw`w-11/12`}>
-          <InputText control={control} name="description" label="description" />
+          <InputText control={control} name="description" label=" " />
           <Pressable
             style={tw`w-full rounded-lg bg-green-500`}
             onPress={handleSubmit(onSubmit)}

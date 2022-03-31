@@ -46,6 +46,7 @@ function TaskDetails() {
   } = useQuery<getTaskByID>(GetOneTask, {
     variables: { taskId: route.params.id },
   });
+
   if (loadingTask) {
     return <Loader />;
   }

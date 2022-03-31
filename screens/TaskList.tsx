@@ -1,7 +1,8 @@
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import { Pressable, Text, SafeAreaView, StyleSheet } from 'react-native';
+import React from 'react';
+import tw from 'tailwind-react-native-classnames';
+import { useNavigation } from '@react-navigation/native';
 import TaskListView from '../components/tasks/TaskListView';
-import Menu from '../components/Menu';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,21 +10,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#15192C',
     alignItems: 'center',
   },
+  btnAdd: {
+    backgroundColor: '#7950EC',
+  },
 });
 
 function TaskList() {
-  const [isActive, setIsActive] = useState('list');
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.container}>
-      <Menu
-        firstLabel="Task List"
-        secondLabel="New feed"
-        addLabel="task"
-        setIsActive={setIsActive}
-        isActive={isActive}
-      />
-      {isActive === 'list' && <TaskListView />}
-      {isActive === 'feed' && <Text>newfeed</Text>}
+      <Pressable
+        style={[styles.btnAdd, tw`py-3 mt-11 rounded-lg w-11/12`]}
+        onPress={() => navigation.navigate('Createtask')}
+      >
+        <Text style={tw`text-white text-center font-bold`}>ADD TASK</Text>
+      </Pressable>
+      <TaskListView />
     </SafeAreaView>
   );
 }
