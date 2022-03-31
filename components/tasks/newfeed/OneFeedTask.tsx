@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
 export default function OneFeedTask({ item, projectName }: OneFeedTaskProps) {
   return (
     <View style={[styles.container, tw`w-full mb-5`]}>
-      <View style={tw`flex-row w-full items-center pb-5`}>
+      <View style={tw`flex-row w-full items-center pb-2`}>
         <Image
           style={styles.image}
           source={{

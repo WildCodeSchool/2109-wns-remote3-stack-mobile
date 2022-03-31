@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 12,
   },
 });
 
@@ -35,7 +34,7 @@ export default function StatusTaskDetails({
     <View style={tw` flex-row items-center `}>
       <View
         style={[
-          tw` py-1 rounded-sm pl-2 pr-3`,
+          tw` py-1 rounded-md pl-5 pr-6`,
           status === 'TO_DO' && styles.advancementTodo,
           status === 'IN_PROGRESS' && styles.advancementInProgress,
           status === 'DONE' && styles.advancementDone,

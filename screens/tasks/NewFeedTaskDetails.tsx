@@ -53,7 +53,7 @@ export default function NewFeedTaskDetails() {
     <View style={[styles.container, tw`w-full h-full`]}>
       <CloseModal path="TaskDetails" id={route.params.id} />
       <FlatList
-        data={newFeedTaskId}
+        data={newFeedTaskId.reverse()}
         style={[styles.flatlist, tw`mx-6`]}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

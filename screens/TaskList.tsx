@@ -1,4 +1,4 @@
-import { Pressable, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Pressable, Text, SafeAreaView, StyleSheet, View } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
@@ -8,10 +8,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#15192C',
-    alignItems: 'center',
   },
   btnAdd: {
-    backgroundColor: '#7950EC',
+    backgroundColor: '#8790E0',
+  },
+  text: {
+    color: '#8790E0',
   },
 });
 
@@ -20,12 +22,18 @@ function TaskList() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Pressable
-        style={[styles.btnAdd, tw`py-3 mt-11 rounded-lg w-11/12`]}
-        onPress={() => navigation.navigate('Createtask')}
-      >
-        <Text style={tw`text-white text-center font-bold`}>ADD TASK</Text>
-      </Pressable>
+      <View style={tw`flex-row mt-11 items-center w-full ml-4 justify-between`}>
+        <Text style={[tw`text-white text-3xl font-bold py-3`, styles.text]}>
+          Tasks
+        </Text>
+        <Pressable
+          style={[styles.btnAdd, tw`py-3 rounded-lg mr-10 `]}
+          onPress={() => navigation.navigate('Createtask')}
+        >
+          <Text style={tw`text-white text-center px-4 font-bold`}> NEW +</Text>
+        </Pressable>
+      </View>
+
       <TaskListView />
     </SafeAreaView>
   );
