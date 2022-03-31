@@ -4,18 +4,17 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
-  Pressable,
 } from 'react-native';
 import React, { useState } from 'react';
 import tw from 'tailwind-react-native-classnames';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
-import { AntDesign } from '@expo/vector-icons';
 import StatusNavigation from '../../../components/StatusNavigation';
 import { GET_ONE_PROJECT } from '../../../API/queries/projectQueries';
 import Loader from '../../../components/Loader';
 import OneTask from '../../../components/tasks/OneTask';
 import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
+import CloseModal from '../../../components/CloseModal';
 
 type RootStackParam = {
   id: { id: string };
@@ -30,7 +29,6 @@ const styles = StyleSheet.create({
 
 export default function ProjectTasks() {
   const route = useRoute<RouteProp<RootStackParam>>();
-  const navgation = useNavigation();
   const { id } = route.params;
 
   const [taskNav, setTaskNav] = useState('TO_DO');
@@ -47,12 +45,7 @@ export default function ProjectTasks() {
 
   return (
     <View style={[tw`px-4 py-5`, styles.container]}>
-      <Pressable
-        onPress={() => navgation.navigate('ProjectDetails', { id })}
-        style={tw`flex items-center w-full bg-purple-300 bg-opacity-10 rounded-lg p-2 mb-5`}
-      >
-        <AntDesign name="caretdown" size={24} color="#8790E0" />
-      </Pressable>
+      <CloseModal path="ProjectDetails" id={id} />
       <Text style={tw`text-white text-xl font-bold`}>Tasks</Text>
       <StatusNavigation
         backgroundColor="light"
