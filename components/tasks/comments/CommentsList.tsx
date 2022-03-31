@@ -13,8 +13,8 @@ interface CommentsListProps {
 
 const styles = StyleSheet.create({
   flatlist: {
+    height: '70%',
     marginTop: 20,
-    height: '80%',
     flexGrow: 0,
   },
 });

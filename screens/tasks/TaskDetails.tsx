@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, SafeAreaView, StyleSheet, View, Pressable } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
-import { Entypo } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -13,6 +13,8 @@ import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
 import Loader from '../../components/Loader';
 import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
 import ButtonsNavigation from '../../components/tasks/ButtonsNavigation';
+import UpdateStatusTask from '../../components/tasks/UpdateStatusTask';
+import UpdateNameTask from '../../components/tasks/UpdateNameTask';
 
 type paramsProps = {
   id: { id: string };
@@ -27,10 +29,15 @@ const styles = StyleSheet.create({
     color: '#8790E0',
     fontSize: 24,
   },
+  btnDelete: {
+    backgroundColor: '#8790E0',
+  },
 });
 function TaskDetails() {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<paramsProps>>();
+  const [updateStatus, setUpdateStatus] = useState<boolean>(false);
+  const [updateName, setUpdateName] = useState<boolean>(false);
 
   const {
     loading: loadingTask,
@@ -54,23 +61,44 @@ function TaskDetails() {
           <Text style={tw`text-white text-lg font-bold`}>
             {dataTask.getTaskByID.name}
           </Text>
+          <Pressable onPress={() => setUpdateName(!updateName)}>
+            <AntDesign
+              style={tw`ml-2 mr-3`}
+              name="edit"
+              size={19}
+              color="white"
+            />
+          </Pressable>
+        </View>
+        <StatusTaskDetails
+          updateStatus={updateStatus}
+          setUpdateStatus={setUpdateStatus}
+          status={dataTask.getTaskByID.advancement}
+        />
+      </View>
+      {updateName && <UpdateNameTask data={dataTask.getTaskByID} />}
+      {!updateStatus ? (
+        <>
+          <TagsTaskDetails data={dataTask.getTaskByID} />
+          <EndDateTaskDetails data={dataTask.getTaskByID} />
+          <DescriptionTaskDetails data={dataTask.getTaskByID} />
+          <ButtonsNavigation task={dataTask.getTaskByID} />
           <Pressable
-            style={tw`ml-2`}
+            style={[styles.btnDelete, tw`ml-2 w-11/12 py-2 mx-8 rounded-lg`]}
             onPress={() =>
               navigation.navigate('DeleteTask', {
                 id: dataTask.getTaskByID.id,
               })
             }
           >
-            <Entypo name="trash" size={15} color="white" />
+            <Text style={tw`text-white text-lg  font-bold text-center`}>
+              Delete this task
+            </Text>
           </Pressable>
-        </View>
-        <StatusTaskDetails status={dataTask.getTaskByID.advancement} />
-      </View>
-      <TagsTaskDetails data={dataTask.getTaskByID} />
-      <EndDateTaskDetails data={dataTask.getTaskByID} />
-      <DescriptionTaskDetails description={dataTask.getTaskByID.description} />
-      <ButtonsNavigation task={dataTask.getTaskByID} />
+        </>
+      ) : (
+        <UpdateStatusTask data={dataTask.getTaskByID} />
+      )}
     </SafeAreaView>
   );
 }

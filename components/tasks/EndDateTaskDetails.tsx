@@ -51,9 +51,13 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
 
   return (
     <View style={tw`flex-row w-full justify-between items-center pl-4 mt-5`}>
-      <Text style={{ color: '#A29EAC' }}>
-        {dateFormat(new Date(data.endDate), 'dddd dd mmmm yyyy')}
-      </Text>
+      <View>
+        <Text style={tw`text-white opacity-70`}>Due Date:</Text>
+        <Text style={tw`text-white opacity-70 font-bold`}>
+          {dateFormat(new Date(data.endDate), 'dddd dd mmmm yyyy')}
+        </Text>
+      </View>
+
       <DatePicker
         date={data.endDate} // Initial date from state
         mode="date" // The enum of date, datetime and time
@@ -80,7 +84,6 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
           },
           dateIcon: {
             marginLeft: 70,
-            // display: 'none',
           },
         }}
         onDateChange={(date) => {

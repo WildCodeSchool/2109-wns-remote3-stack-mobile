@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, Pressable } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, Pressable, View } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useMutation } from '@apollo/client';
+import { useNavigation } from '@react-navigation/native';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import InputText from '../form/InputText';
+import { UPDATE_TASK } from '../../API/mutation/Task';
+import { GetOneTask } from '../../API/queries/taskQueries';
 
 interface DescriptionTaskDetailsProps {
-  description: string | undefined;
+  data: getTaskByID_getTaskByID;
 }
 const styles = StyleSheet.create({
   borderBottom: {
@@ -21,32 +28,73 @@ const styles = StyleSheet.create({
 });
 
 export default function DescriptionTaskDetails({
-  description,
+  data,
 }: DescriptionTaskDetailsProps) {
-  const [isDescription, setIsDescription] = useState(false);
+  const navigation = useNavigation();
+  const { handleSubmit, control } = useForm();
+  const [updateDescription, setUpdateDescription] = useState(false);
+
+  // UPDATE TASK
+  const [updateTask, { error }] = useMutation(UPDATE_TASK, {
+    onCompleted: () => {
+      navigation.navigate('TaskDetails', { id: data.id });
+    },
+    refetchQueries: [
+      {
+        query: GetOneTask,
+        variables: { id: data.id },
+      },
+    ],
+  });
+  if (error) return <Text>{error.message}</Text>;
+
+  const onSubmit: SubmitHandler<FieldValues> = (d) => {
+    const dataTaskUpdate = {
+      name: data.name,
+      description: d.description,
+      projectId: data.projectId,
+      advancement: data.advancement,
+      endDate: data.endDate,
+      tags: data.tags,
+      estimeeSpentTime: data.estimeeSpentTime,
+      updateTaskWithTagsByIdId: data.id,
+    };
+    updateTask({ variables: dataTaskUpdate });
+    setUpdateDescription(false);
+  };
+
   return (
     <>
-      <Pressable
-        onPress={() => setIsDescription(!isDescription)}
+      <View
         style={[
           styles.borderBottom,
-          tw`flex-row justify-between w-full mt-5 w-11/12 pb-1`,
+          tw`flex-row justify-between items-center mt-5 w-11/12 pb-1`,
         ]}
       >
         <Text style={[styles.textGray, tw`text-lg`]}>Description</Text>
-        <Ionicons
-          style={
-            isDescription
-              ? { transform: [{ rotate: '180deg' }] }
-              : { transform: [{ rotate: '0deg' }] }
-          }
-          name="chevron-down-outline"
-          size={22}
-          color="white"
-        />
-      </Pressable>
-      {isDescription && (
-        <Text style={[styles.text, tw`w-11/12 mt-3`]}> {description} </Text>
+        <Pressable onPress={() => setUpdateDescription(!updateDescription)}>
+          <AntDesign
+            style={tw`ml-2 mr-3`}
+            name="edit"
+            size={19}
+            color="white"
+          />
+        </Pressable>
+      </View>
+      {!updateDescription ? (
+        <Text style={[styles.text, tw`w-11/12 mt-3`]}>{data.description}</Text>
+      ) : (
+        <View style={tw`w-11/12`}>
+          <InputText control={control} name="description" label="description" />
+          <Pressable
+            style={tw`w-full rounded-lg bg-green-500`}
+            onPress={handleSubmit(onSubmit)}
+          >
+            <Text style={tw`text-white text-center py-2 font-bold text-lg`}>
+              Confirm New Description
+            </Text>
+          </Pressable>
+        </View>
       )}
     </>
   );
