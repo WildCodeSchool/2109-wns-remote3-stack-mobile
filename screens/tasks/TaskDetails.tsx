@@ -42,7 +42,7 @@ function TaskDetails() {
   if (loadingTask) {
     return <Loader />;
   }
-  if (errorTask) {
+  if (errorTask || !dataTask) {
     return <Text>erreur</Text>;
   }
 
@@ -52,25 +52,25 @@ function TaskDetails() {
       <View style={tw`flex-row w-11/12 pb-4 items-center justify-between`}>
         <View style={tw`flex-row items-center`}>
           <Text style={tw`text-white text-lg font-bold`}>
-            {dataTask?.getTaskByID.name}
+            {dataTask.getTaskByID.name}
           </Text>
           <Pressable
             style={tw`ml-2`}
             onPress={() =>
               navigation.navigate('DeleteTask', {
-                id: dataTask?.getTaskByID.id,
+                id: dataTask.getTaskByID.id,
               })
             }
           >
             <Entypo name="trash" size={15} color="white" />
           </Pressable>
         </View>
-        <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
+        <StatusTaskDetails status={dataTask.getTaskByID.advancement} />
       </View>
-      <TagsTaskDetails data={dataTask?.getTaskByID} />
-      <EndDateTaskDetails data={dataTask?.getTaskByID} />
-      <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
-      <ButtonsNavigation task={dataTask?.getTaskByID} />
+      <TagsTaskDetails data={dataTask.getTaskByID} />
+      <EndDateTaskDetails data={dataTask.getTaskByID} />
+      <DescriptionTaskDetails description={dataTask.getTaskByID.description} />
+      <ButtonsNavigation task={dataTask.getTaskByID} />
     </SafeAreaView>
   );
 }

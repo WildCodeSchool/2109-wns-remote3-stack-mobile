@@ -72,7 +72,7 @@ export default function DeleteComment() {
         <TouchableOpacity
           onPress={() => {
             deleteComment({
-              variables: { commentId: id },
+              variables: { deleteCommentByIdId: data.getCommentByID.id },
             });
           }}
           style={[tw`w-full p-4 rounded-md my-4 mt-10`, styles.button]}
