@@ -1,9 +1,11 @@
 import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import * as SecureStore from 'expo-secure-store';
+import Constants from 'expo-constants';
 
+const API_KEY = Constants?.manifest?.extra?.apiKey;
 const httpLink = createHttpLink({
-  uri: 'http://192.168.1.11:4000/graphql',
+  uri: API_KEY,
 });
 
 const authLink = setContext(async (_, { headers }) => {
