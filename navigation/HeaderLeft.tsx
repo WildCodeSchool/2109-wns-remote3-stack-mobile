@@ -15,16 +15,15 @@ export default function HeaderLeft({ title }: { title: string }) {
     date: {
       color: '#8790E0',
       fontSize: 13,
-      paddingTop: 5,
     },
   });
 
   return (
-    <View style={tw`px-5 pt-14 h-32 w-96`}>
+    <View style={tw`px-5 pt-16 mb-5 h-28 w-52`}>
       {title === 'home' ? (
         <Pressable>
           <Image
-            style={tw`h-12 w-40`}
+            style={tw`h-5/6 w-4/6`}
             source={require('../assets/images/logohome.png')}
           />
         </Pressable>

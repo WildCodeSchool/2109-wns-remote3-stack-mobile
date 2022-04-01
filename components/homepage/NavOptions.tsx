@@ -17,9 +17,15 @@ type navOptionstaskListScreenProps = StackNavigationProp<
 > &
   menuCreateProjectScreenProps;
 const styles = StyleSheet.create({
+  container: {
+    height: '39%',
+    marginTop: 5,
+  },
   card: {
+    height: '100%',
     padding: 10,
     borderWidth: 1,
+    justifyContent: 'space-between',
     borderColor: '#8790E0',
     marginHorizontal: 12,
     borderRadius: 10,
@@ -37,18 +43,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#8790E0',
   },
+  image: {
+    height: '70%',
+  },
 });
 export default function NavOptions() {
   const navigation = useNavigation<navOptionstaskListScreenProps>();
   return (
-    <View style={tw`flex flex-row`}>
+    <View style={[tw`flex flex-row `, styles.container]}>
       <TouchableOpacity
         onPress={() => navigation.navigate('TaskList')}
         style={styles.card}
       >
         <Text style={styles.text}>Tasks</Text>
         <Image
-          style={tw`w-36 h-44`}
+          style={[tw`w-36`, styles.image]}
           source={require('../../assets/images/tasklist.png')}
         />
         <Icon
@@ -65,7 +74,7 @@ export default function NavOptions() {
       >
         <Text style={styles.text}>Project</Text>
         <Image
-          style={tw`w-36 h-44`}
+          style={[tw`w-36`, styles.image]}
           source={require('../../assets/images/projects.png')}
         />
         <Icon
