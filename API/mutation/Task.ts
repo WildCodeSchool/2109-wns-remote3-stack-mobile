@@ -57,33 +57,39 @@ export const DELETE_TASK = gql`
 `;
 
 export const UPDATE_TASK = gql`
-  mutation UpdateTaskById(
-    $tags: [ITagPayload!]!
-    $updateTaskByIdId: String!
+  mutation updateTaskById(
+    $updateTaskWithTagsByIdId: String!
     $name: String!
     $description: String!
     $projectId: String!
     $endDate: String!
     $advancement: String!
     $estimeeSpentTime: Float!
+    $tags: [ITagPayload!]!
   ) {
-    updateTaskById(
-      tags: $tags
-      id: $updateTaskByIdId
+    updateTaskWithTagsById(
+      id: $updateTaskWithTagsByIdId
       name: $name
       description: $description
       projectId: $projectId
       endDate: $endDate
       advancement: $advancement
       estimeeSpentTime: $estimeeSpentTime
+      tags: $tags
     ) {
       id
       name
       description
       projectId
+      startDate
       endDate
-      advancement
       estimeeSpentTime
+      advancement
+      tags {
+        id
+        label
+        color
+      }
     }
   }
 `;

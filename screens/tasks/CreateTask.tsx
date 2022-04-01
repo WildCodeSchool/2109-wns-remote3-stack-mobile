@@ -88,7 +88,7 @@ export default function CreateTask() {
       <View
         style={[
           isModal ? tw`opacity-50` : tw`opacity-100`,
-          tw`flex-row w-full justify-between px-5 items-center mb-3 pb-2`,
+          tw`flex-row justify-between px-5 items-center mb-3 pb-2 w-full`,
           styles.border,
         ]}
       >
@@ -106,17 +106,19 @@ export default function CreateTask() {
           <Text style={tw`text-white font-bold text-lg`}> Create Task </Text>
         </Button>
       </View>
-      <InputText control={control} label="Task Name" name="name" />
-      <InputText
-        control={control}
-        name="description"
-        label="Task Description"
-      />
-      <InputNumeric
-        name="estimeeSpentTime"
-        label="Estimee Spent Time"
-        control={control}
-      />
+      <View style={tw`w-11/12`}>
+        <InputText control={control} label="Task Name" name="name" />
+        <InputText
+          control={control}
+          name="description"
+          label="Task Description"
+        />
+        <InputNumeric
+          name="estimeeSpentTime"
+          label="Estimee Spent Time"
+          control={control}
+        />
+      </View>
       <View style={tw`mt-3 mb-5`}>
         <InputDate
           label="End date:"

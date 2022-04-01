@@ -23,7 +23,7 @@ export type RootStackParamList = {
   DeleteTask: { id: string | undefined };
   CommentsTaskDetails: { id: string | undefined };
   AssignUsersTaskDetails: { id: string | undefined };
-  NewFeedTaskDetails: { id: string | undefined };
+  NewFeedTaskDetails: { id: string | undefined; nameProject: string };
   DeleteComment: { id: string };
   UpdateStatus: { id: string | undefined };
   AssignedUserProject: { id: string | undefined };

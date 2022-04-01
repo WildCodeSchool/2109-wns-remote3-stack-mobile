@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
   },
 });
-
 function HomeScreen() {
   const { dispatchExpoToken } = useExpoTokenFromStore();
   useEffect(() => {
