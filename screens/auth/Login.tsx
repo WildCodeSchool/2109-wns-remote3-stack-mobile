@@ -1,7 +1,15 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Pressable, SafeAreaView, StyleSheet, Text, Image } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  Keyboard,
+} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -45,6 +53,7 @@ function LogIn() {
   });
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    Keyboard.dismiss();
     loginMutation({
       variables: {
         email: data.email,
@@ -54,7 +63,10 @@ function LogIn() {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    >
       <Image
         style={tw`h-20 w-60 mt-8 mb-6`}
         source={require('../../assets/images/logohome.png')}
@@ -83,7 +95,7 @@ function LogIn() {
         style={tw`relative bottom-0`}
         source={require('../../assets/images/HomeAsset.png')}
       />
-    </SafeAreaView>
+    </KeyboardAvoidingView>
   );
 }
 export default LogIn;

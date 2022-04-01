@@ -3,7 +3,12 @@ import React from 'react';
 import dateFormat from 'dateformat';
 import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
+import { useQuery } from '@apollo/client';
 import { GetAllNotifications_getAllNotifications } from '../../API/types/GetAllNotifications';
+import { GetUserByID } from '../../API/types/GetUserByID';
+import { GET_USER_BY_ID } from '../../API/queries/userQueries';
+import DefaultAvatar from '../DefaultAvatar';
+import Loader from '../Loader';
 
 interface IProps {
   item: GetAllNotifications_getAllNotifications;
@@ -36,6 +41,14 @@ function OneNotification({ item }: IProps) {
     TASK: 'task',
   };
 
+  const {
+    data: user,
+    loading,
+    error,
+  } = useQuery<GetUserByID>(GET_USER_BY_ID, {
+    variables: { getUserByIdId: item.editorId },
+  });
+
   // TODO: Delete all the notifactions of deleted items test comments navigation and add status on task and project
   const handleNavigate = () => {
     if (
@@ -58,14 +71,28 @@ function OneNotification({ item }: IProps) {
     }
   };
 
+  if (loading) {
+    return <Loader />;
+  }
+  if (!user || error) {
+    return <Text>error</Text>;
+  }
+
   return (
-    <View style={[tw`flex flex-row items-start  mt-5  pb-3`, styles.container]}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
-        }}
-      />
+    <View
+      style={[tw`flex flex-row items-start  mt-5 mx-2  pb-3`, styles.container]}
+    >
+      {user?.getUserByID.avatar ? (
+        <Image
+          style={styles.image}
+          source={{
+            uri: user.getUserByID.avatar,
+          }}
+        />
+      ) : (
+        <DefaultAvatar userFirstName={user.getUserByID.firstName as string} />
+      )}
+
       <TouchableOpacity onPress={() => handleNavigate()} style={tw`ml-3`}>
         <View style={tw`flex flex-row`}>
           <Text style={tw`text-white text-sm font-bold`}>

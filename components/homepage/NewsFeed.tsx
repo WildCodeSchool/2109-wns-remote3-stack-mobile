@@ -1,6 +1,5 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import tw from 'tailwind-react-native-classnames';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_NOTIFICATIONS } from '../../API/queries/notificationQueries';
 import { GetAllNotifications } from '../../API/types/GetAllNotifications';
@@ -11,7 +10,10 @@ const styles = StyleSheet.create({
     height: '44%',
     marginTop: 20,
     textAlign: 'left',
-    width: '93%',
+    width: '100%',
+    paddingHorizontal: 8,
+    borderTopWidth: 1,
+    borderTopColor: '#8790E0',
   },
   text: {
     color: '#8790E0',
@@ -32,13 +34,11 @@ export default function NewsFeed() {
 
   return (
     <View style={styles.container}>
-      <View style={tw``}>
-        <FlatList
-          data={reversedData}
-          keyExtractor={(notification) => notification.id}
-          renderItem={({ item }) => <OneNotification item={item} />}
-        />
-      </View>
+      <FlatList
+        data={reversedData}
+        keyExtractor={(notification) => notification.id}
+        renderItem={({ item }) => <OneNotification item={item} />}
+      />
     </View>
   );
 }

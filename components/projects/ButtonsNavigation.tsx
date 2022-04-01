@@ -16,6 +16,14 @@ const styles = StyleSheet.create({
   buttons: {
     borderColor: '#8790E0',
     borderWidth: 1,
+    shadowColor: '#8790E0',
+    shadowOffset: {
+      width: 0,
+      height: 5,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 11.95,
+    elevation: 18,
   },
 });
 
@@ -24,7 +32,7 @@ export default function ButtonsNavigation({
 }: ButtonsNavigationProps) {
   const navigation = useNavigation();
 
-  const dataButtons = ['New Feed', 'Tasks', 'Assign User'];
+  const dataButtons = ['News Feed', 'Tasks', 'Assign User'];
   return (
     <View style={tw`mt-5 mx-4`}>
       {dataButtons.map((labelButton) => {

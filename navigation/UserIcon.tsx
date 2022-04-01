@@ -25,7 +25,7 @@ export default function UserIcon() {
   const { user } = useUserFromStore();
 
   return (
-    <View style={tw`flex-1 flex px-5 py-4`}>
+    <View style={tw`flex-1 flex px-5 py-5`}>
       <Pressable onPress={() => navigation.navigate('Userprofil')}>
         {user.avatar ? (
           <Image

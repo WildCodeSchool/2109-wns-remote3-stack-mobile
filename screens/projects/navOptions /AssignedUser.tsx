@@ -57,7 +57,9 @@ export default function AssignedUser() {
       );
 
       if (isUserManageProject.length > 0) {
-        setIsProjectManager(true);
+        if (isUserManageProject[0].projectRole === 'PROJECT_MANAGER') {
+          setIsProjectManager(true);
+        }
       }
     },
   });

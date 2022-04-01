@@ -35,7 +35,7 @@ export default function BottomTabNavigator() {
         name="Homepage"
         component={HomeScreen}
         options={{
-          headerLeft: () => <HeaderLeft title="home" />,
+          headerLeft: () => <HeaderLeft />,
           headerRight: () => <UserIcon />,
           title: '',
           tabBarIcon: () => <Ionicons name="home" size={24} color="white" />,
@@ -45,7 +45,7 @@ export default function BottomTabNavigator() {
         name="TaskList"
         component={TaskList}
         options={{
-          headerLeft: () => <HeaderLeft title="Tasks" />,
+          headerLeft: () => <HeaderLeft />,
           headerRight: () => <UserIcon />,
           title: '',
           tabBarIcon: () => (
@@ -57,7 +57,7 @@ export default function BottomTabNavigator() {
         name="Projectlist"
         component={ProjectList}
         options={{
-          headerLeft: () => <HeaderLeft title="Projects" />,
+          headerLeft: () => <HeaderLeft />,
           headerRight: () => <UserIcon />,
           title: '',
           tabBarIcon: () => (
@@ -69,7 +69,7 @@ export default function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          headerLeft: () => <HeaderLeft title="Settings" />,
+          headerLeft: () => <HeaderLeft />,
           headerRight: () => <UserIcon />,
           title: '',
           tabBarIcon: () => (
