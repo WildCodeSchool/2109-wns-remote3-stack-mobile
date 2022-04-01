@@ -24,7 +24,7 @@ export default function HeaderLeft({ title }: { title: string }) {
       {title === 'home' ? (
         <Pressable>
           <Image
-            style={tw`h-12`}
+            style={tw`h-12 w-40`}
             source={require('../assets/images/logohome.png')}
           />
         </Pressable>

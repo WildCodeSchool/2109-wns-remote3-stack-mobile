@@ -10,13 +10,14 @@ import { setContext } from '@apollo/client/link/context';
 import * as SecureStore from 'expo-secure-store';
 import { getMainDefinition } from '@apollo/client/utilities';
 
+// ? Replace localhost with local IP adress to test push notifications on your mobile
 const httpLink = createHttpLink({
-  uri: 'http://192.168.0.30:4000/graphql',
+  uri: 'http://localhost:4000/graphql',
 });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'ws://192.168.0.30:4000/graphql',
+    url: 'ws://localhost:4000/graphql',
   })
 );
 

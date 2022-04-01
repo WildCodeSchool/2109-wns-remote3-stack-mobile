@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_COMMENTS = gql`
-  mutation Mutation($text: String!, $userId: String!, $taskId: String!) {
+  mutation createComment($text: String!, $userId: String!, $taskId: String!) {
     createComment(text: $text, userId: $userId, taskId: $taskId) {
       id
       text
@@ -9,6 +9,27 @@ export const CREATE_COMMENTS = gql`
       updatedAt
       userId
       taskId
+    }
+  }
+`;
+
+export const GET_ALL_COMMENTS = gql`
+  query GetAllComments {
+    getAllComments {
+      id
+      text
+      createdAt
+      updatedAt
+      userId
+      taskId
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation deleteCommentById($deleteCommentByIdId: String!) {
+    deleteCommentById(id: $deleteCommentByIdId) {
+      id
     }
   }
 `;

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Text, SafeAreaView, StyleSheet } from 'react-native';
+import { Text, SafeAreaView, StyleSheet, View, Pressable } from 'react-native';
 import { useQuery } from '@apollo/client';
-import { RouteProp, useRoute } from '@react-navigation/native';
-
+import { RouteProp, useRoute, useNavigation } from '@react-navigation/native';
+import tw from 'tailwind-react-native-classnames';
+import { Entypo } from '@expo/vector-icons';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
@@ -10,22 +11,17 @@ import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetail
 import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
 import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
 import Loader from '../../components/Loader';
+import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
+import ButtonsNavigation from '../../components/tasks/ButtonsNavigation';
 
 type paramsProps = {
   id: { id: string };
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    height: '100%',
     backgroundColor: '#15192C',
     alignItems: 'center',
-  },
-  image: {
-    width: 65,
-    height: 65,
-    borderRadius: 100,
-    borderWidth: 2,
-    borderColor: 'rgba(135, 144, 224, 0.84)',
   },
   title: {
     color: '#8790E0',
@@ -33,6 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 function TaskDetails() {
+  const navigation = useNavigation();
   const route = useRoute<RouteProp<paramsProps>>();
 
   const {
@@ -48,12 +45,32 @@ function TaskDetails() {
   if (errorTask) {
     return <Text>erreur</Text>;
   }
+
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderTaskDetails data={dataTask?.getTaskByID} />
+      <HeaderTaskDetails />
+      <View style={tw`flex-row w-11/12 pb-4 items-center justify-between`}>
+        <View style={tw`flex-row items-center`}>
+          <Text style={tw`text-white text-lg font-bold`}>
+            {dataTask?.getTaskByID.name}
+          </Text>
+          <Pressable
+            style={tw`ml-2`}
+            onPress={() =>
+              navigation.navigate('DeleteTask', {
+                id: dataTask?.getTaskByID.id,
+              })
+            }
+          >
+            <Entypo name="trash" size={15} color="white" />
+          </Pressable>
+        </View>
+        <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
+      </View>
+      <TagsTaskDetails data={dataTask?.getTaskByID} />
+      <EndDateTaskDetails data={dataTask?.getTaskByID} />
       <DescriptionTaskDetails description={dataTask?.getTaskByID.description} />
-      <EndDateTaskDetails date={dataTask?.getTaskByID.endDate} />
-      <StatusTaskDetails status={dataTask?.getTaskByID.advancement} />
+      <ButtonsNavigation task={dataTask?.getTaskByID} />
     </SafeAreaView>
   );
 }

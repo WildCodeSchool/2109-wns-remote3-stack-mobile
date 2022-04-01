@@ -1,17 +1,15 @@
 import { StyleSheet, Text, SafeAreaView } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
-import { getProjectByIdId } from '../../API/types/getProjectByIdId';
+
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import HeaderOneProject from '../../components/projects/HeaderOneProject';
 import ProjectInformations from '../../components/projects/ProjectInformations';
 import ProjectDescription from '../../components/projects/ProjectDescription';
-import ProjectNavigation from './ProjectNavigation';
-import ProjectTasks from './navOptions /ProjectTasks';
-import NewsFeed from './navOptions /NewsFeed';
-import AssignedUser from './navOptions /AssignedUser';
 import Loader from '../../components/Loader';
+import { getProjectByIdId } from '../../API/types/getProjectByIdId';
+import ButtonsNavigation from '../../components/projects/ButtonsNavigation';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,6 +26,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     paddingTop: 5,
   },
+  navContainer: {
+    backgroundColor: '#282D43',
+  },
 });
 
 type RootStackParam = {
@@ -36,7 +37,7 @@ type RootStackParam = {
 export default function ProjectDetails() {
   const route = useRoute<RouteProp<RootStackParam>>();
   const { id } = route.params;
-  const [nav, setNav] = useState('tasks');
+  // const [nav, setNav] = useState('tasks');
 
   const { loading, error, data } = useQuery<getProjectByIdId>(GET_ONE_PROJECT, {
     variables: { getProjectByIdId: id },
@@ -51,13 +52,10 @@ export default function ProjectDetails() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <HeaderOneProject projectName={data.getProjectByID.name} />
+      <HeaderOneProject />
       <ProjectInformations project={data.getProjectByID} />
       <ProjectDescription description={data.getProjectByID.description} />
-      <ProjectNavigation setNav={setNav} nav={nav} />
-      {nav === 'tasks' && <ProjectTasks />}
-      {nav === 'assignedUser' && <AssignedUser />}
-      {nav === 'newsFeed' && <NewsFeed />}
+      <ButtonsNavigation projectId={data.getProjectByID.id} />
     </SafeAreaView>
   );
 }

@@ -17,6 +17,14 @@ import { GET_SELF } from '../API/queries/userQueries';
 import { GetSelf } from '../API/types/GetSelf';
 import Loader from '../components/Loader';
 import CreateUpdateProject from '../screens/projects/CreateUpdateProject';
+import CommentsTaskDetails from '../screens/tasks/CommentsTaskDetails';
+import NewFeedTaskDetails from '../screens/tasks/NewFeedTaskDetails';
+import AssignUsersTaskDetails from '../screens/tasks/AssignUsersTaskDetails';
+import DeleteComment from '../screens/tasks/DeleteComment';
+import UpdateStatus from '../screens/UpdateStatus';
+import AssignedUser from '../screens/projects/navOptions /AssignedUser';
+import NewsFeed from '../screens/projects/navOptions /NewsFeed';
+import ProjectTasks from '../screens/projects/navOptions /ProjectTasks';
 
 const styles = StyleSheet.create({
   container: {
@@ -64,6 +72,43 @@ export default function RootNavigator() {
               headerShown: false,
             }}
           />
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="CommentsTaskDetails"
+              component={CommentsTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="DeleteComment"
+              component={DeleteComment}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="NewFeedTaskDetails"
+              component={NewFeedTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="AssignUsersTaskDetails"
+              component={AssignUsersTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
           <Stack.Screen
             name="CreateUpdateproject"
             component={CreateUpdateProject}
@@ -84,6 +129,42 @@ export default function RootNavigator() {
             <Stack.Screen
               name="DeleteTask"
               component={DeleteTask}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="UpdateStatus"
+              component={UpdateStatus}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="AssignedUserProject"
+              component={AssignedUser}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="NewsFeedProject"
+              component={NewsFeed}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="ProjectTasks"
+              component={ProjectTasks}
               options={{
                 headerShown: false,
               }}

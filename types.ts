@@ -21,6 +21,14 @@ export type RootStackParamList = {
   ProjectDetails: { id: string };
   CreateUpdateproject: { id: string };
   DeleteTask: { id: string | undefined };
+  CommentsTaskDetails: { id: string | undefined };
+  AssignUsersTaskDetails: { id: string | undefined };
+  NewFeedTaskDetails: { id: string | undefined };
+  DeleteComment: { id: string };
+  UpdateStatus: { id: string | undefined };
+  AssignedUserProject: { id: string | undefined };
+  NewsFeedProject: { id: string | undefined };
+  ProjectTasks: { id: string | undefined };
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
