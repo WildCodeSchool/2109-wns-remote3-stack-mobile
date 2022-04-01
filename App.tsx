@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Notifications from 'expo-notifications';
 import { ApolloProvider } from '@apollo/client';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { KeyboardAvoidingView, Platform } from 'react-native';
@@ -7,6 +8,14 @@ import Navigation from './navigation';
 import client from './API/client';
 import useColorScheme from './hooks/useColorSchema';
 import { store } from './store/store';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
+});
 
 function App() {
   const colorScheme = useColorScheme();

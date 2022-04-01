@@ -29,6 +29,7 @@ export default {
     extra: {
       // Add your extra configs here
       apiKey: process.env.API_KEY,
+      wsUri: process.env.WS_URI,
     },
   },
 };
