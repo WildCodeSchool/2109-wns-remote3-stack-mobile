@@ -13,8 +13,8 @@ export interface getProjectByIdId_getProjectByID_tasks {
   name: string;
   description: string;
   projectId: string;
-  startDate: string;
-  endDate: string;
+  startDate: any;
+  endDate: any;
   estimeeSpentTime: number;
   advancement: string;
 }

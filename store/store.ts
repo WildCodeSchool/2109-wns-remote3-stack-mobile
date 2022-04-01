@@ -1,9 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import userReducer from './slices/user.slice';
+import expoTokenReducer from './slices/expoToken.slice';
 
 export const store = configureStore({
-  reducer: { user: userReducer },
+  reducer: { user: userReducer, expoToken: expoTokenReducer },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
   devTools: true,
