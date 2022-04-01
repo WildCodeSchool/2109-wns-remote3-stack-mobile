@@ -3,10 +3,10 @@ import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import moment from 'moment';
 import { Image } from 'react-native-elements';
-import { GetNotificationByID_getNotificationByID } from '../../../API/types/GetNotificationByID';
+import { getNewFeedTask_getAllNotificationsFromObject } from '../../../API/types/getNewFeedTask';
 
 interface OneFeedTaskProps {
-  item: GetNotificationByID_getNotificationByID;
+  item: getNewFeedTask_getAllNotificationsFromObject;
   projectName: string;
 }
 

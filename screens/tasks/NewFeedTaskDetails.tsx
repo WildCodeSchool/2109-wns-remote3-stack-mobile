@@ -5,7 +5,6 @@ import { FlatList, StyleSheet, View } from 'react-native';
 import { Text } from 'react-native-elements';
 import tw from 'tailwind-react-native-classnames';
 import { GET_NEW_FEED_TASK } from '../../API/queries/newFeedTasks';
-import { GetNotificationByID_getNotificationByID } from '../../API/types/GetNotificationByID';
 import CloseModal from '../../components/CloseModal';
 import Loader from '../../components/Loader';
 import OneFeedTask from '../../components/tasks/newfeed/OneFeedTask';
@@ -47,7 +46,7 @@ export default function NewFeedTaskDetails() {
   const renderItem = ({
     item,
   }: {
-    item: GetNotificationByID_getNotificationByID;
+    item: getNewFeedTask_getAllNotificationsFromObject;
   }) => <OneFeedTask item={item} projectName={route.params.nameProject} />;
   return (
     <View style={[styles.container, tw`w-full h-full`]}>
