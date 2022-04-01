@@ -4,11 +4,13 @@ import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
+import { useUserFromStore } from '../store/slices/user.slice';
+import DefaultAvatar from '../components/DefaultAvatar';
 
 const styles = StyleSheet.create({
   image: {
-    width: 65,
-    height: 65,
+    width: 50,
+    height: 50,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: 'rgba(135, 144, 224, 0.84)',
@@ -20,15 +22,21 @@ type ProfilScreenProp = StackNavigationProp<RootStackParamList, 'Userprofil'>;
 export default function UserIcon() {
   const navigation = useNavigation<ProfilScreenProp>();
 
+  const { user } = useUserFromStore();
+
   return (
-    <View style={tw`flex-1 flex px-5 py-4`}>
+    <View style={tw`flex-1 flex px-5 py-5`}>
       <Pressable onPress={() => navigation.navigate('Userprofil')}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80',
-          }}
-        />
+        {user.avatar ? (
+          <Image
+            style={styles.image}
+            source={{
+              uri: user.avatar,
+            }}
+          />
+        ) : (
+          <DefaultAvatar userFirstName={user.firstName as string} />
+        )}
       </Pressable>
     </View>
   );

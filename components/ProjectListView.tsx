@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     shadowColor: '#8790E0',
     shadowOffset: {
       width: 0,
-      height: 9,
+      height: 5,
     },
-    shadowOpacity: 0.2,
+    shadowOpacity: 0.1,
     shadowRadius: 11.95,
     elevation: 18,
   },
@@ -55,7 +55,7 @@ export default function ProjectListView() {
 
   return (
     <>
-      <View style={tw`mx-4 my-2`}>
+      <View style={tw`mx-4 my-2 mb-4`}>
         <StatusNavigation backgroundColor="light" nav={nav} setNav={setNav} />
       </View>
       <FlatList

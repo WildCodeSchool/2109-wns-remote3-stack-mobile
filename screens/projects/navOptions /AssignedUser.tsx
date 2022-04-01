@@ -4,26 +4,32 @@ import {
   View,
   Text,
   StyleSheet,
-  Pressable,
 } from 'react-native';
 import React, { useState } from 'react';
 import tw from 'tailwind-react-native-classnames';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
+import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
-import { AntDesign } from '@expo/vector-icons';
 import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 import User from '../../../components/projects/User';
 import { useUserFromStore } from '../../../store/slices/user.slice';
 import { GET_ONE_PROJECT } from '../../../API/queries/projectQueries';
 import Loader from '../../../components/Loader';
+import { GET_ALL_USERS } from '../../../API/queries/userQueries';
+import { GetAllUsers } from '../../../API/types/GetAllUsers';
+import CloseModal from '../../../components/CloseModal';
+import UsersAssign from '../../../components/projects/UsersAssign';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#15192C',
   },
-  button: {
+  buttonActive: {
     backgroundColor: '#8790E0',
+  },
+  navigationContainer: {
+    borderWidth: 2,
+    borderColor: '#8790E0',
   },
 });
 
@@ -33,51 +39,95 @@ type RootStackParam = {
 
 export default function AssignedUser() {
   const { user } = useUserFromStore();
-  const navgation = useNavigation();
+  const [isManageUser, setIsManageUser] = useState(false);
   const route = useRoute<RouteProp<RootStackParam>>();
   const { id } = route.params;
   const [isProjectManager, setIsProjectManager] = useState(false);
+  const {
+    loading: usersLoading,
+    error: usersError,
+    data: usersList,
+  } = useQuery<GetAllUsers>(GET_ALL_USERS);
 
   const { loading, error, data } = useQuery<getProjectByIdId>(GET_ONE_PROJECT, {
     variables: { getProjectByIdId: id },
     onCompleted: (d) => {
-      const isUserIntheProject = d.getProjectByID.members.filter(
+      const isUserManageProject = d.getProjectByID.members.filter(
         (item) => item.userId === user.id
       );
-      if (isUserIntheProject[0].projectRole === 'PROJECT_MANAGER') {
-        setIsProjectManager(true);
+
+      if (isUserManageProject.length > 0) {
+        if (isUserManageProject[0].projectRole === 'PROJECT_MANAGER') {
+          setIsProjectManager(true);
+        }
       }
     },
   });
 
-  if (loading) {
+  if (loading || usersLoading) {
     return <Loader />;
   }
-  if (error || !data) {
+  if (error || !data || usersError || !usersList) {
     return <Text>error</Text>;
   }
 
   return (
     <View style={[tw`px-4 py-5`, styles.container]}>
-      <Pressable
-        onPress={() => navgation.navigate('ProjectDetails', { id })}
-        style={tw`flex items-center w-full bg-purple-300 bg-opacity-10 rounded-lg p-2 mb-5`}
-      >
-        <AntDesign name="caretdown" size={24} color="#8790E0" />
-      </Pressable>
+      <CloseModal path="ProjectDetails" id={id} />
       {isProjectManager && (
-        <TouchableOpacity
-          style={[tw`my-3 mb-5 py-2 px-3 rounded-lg w-6/12`, styles.button]}
+        <View
+          style={[
+            tw`flex flex-row rounded-lg justify-between mb-3`,
+            styles.navigationContainer,
+          ]}
         >
-          <Text style={tw`text-white text-center`}>Manage users</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setIsManageUser(false)}
+            style={[
+              tw`py-2 px-3 rounded-sm w-6/12`,
+              !isManageUser && styles.buttonActive,
+            ]}
+          >
+            <Text style={tw`text-white text-center`}>Assigned Users</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setIsManageUser(true)}
+            style={[
+              tw`py-2 px-3 rounded-sm w-6/12`,
+              isManageUser && styles.buttonActive,
+            ]}
+          >
+            <Text style={tw`text-white text-center`}>Add users</Text>
+          </TouchableOpacity>
+        </View>
       )}
-
-      <FlatList
-        data={data.getProjectByID.members}
-        keyExtractor={(item) => item.userId}
-        renderItem={({ item }) => <User user={item} />}
-      />
+      {isManageUser ? (
+        <FlatList
+          data={usersList.getAllUsers}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
+            <User
+              usersProject={data.getProjectByID.members}
+              user={item}
+              projectId={data.getProjectByID.id}
+              setIsManageUser={setIsManageUser}
+            />
+          )}
+        />
+      ) : (
+        <FlatList
+          data={data?.getProjectByID.members}
+          keyExtractor={(item) => item.userId}
+          renderItem={({ item }) => (
+            <UsersAssign
+              isProjectManager={isProjectManager}
+              projectId={data.getProjectByID.id}
+              data={item}
+              userId={item.userId}
+            />
+          )}
+        />
+      )}
     </View>
   );
 }

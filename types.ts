@@ -19,7 +19,7 @@ export type RootStackParamList = {
   TaskDetails: { id: string | undefined };
   DeleteProject: { id: string };
   ProjectDetails: { id: string };
-  CreateUpdateproject: { id: string };
+  CreateUpdateproject: { id: string | undefined };
   DeleteTask: { id: string | undefined };
   CommentsTaskDetails: { id: string | undefined };
   AssignUsersTaskDetails: { id: string | undefined };

@@ -1,4 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import {
+  Keyboard,
+  Pressable,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import React, { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
@@ -34,8 +41,7 @@ const pickerStyle = StyleSheet.create({
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
-    marginLeft: 20,
-    marginRight: 20,
+    marginHorizontal: 17,
     marginTop: 10,
     height: 40,
     textAlign: 'left',
@@ -48,8 +54,7 @@ const pickerStyle = StyleSheet.create({
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
-    marginLeft: 20,
-    marginRight: 20,
+    marginHorizontal: 12,
     marginTop: 10,
     height: 40,
     textAlign: 'center',
@@ -63,7 +68,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#15192C',
     alignItems: 'center',
-    paddingTop: 60,
   },
   border: {
     borderBottomColor: '#8790E0',
@@ -171,13 +175,20 @@ export default function CreateUpdateProject() {
     <View style={styles.container}>
       <View
         style={[
-          tw`flex-row w-full justify-between px-5 items-center mb-3 pb-2`,
+          tw`flex-row w-full justify-between px-4 items-center mb-3 pb-2 mt-10`,
           styles.border,
         ]}
       >
-        <Pressable onPress={() => navigation.navigate('Projectlist')}>
-          <MaterialCommunityIcons name="chevron-left" size={30} color="white" />
-        </Pressable>
+        <TouchableWithoutFeedback
+          onPress={() => {
+            Keyboard.dismiss();
+            setTimeout(() => {
+              navigation.navigate('Projectlist');
+            }, 100);
+          }}
+        >
+          <MaterialCommunityIcons name="chevron-left" size={40} color="white" />
+        </TouchableWithoutFeedback>
         <Pressable onPress={handleSubmit(onSubmit)}>
           <Text style={tw`text-white font-bold text-lg`}>
             {id ? 'Update project' : 'Create project'}
@@ -191,9 +202,6 @@ export default function CreateUpdateProject() {
         name="description"
       />
 
-      <InputDate label="Start Date" setDate={setStartDate} date={startDate} />
-      <InputDate label="End Date" setDate={setEndDate} date={endDate} />
-      {dateError !== '' && <Text style={tw`text-red-300`}>{dateError}</Text>}
       <InputNumeric
         name="estimeeSpentTime"
         label="Estimee Spent Time"
@@ -210,6 +218,9 @@ export default function CreateUpdateProject() {
           return { label: item, value: item };
         })}
       />
+      <InputDate label="Start Date" setDate={setStartDate} date={startDate} />
+      <InputDate label="End Date" setDate={setEndDate} date={endDate} />
+      {dateError !== '' && <Text style={tw`text-red-300`}>{dateError}</Text>}
     </View>
   );
 }
