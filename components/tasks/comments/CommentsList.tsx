@@ -13,8 +13,8 @@ interface CommentsListProps {
 
 const styles = StyleSheet.create({
   flatlist: {
+    height: '70%',
     marginTop: 20,
-    height: '80%',
     flexGrow: 0,
   },
 });
@@ -42,7 +42,6 @@ export default function CommentsList({ idTask }: CommentsListProps) {
   return (
     <View style={[styles.flatlist]}>
       <FlatList
-        inverted
         data={commentsTaskId.reverse()}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
