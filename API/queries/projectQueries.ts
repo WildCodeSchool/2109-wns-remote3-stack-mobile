@@ -76,3 +76,21 @@ export const CREATE_USER_PROJECT = gql`
     }
   }
 `;
+
+export const GET_ALL_NOTIFICATION_PROJECT = gql`
+  query getAllNotifactionProject($objectId: String!) {
+    getAllNotificationsFromObject(objectId: $objectId) {
+      id
+      editorName
+      editorId
+      actionType
+      modifiedObjectName
+      modifiedObjectId
+      onName
+      onId
+      type
+      createdAt
+      viewedBy
+    }
+  }
+`;
