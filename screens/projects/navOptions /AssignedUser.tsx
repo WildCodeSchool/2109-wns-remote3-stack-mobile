@@ -74,7 +74,7 @@ export default function AssignedUser() {
       )}
 
       <FlatList
-        data={data?.getProjectByID.members}
+        data={data.getProjectByID.members}
         keyExtractor={(item) => item.userId}
         renderItem={({ item }) => <User user={item} />}
       />

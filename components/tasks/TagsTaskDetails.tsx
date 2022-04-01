@@ -6,7 +6,7 @@ import { GetTagByID_getTagByID } from '../../API/types/GetTagByID';
 import OneTag from '../tag/OneTag';
 
 interface TagsTaskDetailsProps {
-  data: getTaskByID_getTaskByID | undefined;
+  data: getTaskByID_getTaskByID;
 }
 
 const styles = StyleSheet.create({
@@ -24,7 +24,7 @@ function TagsTaskDetails({ data }: TagsTaskDetailsProps): JSX.Element {
     <View style={tw`w-11/12`}>
       <FlatList
         horizontal
-        data={data?.tags}
+        data={data.tags}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
         style={[styles.list]}

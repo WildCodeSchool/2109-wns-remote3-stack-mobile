@@ -24,8 +24,8 @@ export default function CommentsTaskDetails() {
   return (
     <View style={[styles.container, tw`w-full`]}>
       <CloseModal path="TaskDetails" id={route.params.id} />
-      <CommentsList idTask={route.params.id} />
       <AddComment idTask={route.params.id} />
+      <CommentsList idTask={route.params.id} />
     </View>
   );
 }

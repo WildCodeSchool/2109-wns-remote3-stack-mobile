@@ -42,7 +42,6 @@ export default function CommentsList({ idTask }: CommentsListProps) {
   return (
     <View style={[styles.flatlist]}>
       <FlatList
-        inverted
         data={commentsTaskId.reverse()}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

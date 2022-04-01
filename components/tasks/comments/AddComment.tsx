@@ -1,5 +1,13 @@
 import React from 'react';
-import { Text, View, Pressable, TextInput, StyleSheet } from 'react-native';
+import {
+  Text,
+  View,
+  Pressable,
+  TextInput,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from 'react-native';
 import { useMutation } from '@apollo/client';
 import {
   FieldValues,
@@ -74,24 +82,30 @@ export default function AddComment({ idTask }: AddCommentProps) {
     <View
       style={[
         styles.contentInput,
-        tw`py-2 px-3 mt-6 flex absolute bottom-12 w-11/12 flex-row justify-between ml-3 items-center rounded-md`,
+        tw`py-2 px-3 mt-6 flex w-11/12 flex-row justify-between items-center rounded-md`,
       ]}
     >
       <Controller
         name="text"
         control={control}
         render={({ field: { onChange, value } }: FieldValues) => (
-          <TextInput
-            style={styles.input}
-            multiline
-            numberOfLines={10}
-            placeholderTextColor="#8790E0"
-            placeholder="Add a comment..."
-            value={value}
-            onChangeText={(newText) => onChange(newText)}
-          />
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <TextInput
+              returnKeyType="done"
+              keyboardType="default"
+              blurOnSubmit
+              multiline
+              numberOfLines={10}
+              style={styles.input}
+              placeholderTextColor="#8790E0"
+              placeholder="Add a comment..."
+              value={value}
+              onChangeText={(newText) => onChange(newText)}
+            />
+          </TouchableWithoutFeedback>
         )}
       />
+
       <Pressable
         style={{
           transform: [{ rotate: '40deg' }],

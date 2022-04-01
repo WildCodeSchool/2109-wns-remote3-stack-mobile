@@ -30,7 +30,7 @@ function TaskList() {
           style={[styles.btnAdd, tw`py-3 rounded-lg mr-10 `]}
           onPress={() => navigation.navigate('Createtask')}
         >
-          <Text style={tw`text-white text-center px-4 font-bold`}> NEW +</Text>
+          <Text style={tw`text-white text-center px-10 font-bold`}> NEW +</Text>
         </Pressable>
       </View>
 

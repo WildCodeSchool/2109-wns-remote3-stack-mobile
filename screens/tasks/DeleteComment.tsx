@@ -39,7 +39,6 @@ export default function DeleteComment() {
   const { loading, error, data } = useQuery<getOneComment>(GET_ONE_COMMENT, {
     variables: { getCommentByIdId: id },
   });
-
   const idTask = data?.getCommentByID.taskId;
 
   const [deleteComment, { loading: deleteLoad, error: deleteError }] =
