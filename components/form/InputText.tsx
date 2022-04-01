@@ -24,6 +24,9 @@ function InputText({ label, name, control }: InputTextProps) {
       control={control}
       render={({ field: { onChange, value } }: FieldValues) => (
         <TextInput
+          returnKeyType="done"
+          keyboardType="default"
+          blurOnSubmit
           multiline
           numberOfLines={10}
           placeholderTextColor="#8790E0"

@@ -19,6 +19,7 @@ import UpdateNameTask from '../../components/tasks/UpdateNameTask';
 type paramsProps = {
   id: { id: string };
 };
+
 const styles = StyleSheet.create({
   container: {
     height: '100%',

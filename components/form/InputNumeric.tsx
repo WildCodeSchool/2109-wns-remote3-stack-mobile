@@ -26,9 +26,10 @@ function InputNumeric({ label, name, control }: InputTextProps) {
       render={({ field: { onChange, value } }: FieldValues) => (
         <TextInput
           style={[styles.input, tw`py-3 pl-3 my-3 rounded-md`]}
+          returnKeyType="done"
+          keyboardType="number-pad"
           placeholderTextColor="#8790E0"
           placeholder={label}
-          keyboardType="numeric"
           maxLength={10}
           value={value}
           onChange={(e) => onChange(e.nativeEvent.text)}
