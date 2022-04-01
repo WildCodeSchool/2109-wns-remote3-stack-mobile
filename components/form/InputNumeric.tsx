@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     color: '#8790E0',
-    width: 350,
+    width: '90%',
     borderColor: '#8790E0',
   },
 });
@@ -28,6 +28,7 @@ function InputNumeric({ label, name, control }: InputTextProps) {
           style={[styles.input, tw`py-3 pl-3 my-3 rounded-md`]}
           placeholderTextColor="#8790E0"
           placeholder={label}
+          returnKeyType="done"
           keyboardType="numeric"
           maxLength={10}
           value={value}

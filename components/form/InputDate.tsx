@@ -12,15 +12,15 @@ interface InputTextProps {
 }
 const styles = StyleSheet.create({
   datePicker: {
-    width: 350,
     height: 100,
+    width: '100%',
     backgroundColor: 'transparent',
   },
   button: {
-    backgroundColor: '#8790E0',
+    borderWidth: 1,
+    borderColor: '#8790E0',
     borderRadius: 5,
-    marginVertical: 6,
-    width: 350,
+    width: '100%',
   },
   text: {
     color: '#8790E0',
@@ -43,8 +43,8 @@ function InputDate({ setDate, date, label }: InputTextProps) {
     }
   };
   return (
-    <View style={tw`mt-3`}>
-      <Text style={[styles.text, tw`text-left w-full mb-2`]}>{label}</Text>
+    <View style={tw`mt-3 w-11/12`}>
+      <Text style={[styles.text, tw`text-left  mb-2`]}>{label}</Text>
       <View style={styles.button}>
         <Button
           title={dateFormat(new Date(date), 'dddd dd mmmm yyyy')}

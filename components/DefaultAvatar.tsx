@@ -17,7 +17,7 @@ export default function DefaultAvatar({ userFirstName }: IProps) {
   return (
     <View
       style={[
-        tw`h-12 w-12 rounded-full flex items-center justify-center`,
+        tw`h-10 w-10 rounded-full flex items-center justify-center`,
         styles.container,
       ]}
     >

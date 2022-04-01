@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     color: '#8790E0',
-    width: 350,
+
     borderColor: '#8790E0',
   },
 });
@@ -25,10 +25,8 @@ function InputText({ label, name, control }: InputTextProps) {
       control={control}
       render={({ field: { onChange, value } }: FieldValues) => (
         <TextInput
-          multiline
-          numberOfLines={10}
           placeholderTextColor="#8790E0"
-          style={[styles.input, tw`py-3 pl-3 my-3 rounded-md`]}
+          style={[styles.input, tw`py-3 w-11/12 pl-3 my-3 rounded-md`]}
           placeholder={label}
           value={value}
           onChangeText={(newText) => onChange(newText)}
