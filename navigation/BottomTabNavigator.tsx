@@ -23,8 +23,8 @@ export default function BottomTabNavigator() {
         tabBarStyle: {
           position: 'absolute',
           zIndex: 20,
-          height: 90,
-          paddingTop: 23,
+          height: '10%',
+          paddingTop: 16,
           borderTopColor: '#8790E0',
           backgroundColor: '#15192C',
         },

@@ -4,20 +4,23 @@ import {
   InMemoryCache,
   split,
 } from '@apollo/client';
+import Constants from 'expo-constants';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
 import { setContext } from '@apollo/client/link/context';
 import * as SecureStore from 'expo-secure-store';
 import { getMainDefinition } from '@apollo/client/utilities';
 
-// ? Replace localhost with local IP adress to test push notifications on your mobile
+const API_KEY = Constants?.manifest?.extra?.apiKey;
+const WS_URI = Constants?.manifest?.extra?.wsUri;
+
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: API_KEY,
 });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: 'ws://localhost:4000/graphql',
+    url: WS_URI,
   })
 );
 

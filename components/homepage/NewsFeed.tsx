@@ -63,8 +63,7 @@ export default function NewsFeed() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>News feed</Text>
-      <View style={tw`mt-2 border-t border-purple-300`}>
+      <View style={tw``}>
         <FlatList
           data={notifications || [...data.getAllNotifications].reverse()}
           keyExtractor={(notification) => notification.id}
