@@ -110,10 +110,10 @@ export default function CreateUpdateProject() {
 
   // UPDATE A PROJECT
   const [update, { loading: updateLoading, error: updateError }] = useMutation<{
-    createProject: GetAllProjects_getAllProjects;
+    updateProject: GetAllProjects_getAllProjects;
   }>(UPDATE_PROJECT, {
     onCompleted: (d) => {
-      navigation.navigate('ProjectDetails', { id: d.createProject.id });
+      navigation.navigate('ProjectDetails', { id: d.updateProject.id });
     },
   });
 

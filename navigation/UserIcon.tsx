@@ -26,7 +26,9 @@ export default function UserIcon() {
 
   return (
     <View style={tw`flex-1 flex px-5 py-5`}>
-      <Pressable onPress={() => navigation.navigate('Userprofil')}>
+      <Pressable
+        onPress={() => navigation.navigate('Userprofil', { id: user.id })}
+      >
         {user.avatar ? (
           <Image
             style={styles.image}
@@ -35,7 +37,10 @@ export default function UserIcon() {
             }}
           />
         ) : (
-          <DefaultAvatar userFirstName={user.firstName as string} />
+          <DefaultAvatar
+            userId={user.id as string}
+            userFirstName={user.firstName as string}
+          />
         )}
       </Pressable>
     </View>

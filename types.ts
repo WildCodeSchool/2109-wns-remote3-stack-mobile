@@ -12,10 +12,11 @@ declare global {
 
 export type RootStackParamList = {
   Root: undefined;
-  Userprofil: undefined;
+  Userprofil: { id: string | undefined };
   Createtask: undefined;
   Login: undefined;
   Signup: undefined;
+  Settings: undefined;
   TaskDetails: { id: string | undefined };
   DeleteProject: { id: string };
   ProjectDetails: { id: string };

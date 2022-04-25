@@ -1,7 +1,14 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import dateFormat from 'dateformat';
-import { Text, View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Pressable,
+} from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useQuery } from '@apollo/client';
 import { GetAllNotifications_getAllNotifications } from '../../API/types/GetAllNotifications';
@@ -82,15 +89,24 @@ function OneNotification({ item }: IProps) {
     <View
       style={[tw`flex flex-row items-start  mt-5 mx-2  pb-3`, styles.container]}
     >
-      {user?.getUserByID.avatar ? (
-        <Image
-          style={styles.image}
-          source={{
-            uri: user.getUserByID.avatar,
-          }}
-        />
+      {user.getUserByID.avatar ? (
+        <Pressable
+          onPress={() =>
+            navigation.navigate('Userprofil', { id: user.getUserByID.id })
+          }
+        >
+          <Image
+            style={styles.image}
+            source={{
+              uri: user.getUserByID.avatar,
+            }}
+          />
+        </Pressable>
       ) : (
-        <DefaultAvatar userFirstName={user.getUserByID.firstName as string} />
+        <DefaultAvatar
+          userId={user.getUserByID.id}
+          userFirstName={user.getUserByID.firstName as string}
+        />
       )}
 
       <TouchableOpacity onPress={() => handleNavigate()} style={tw`ml-3`}>

@@ -9,6 +9,7 @@ import {
   KeyboardAvoidingView,
   Platform,
   Keyboard,
+  View,
 } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#15192C',
     alignItems: 'center',
+    justifyContent: 'space-between',
   },
   button: {
     backgroundColor: '#8790E0',
@@ -67,32 +69,34 @@ function LogIn() {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
+      <View style={tw`w-full flex flex-col items-center`}>
+        <Image
+          style={tw`h-20 w-60 mt-14 mb-6`}
+          source={require('../../assets/images/logohome.png')}
+        />
+        <InputAuth control={control} label="Email" name="email" type="email" />
+        <InputAuth
+          control={control}
+          label="Password"
+          name="password"
+          type="password"
+        />
+        <Pressable
+          style={[tw`mt-5 w-11/12 py-3 rounded-md`, styles.button]}
+          onPress={handleSubmit(onSubmit)}
+        >
+          <Text style={tw`text-white text-center font-bold text-lg`}>
+            Se connecter
+          </Text>
+        </Pressable>
+        <Pressable onPress={() => navigation.navigate('Signup')}>
+          <Text style={tw`text-white mt-2`}>
+            Don&apos;t have an account? Signup here
+          </Text>
+        </Pressable>
+      </View>
       <Image
-        style={tw`h-20 w-60 mt-8 mb-6`}
-        source={require('../../assets/images/logohome.png')}
-      />
-      <InputAuth control={control} label="Email" name="email" type="email" />
-      <InputAuth
-        control={control}
-        label="Password"
-        name="password"
-        type="password"
-      />
-      <Pressable
-        style={[tw`mt-5 w-11/12 py-3 rounded-md`, styles.button]}
-        onPress={handleSubmit(onSubmit)}
-      >
-        <Text style={tw`text-white text-center font-bold text-lg`}>
-          Se connecter
-        </Text>
-      </Pressable>
-      <Pressable onPress={() => navigation.navigate('Signup')}>
-        <Text style={tw`text-white mt-2`}>
-          Don&apos;t have an account? Signup here
-        </Text>
-      </Pressable>
-      <Image
-        style={tw`relative bottom-0`}
+        style={tw`relative bottom-0 right-3`}
         source={require('../../assets/images/HomeAsset.png')}
       />
     </KeyboardAvoidingView>
