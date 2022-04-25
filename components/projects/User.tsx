@@ -134,7 +134,7 @@ export default function User({
         >
           <Pressable
             style={tw` w-2/12`}
-            onPress={() => navigation.navigate('Userprofil')}
+            onPress={() => navigation.navigate('Userprofil', { id: user.id })}
           >
             {user.avatar ? (
               <Image
@@ -144,7 +144,7 @@ export default function User({
                 }}
               />
             ) : (
-              <DefaultAvatar userFirstName={user.firstName} />
+              <DefaultAvatar userId={user.id} userFirstName={user.firstName} />
             )}
           </Pressable>
           <View style={tw`flex flex-row items-end  justify-between w-10/12`}>
