@@ -34,6 +34,11 @@ export default function DescriptionTaskDetails({
   const { handleSubmit, control } = useForm();
   const [updateDescription, setUpdateDescription] = useState(false);
 
+  const tagsWithoutTypename = data.tags.map((tag) => {
+    const { __typename, ...item } = tag;
+    return item;
+  });
+
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
     onCompleted: () => {
@@ -55,7 +60,7 @@ export default function DescriptionTaskDetails({
       projectId: data.projectId,
       advancement: data.advancement,
       endDate: data.endDate,
-      tags: data.tags,
+      tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,
     };
