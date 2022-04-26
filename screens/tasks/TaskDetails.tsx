@@ -33,7 +33,13 @@ const styles = StyleSheet.create({
   btnDelete: {
     backgroundColor: '#8790E0',
   },
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#8790E0',
+  },
 });
+
 function TaskDetails() {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<paramsProps>>();
@@ -60,16 +66,9 @@ function TaskDetails() {
       <HeaderTaskDetails />
       <View style={tw`flex-row w-11/12 pb-4 items-center justify-between`}>
         <View style={tw`flex-row items-center`}>
-          <Text style={tw`text-white text-lg font-bold`}>
-            {dataTask.getTaskByID.name}
-          </Text>
+          <Text style={styles.text}>{dataTask.getTaskByID.name}</Text>
           <Pressable onPress={() => setUpdateName(!updateName)}>
-            <AntDesign
-              style={tw`ml-2 mr-3`}
-              name="edit"
-              size={19}
-              color="white"
-            />
+            <AntDesign style={tw`ml-1`} name="edit" size={19} color="white" />
           </Pressable>
         </View>
         <StatusTaskDetails

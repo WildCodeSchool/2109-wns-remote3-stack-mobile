@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
@@ -17,8 +17,11 @@ export default function UpdateNameTask({
   data,
 }: UpdateNameTaskProps): JSX.Element {
   const navigation = useNavigation();
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, setValue } = useForm();
 
+  useEffect(() => {
+    setValue('nameTask', data.name);
+  }, []);
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
     onCompleted: () => {
@@ -31,7 +34,7 @@ export default function UpdateNameTask({
       },
     ],
   });
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Text style={tw`text-white mb-2`}>{error.message}</Text>;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const dataTaskUpdate = {
@@ -44,14 +47,15 @@ export default function UpdateNameTask({
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,
     };
+
     updateTask({ variables: dataTaskUpdate });
   };
 
   return (
-    <View style={tw`w-11/12`}>
-      <InputText label={data.name} control={control} name="nameTask" />
+    <View style={tw`w-full flex items-center mb-5`}>
+      <InputText label="Edit name" control={control} name="nameTask" />
       <Pressable
-        style={tw`w-full bg-green-500 rounded-lg`}
+        style={tw`w-11/12 bg-green-500 rounded-lg`}
         onPress={handleSubmit(onSubmit)}
       >
         <Text style={tw`text-white text-center py-2 font-bold text-lg`}>
