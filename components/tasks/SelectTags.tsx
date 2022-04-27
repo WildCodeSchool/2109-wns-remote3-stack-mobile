@@ -103,7 +103,7 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
         </View>
       )}
       <Pressable
-        style={[styles.button, tw`pt-1  mt-5`]}
+        style={[styles.button, tw`pt-1 w-full  mt-5`]}
         onPress={() => setIsModal(!isModal)}
       >
         <Text style={tw`text-white text-lg text-center`}>

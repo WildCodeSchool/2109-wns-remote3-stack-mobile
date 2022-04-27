@@ -195,12 +195,14 @@ export default function CreateUpdateProject() {
           </Text>
         </Pressable>
       </View>
-      <InputText control={control} label="Project name" name="name" />
-      <InputText
-        control={control}
-        label="Project description"
-        name="description"
-      />
+      <View style={tw`w-11/12`}>
+        <InputText control={control} label="Project name" name="name" />
+        <InputText
+          control={control}
+          label="Project description"
+          name="description"
+        />
+      </View>
 
       <InputNumeric
         name="estimeeSpentTime"

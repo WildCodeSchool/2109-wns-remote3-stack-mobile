@@ -107,12 +107,14 @@ export default function CreateTask() {
         </Button>
       </View>
       <View style={tw`w-full flex flex-col items-center`}>
-        <InputText control={control} label="Task Name" name="name" />
-        <InputText
-          control={control}
-          name="description"
-          label="Task Description"
-        />
+        <View style={tw`w-11/12`}>
+          <InputText control={control} label="Task Name" name="name" />
+          <InputText
+            control={control}
+            name="description"
+            label="Task Description"
+          />
+        </View>
         <InputNumeric
           name="estimeeSpentTime"
           label="Estimee Spent Time"

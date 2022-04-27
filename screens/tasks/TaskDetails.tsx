@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8790E0',
   },
   text: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     color: '#8790E0',
   },
@@ -66,7 +66,7 @@ function TaskDetails() {
       <HeaderTaskDetails />
       <View style={tw`flex-row w-11/12 pb-4 items-center justify-between`}>
         <View style={tw`flex-row items-center`}>
-          <Text style={styles.text}>{dataTask.getTaskByID.name}</Text>
+          <Text style={[styles.text]}>{dataTask.getTaskByID.name}</Text>
           <Pressable onPress={() => setUpdateName(!updateName)}>
             <AntDesign style={tw`ml-1`} name="edit" size={19} color="white" />
           </Pressable>

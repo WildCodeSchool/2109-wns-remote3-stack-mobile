@@ -61,7 +61,9 @@ export default function UpdateNameTask({
 
   return (
     <View style={tw`w-full flex items-center mb-5`}>
-      <InputText label="Edit name" control={control} name="nameTask" />
+      <View style={tw`w-11/12`}>
+        <InputText label="Edit name" control={control} name="nameTask" />
+      </View>
       <Pressable
         style={tw`w-11/12 bg-green-500 rounded-lg`}
         onPress={handleSubmit(onSubmit)}
