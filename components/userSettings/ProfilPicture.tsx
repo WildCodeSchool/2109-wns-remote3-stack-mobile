@@ -1,10 +1,12 @@
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';
+import { useNavigation } from '@react-navigation/native';
 
 interface IProps {
   userFirstName: string;
   userAvatarUrl: string | null;
+  userId: string;
 }
 
 const styles = StyleSheet.create({
@@ -32,7 +34,9 @@ const styles = StyleSheet.create({
 export default function ProfilPicture({
   userFirstName,
   userAvatarUrl,
+  userId,
 }: IProps) {
+  const navigation = useNavigation();
   const letter = userFirstName.split('')[0];
 
   return (
@@ -62,7 +66,11 @@ export default function ProfilPicture({
           >
             <Text style={[tw`text-white`, styles.letter]}>{letter}</Text>
           </View>
-          <Pressable>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('UpdateProfilPicture', { id: userId })
+            }
+          >
             <Image
               style={tw`absolute right-5 bottom-0`}
               source={require('../../assets/images/EditProfilPicture.png')}

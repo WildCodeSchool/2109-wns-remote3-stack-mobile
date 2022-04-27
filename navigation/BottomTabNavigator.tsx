@@ -69,9 +69,6 @@ export default function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          headerLeft: () => <HeaderLeft />,
-          headerRight: () => <UserIcon />,
-          title: '',
           tabBarIcon: () => (
             <Ionicons name="settings-sharp" size={24} color="white" />
           ),

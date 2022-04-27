@@ -25,6 +25,8 @@ import UpdateStatus from '../screens/UpdateStatus';
 import AssignedUser from '../screens/projects/navOptions /AssignedUser';
 import NewsFeed from '../screens/projects/navOptions /NewsFeed';
 import ProjectTasks from '../screens/projects/navOptions /ProjectTasks';
+import UpdateProfilPicture from '../screens/userSettings/UpdateProfilPicure';
+import CameraUpdatePicture from '../screens/userSettings/CameraUpdatePicture';
 
 const styles = StyleSheet.create({
   container: {
@@ -104,6 +106,24 @@ export default function RootNavigator() {
             <Stack.Screen
               name="AssignUsersTaskDetails"
               component={AssignUsersTaskDetails}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="UpdateProfilPicture"
+              component={UpdateProfilPicture}
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack.Group>
+          <Stack.Group screenOptions={{ presentation: 'modal' }}>
+            <Stack.Screen
+              name="Camera"
+              component={CameraUpdatePicture}
               options={{
                 headerShown: false,
               }}

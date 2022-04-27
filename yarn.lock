@@ -4098,7 +4098,7 @@ expo-camera@~12.1.2:
     "@koale/useworker" "^4.0.2"
     invariant "^2.2.4"
 
-expo-constants@^13.0.2, expo-constants@~13.0.0, expo-constants@~13.0.2:
+expo-constants@~13.0.0, expo-constants@~13.0.1, expo-constants@~13.0.2:
   version "13.0.2"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.0.2.tgz#b489ecd575cc82a9a0b3dfbf2385d45a44300eb1"
   integrity sha512-vGs/kI65vplPFvG8z4W1ariGEtVHHp9Avl28G0zJprt2v/q1E/BnXjwvFSBPc1GB+Zb/7crWSHWRwjaFULBjsg==
@@ -7615,6 +7615,11 @@ react-native-fade-loading@^0.1.3:
   resolved "https://registry.yarnpkg.com/react-native-fade-loading/-/react-native-fade-loading-0.1.3.tgz#2a5e9d3e5d73c68a389a03502f5a17f2107ea1c6"
   integrity sha512-EIv4IRrovmLGcdMmXVczyRlfcRVythwyls9yohbqhXtc4n+V8rL9Tb0TM01PV5+opA+bot+yZn3jpv+EKqstHw==
 
+react-native-image-crop-picker@^0.37.3:
+  version "0.37.3"
+  resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.37.3.tgz#f260e40b6a6ba8e98f4db3dde25a8f09e0936385"
+  integrity sha512-ih+0pWWRUNEFQyaHwGbH9rqJNOb7EBYMwKJhTY0VmsKIA9E+usfwMmQXAFIfOnee7fTn0A2vOXkBCPQZwyvnQw==
+
 react-native-indicator@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/react-native-indicator/-/react-native-indicator-1.2.2.tgz#cfb090e57b30d0d845e58a1f136aa1c95789bc6d"
@@ -8324,6 +8329,11 @@ simple-swizzle@^0.2.2:
   integrity sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=
   dependencies:
     is-arrayish "^0.3.1"
+
+single-file-uploader@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/single-file-uploader/-/single-file-uploader-0.0.4.tgz#f35144a1e9f99bb76298870f5a51f6b11e0cb2a7"
+  integrity sha512-ceR4kRv07fBQE5MOLCsaiOINMUCbHP7oktLeOJTC5voTGOnhn53N8VbyUNxZe6Txphttwqzcyz6teqtuYk1IeA==
 
 sisteransi@^1.0.5:
   version "1.0.5"

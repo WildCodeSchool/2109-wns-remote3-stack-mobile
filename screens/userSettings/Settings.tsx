@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#15192C',
     alignItems: 'flex-start',
-    paddingTop: 40,
     paddingHorizontal: 20,
+    marginTop: -20,
   },
 });
 
@@ -47,6 +47,7 @@ function Settings() {
         <ProfilPicture
           userFirstName={user.getUserByID.firstName}
           userAvatarUrl={user.getUserByID.avatar}
+          userId={id}
         />
         <View style={tw`text-white flex flex-row mt-5`}>
           <Text style={tw`text-white font-bold text-xl mr-1`}>
