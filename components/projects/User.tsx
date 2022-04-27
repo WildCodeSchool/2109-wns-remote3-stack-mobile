@@ -53,8 +53,8 @@ const pickerStyle = StyleSheet.create({
 
 const styles = StyleSheet.create({
   image: {
-    width: 65,
-    height: 65,
+    width: 40,
+    height: 40,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: 'rgba(135, 144, 224, 0.84)',

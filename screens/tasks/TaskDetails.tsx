@@ -77,7 +77,12 @@ function TaskDetails() {
           status={dataTask.getTaskByID.advancement}
         />
       </View>
-      {updateName && <UpdateNameTask data={dataTask.getTaskByID} />}
+      {updateName && (
+        <UpdateNameTask
+          setUpdateName={setUpdateName}
+          data={dataTask.getTaskByID}
+        />
+      )}
       {!updateStatus ? (
         <>
           <TagsTaskDetails data={dataTask.getTaskByID} />

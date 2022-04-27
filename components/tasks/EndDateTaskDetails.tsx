@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { LogBox, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { LogBox, Text, TouchableOpacity, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
-import DatePicker from 'react-native-datepicker';
 import dateFormat from 'dateformat';
+import { AntDesign } from '@expo/vector-icons';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
+import InputDate from '../form/InputDate';
 
 interface EndDateTaskDetailsProps {
   data: getTaskByID_getTaskByID;
@@ -15,6 +16,8 @@ interface EndDateTaskDetailsProps {
 
 export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
   const navigation = useNavigation();
+  const [newDate, setNewDate] = useState<Date>(new Date());
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const tagsWithoutTypename = data.tags.map((tag) => {
     const { __typename, ...item } = tag;
@@ -51,48 +54,41 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
       updateTaskWithTagsByIdId: data.id,
     };
     updateTask({ variables: dataTaskUpdate });
+    setIsUpdate(false);
   };
 
   return (
-    <View style={tw`flex-row w-full justify-between items-center pl-4 mt-5`}>
-      <View>
-        <Text style={tw`text-white opacity-70`}>Due Date:</Text>
-        <Text style={tw`text-white opacity-70 font-bold`}>
-          {dateFormat(new Date(data.endDate), 'dddd dd mmmm yyyy')}
-        </Text>
+    <View style={tw`flex flex-col w-full items-center mt-5`}>
+      <View style={tw`w-11/12 flex flex-row justify-between items-end`}>
+        <View>
+          <Text style={tw`text-white opacity-70`}>Due Date:</Text>
+          <Text style={tw`text-white opacity-70 mt-1 font-bold`}>
+            {dateFormat(new Date(data.endDate), 'dddd dd mmmm yyyy')}
+          </Text>
+        </View>
+        <TouchableOpacity onPress={() => setIsUpdate((prev) => !prev)}>
+          <AntDesign name="calendar" size={24} color="white" />
+        </TouchableOpacity>
       </View>
-      <DatePicker
-        date={data.endDate} // Initial date from state
-        mode="date" // The enum of date, datetime and time
-        format="DD-MM-YYYY"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={{
-          datePickerCon: {
-            backgroundColor: '#15192C',
-            height: '40%',
-          },
-          btnTextConfirm: {
-            fontSize: 20,
-          },
-          btnTextCancel: {
-            fontSize: 20,
-          },
-          dateText: {
-            color: 'black',
-            backgroundColor: 'red',
-          },
-          dateInput: {
-            display: 'none',
-          },
-          dateIcon: {
-            marginLeft: 70,
-          },
-        }}
-        onDateChange={(date) => {
-          onSubmit(new Date(date.split('-').reverse().join('-')));
-        }}
-      />
+      {isUpdate && (
+        <View style={tw`w-full flex items-center`}>
+          <View style={tw`pl-6 w-full`}>
+            <InputDate
+              label="Edit Due Date"
+              setDate={setNewDate}
+              date={newDate}
+            />
+          </View>
+          <TouchableOpacity
+            onPress={() => onSubmit(newDate)}
+            style={[tw`w-11/12 mt-2 py-3 rounded-md bg-green-500`]}
+          >
+            <Text style={tw`text-center text-white font-bold`}>
+              Edit Due Date
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }

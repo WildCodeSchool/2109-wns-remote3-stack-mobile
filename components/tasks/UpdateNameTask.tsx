@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
@@ -11,13 +11,20 @@ import InputText from '../form/InputText';
 
 interface UpdateNameTaskProps {
   data: getTaskByID_getTaskByID;
+  setUpdateName: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function UpdateNameTask({
+  setUpdateName,
   data,
 }: UpdateNameTaskProps): JSX.Element {
   const navigation = useNavigation();
   const { handleSubmit, control, setValue } = useForm();
+
+  const tagsWithoutTypename = data.tags.map((tag) => {
+    const { __typename, ...item } = tag;
+    return item;
+  });
 
   useEffect(() => {
     setValue('nameTask', data.name);
@@ -25,6 +32,7 @@ export default function UpdateNameTask({
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
     onCompleted: () => {
+      setUpdateName((prev) => !prev);
       navigation.navigate('TaskDetails', { id: data.id });
     },
     refetchQueries: [
@@ -43,7 +51,7 @@ export default function UpdateNameTask({
       projectId: data.projectId,
       advancement: data.advancement,
       endDate: data.endDate,
-      tags: data.tags,
+      tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,
     };
