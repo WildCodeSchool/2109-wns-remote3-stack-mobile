@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Pressable,
 } from 'react-native';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
@@ -30,6 +31,9 @@ const styles = StyleSheet.create({
     borderColor: '#8790E0',
   },
   btn: {
+    backgroundColor: '#8790E0',
+  },
+  button: {
     backgroundColor: '#8790E0',
   },
 });
@@ -79,7 +83,7 @@ export default function CreateProjectTask({
   };
 
   return (
-    <View style={tw`pt-2`}>
+    <View style={tw`pb-10`}>
       <InputText control={control} label="Task Name" name="name" />
       <Controller
         name="description"
@@ -111,7 +115,13 @@ export default function CreateProjectTask({
         setDate={setEndDateTask}
         date={endDateTask}
       />
-      <View style={tw`mb-14`}>
+      <View style={tw``}>
+        <Pressable
+          style={[tw`py-2 rounded-md w-full mt-5`, styles.button]}
+          onPress={() => setIsModal(!isModal)}
+        >
+          <Text style={tw`text-white text-lg text-center`}>Select Tag(s)</Text>
+        </Pressable>
         <SelectTags
           setIsModal={setIsModal}
           isModal={isModal}

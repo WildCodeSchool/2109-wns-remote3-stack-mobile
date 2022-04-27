@@ -38,6 +38,9 @@ const styles = StyleSheet.create({
   text: {
     color: '#8790E0',
   },
+  button: {
+    backgroundColor: '#8790E0',
+  },
 });
 export default function CreateTask() {
   const navigation = useNavigation<taskScreenProps>();
@@ -114,14 +117,14 @@ export default function CreateTask() {
             name="description"
             label="Task Description"
           />
+          <InputNumeric
+            name="estimeeSpentTime"
+            label="Estimee Spent Time"
+            control={control}
+          />
         </View>
-        <InputNumeric
-          name="estimeeSpentTime"
-          label="Estimee Spent Time"
-          control={control}
-        />
       </View>
-      <View style={tw`mt-3 mb-5 w-full flex items-center`}>
+      <View style={tw`mt-3 mb-5 w-11/12 flex items-center`}>
         <InputDate
           label="End date:"
           setDate={setEndDateTask}
@@ -130,6 +133,12 @@ export default function CreateTask() {
       </View>
       <SelectProject setProjectIdTask={setProjectIdTask} data={dataProjects} />
       <SelectStatus setAdvancement={setAdvancement} />
+      <Pressable
+        style={[tw`py-3 rounded-md w-11/12  mt-5`, styles.button]}
+        onPress={() => setIsModal(!isModal)}
+      >
+        <Text style={tw`text-white text-lg text-center`}>Select Tag(s)</Text>
+      </Pressable>
       <SelectTags
         setIsModal={setIsModal}
         isModal={isModal}
