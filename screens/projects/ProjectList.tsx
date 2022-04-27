@@ -39,11 +39,9 @@ function ProjectList() {
       <View
         style={tw`flex flex-row mt-12 w-11/12 justify-between items-end mx-4`}
       >
-        <View>
-          <Text style={styles.text}>Projects</Text>
-        </View>
+        <Text style={styles.text}>Projects</Text>
         <TouchableOpacity
-          style={[tw` rounded-md ml-4 px-8 py-2`, styles.button]}
+          style={[tw`rounded-md ml-4 px-8 py-2`, styles.button]}
           onPress={
             route.name === 'TaskList'
               ? () => navigation.navigate('Createtask')

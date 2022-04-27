@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, Pressable, View } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import tw from 'tailwind-react-native-classnames';
@@ -31,7 +31,7 @@ export default function DescriptionTaskDetails({
   data,
 }: DescriptionTaskDetailsProps) {
   const navigation = useNavigation();
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, setValue } = useForm();
   const [updateDescription, setUpdateDescription] = useState(false);
 
   const tagsWithoutTypename = data.tags.map((tag) => {
@@ -39,9 +39,14 @@ export default function DescriptionTaskDetails({
     return item;
   });
 
+  useEffect(() => {
+    setValue('description', data.description);
+  });
+
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
     onCompleted: () => {
+      setUpdateDescription(false);
       navigation.navigate('TaskDetails', { id: data.id });
     },
     refetchQueries: [
@@ -90,7 +95,11 @@ export default function DescriptionTaskDetails({
         <Text style={[styles.text, tw`w-11/12 mt-3`]}>{data.description}</Text>
       ) : (
         <View style={tw`w-11/12`}>
-          <InputText control={control} name="description" label=" " />
+          <InputText
+            control={control}
+            name="description"
+            label="Task's description"
+          />
           <Pressable
             style={tw`w-full rounded-lg bg-green-500`}
             onPress={handleSubmit(onSubmit)}

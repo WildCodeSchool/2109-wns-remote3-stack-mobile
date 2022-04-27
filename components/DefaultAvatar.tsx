@@ -25,7 +25,7 @@ export default function DefaultAvatar({ userFirstName, userId }: IProps) {
         styles.container,
       ]}
     >
-      <Text style={tw`text-white text-2xl text-center`}>{letter}</Text>
+      <Text style={tw`text-white text-center text-2xl`}>{letter}</Text>
     </Pressable>
   );
 }

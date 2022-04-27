@@ -44,7 +44,7 @@ function InputDate({ setDate, date, label }: InputTextProps) {
   };
   return (
     <View style={tw`mt-3 w-11/12`}>
-      <Text style={[styles.text, tw`text-left  mb-2`]}>{label}</Text>
+      <Text style={[styles.text, tw`text-left mb-2`]}>{label}</Text>
       <View style={styles.button}>
         <Button
           title={dateFormat(new Date(date), 'dddd dd mmmm yyyy')}

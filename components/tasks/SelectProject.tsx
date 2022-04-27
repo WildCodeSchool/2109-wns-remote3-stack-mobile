@@ -32,7 +32,7 @@ const pickerSelectStyles = StyleSheet.create({
 
 function SelectProject({ setProjectIdTask, data }: SelectProjectProps) {
   return (
-    <View style={tw`flex-row w-full items-center pl-7`}>
+    <View style={tw`flex-row w-full justify-center mt-5 items-center`}>
       <RNPickerSelect
         // eslint-disable-next-line react/no-unstable-nested-components
         Icon={() => {

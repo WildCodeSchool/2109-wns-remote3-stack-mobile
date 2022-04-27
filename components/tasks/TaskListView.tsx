@@ -38,7 +38,7 @@ function TaskList() {
 
   return (
     <View style={{ flex: 1, height: '100%' }}>
-      <View style={tw`mx-4 my-2`}>
+      <View style={tw`mx-4 my-2 mb-4`}>
         <StatusNavigation backgroundColor="light" nav={nav} setNav={setNav} />
       </View>
       <FlatList

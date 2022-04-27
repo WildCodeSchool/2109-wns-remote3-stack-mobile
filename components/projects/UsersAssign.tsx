@@ -21,8 +21,8 @@ import { GET_USER_BY_ID } from '../../API/queries/userQueries';
 
 const styles = StyleSheet.create({
   image: {
-    width: 65,
-    height: 65,
+    width: 45,
+    height: 45,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: 'rgba(135, 144, 224, 0.84)',
@@ -110,7 +110,7 @@ export default function UsersAssign({
       >
         <Pressable
           style={tw` w-2/12`}
-          onPress={() => navigation.navigate('Userprofil')}
+          onPress={() => navigation.navigate('Userprofil', { id: userId })}
         >
           {user.getUserByID.avatar ? (
             <Image
@@ -120,7 +120,10 @@ export default function UsersAssign({
               }}
             />
           ) : (
-            <DefaultAvatar userFirstName={user.getUserByID.firstName} />
+            <DefaultAvatar
+              userId={userId}
+              userFirstName={user.getUserByID.firstName}
+            />
           )}
         </Pressable>
         <View style={tw`flex flex-row items-start  justify-between w-10/12`}>

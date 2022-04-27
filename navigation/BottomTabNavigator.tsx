@@ -7,7 +7,7 @@ import { RootTabParamList } from '../types';
 import HeaderLeft from './HeaderLeft';
 import UserIcon from './UserIcon';
 import HomeScreen from '../screens/HomeScreen';
-import TaskList from '../screens/TaskList';
+import TaskList from '../screens/tasks/TaskList';
 import ProjectList from '../screens/projects/ProjectList';
 import Settings from '../screens/userSettings/Settings';
 
