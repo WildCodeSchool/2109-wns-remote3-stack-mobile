@@ -9,8 +9,8 @@ interface IProps {
 
 const styles = StyleSheet.create({
   image: {
-    height: 120,
-    width: 120,
+    height: 80,
+    width: 80,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: '#8790E0',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8790E0',
   },
   letter: {
-    fontSize: 70,
+    fontSize: 50,
   },
 });
 
@@ -40,7 +40,7 @@ export default function ProfilPicture({
       ) : (
         <View
           style={[
-            tw`h-32 w-32  rounded-full flex items-center justify-center`,
+            tw`h-20 w-20  rounded-full flex items-center justify-center`,
             styles.defaultAvatar,
           ]}
         >

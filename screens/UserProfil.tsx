@@ -9,6 +9,7 @@ import { GET_USER_BY_ID } from '../API/queries/userQueries';
 import Loader from '../components/Loader';
 import UserProfilHeader from '../components/userProfil/UserProfilHeader';
 import ProfilPicture from '../components/userProfil/ProfilPicture';
+import UsersProjects from '../components/userProfil/UsersProjects';
 
 const styles = StyleSheet.create({
   container: {
@@ -48,28 +49,25 @@ export default function UserProfil() {
     <View style={styles.container}>
       <UserProfilHeader userId={user.getUserByID.id} />
 
-      <View style={tw`w-full flex flex-col items-center mt-2`}>
+      <View style={tw`w-full flex flex-row items-center mt-2`}>
         <ProfilPicture
           userFirstName={user.getUserByID.firstName}
           userAvatarUrl={user.getUserByID.avatar}
         />
-
-        <View style={tw`text-white flex flex-row mt-5`}>
-          <Text style={tw`text-white font-bold text-xl mr-1`}>
-            {user.getUserByID.firstName}
-          </Text>
-          <Text style={tw`text-white font-bold text-xl`}>
-            {user.getUserByID.lastName}
-          </Text>
+        <View style={tw`ml-2`}>
+          <View style={tw`text-white flex flex-row `}>
+            <Text style={tw`text-white font-bold text-xl mr-1`}>
+              {user.getUserByID.firstName}
+            </Text>
+            <Text style={tw`text-white font-bold text-xl`}>
+              {user.getUserByID.lastName}
+            </Text>
+          </View>
+          <Text style={tw`text-white  text-xl`}>{user.getUserByID.email}</Text>
         </View>
-        <Text style={tw`text-white mt-1 text-xl`}>
-          {user.getUserByID.email}
-        </Text>
       </View>
       <UserProfilNavigation nav={nav} setNav={setNav} />
-      {nav === 'projects' && (
-        <Text style={tw`text-white font-bold mt-5`}>User Projects List</Text>
-      )}
+      {nav === 'projects' && <UsersProjects userId={id} />}
       {nav === 'tasks' && (
         <Text style={tw`text-white font-bold mt-5`}>User Tasks List</Text>
       )}
