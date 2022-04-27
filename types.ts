@@ -16,7 +16,6 @@ export type RootStackParamList = {
   Createtask: undefined;
   Login: undefined;
   Signup: undefined;
-  Settings: undefined;
   TaskDetails: { id: string | undefined };
   DeleteProject: { id: string };
   ProjectDetails: { id: string };
@@ -39,7 +38,7 @@ export type RootTabParamList = {
   Homepage: undefined;
   Projectlist: undefined;
   TaskList: undefined;
-  Settings: undefined;
+  Settings: { id: string | undefined };
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =

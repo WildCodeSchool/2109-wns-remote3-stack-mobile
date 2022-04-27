@@ -9,7 +9,7 @@ import UserIcon from './UserIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TaskList from '../screens/TaskList';
 import ProjectList from '../screens/projects/ProjectList';
-import Settings from '../screens/Settings';
+import Settings from '../screens/userSettings/Settings';
 
 export default function BottomTabNavigator() {
   const BottomTab = createBottomTabNavigator<RootTabParamList>();
