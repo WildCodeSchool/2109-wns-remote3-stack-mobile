@@ -51,17 +51,7 @@ export default function Project({ projectId }: IProps) {
       }
       style={styles.card}
     >
-      <OneProject
-        item={{
-          __typename: 'IProject',
-          id: data.getProjectByID.id,
-          name: data.getProjectByID.name,
-          status: data.getProjectByID.status,
-          startDate: data.getProjectByID.startDate,
-          endDate: data.getProjectByID.endDate,
-          estimeeSpentTime: data.getProjectByID.estimeeSpentTime,
-        }}
-      />
+      <OneProject item={data.getProjectByID} />
     </TouchableOpacity>
   );
 }
