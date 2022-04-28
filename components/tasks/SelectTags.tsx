@@ -73,7 +73,6 @@ const styles = StyleSheet.create({
 function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
   const [dataTagsList, setDataTagsList] = useState<getTags_getAllTags[]>([]);
 
-  console.log(dataTagsList);
   // FETCH TAGS
   useQuery<IResponseTags>(GET_ALL_TAGS, {
     onCompleted: (d) => {
