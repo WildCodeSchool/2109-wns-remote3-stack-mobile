@@ -37,7 +37,6 @@ export default function UsersProjects({ userId }: IProps) {
     <View style={[tw`py-5 w-full`, styles.flatlist]}>
       <FlatList
         contentInset={{ bottom: 130 }}
-        style={tw``}
         data={data.getUserWithProjects.projects}
         keyExtractor={(item) => item.projectId}
         renderItem={({ item }) => <Project projectId={item.projectId} />}
