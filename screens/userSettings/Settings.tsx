@@ -8,13 +8,14 @@ import { GetUserByID } from '../../API/types/GetUserByID';
 import Loader from '../../components/Loader';
 import SettingsHeader from '../../components/userSettings/SettingsHeader';
 import ProfilPicture from '../../components/userSettings/ProfilPicture';
+import UpdateInfosUser from '../../components/userSettings/UpdateInfosUser';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#15192C',
     alignItems: 'flex-start',
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     marginTop: -20,
   },
 });
@@ -41,7 +42,7 @@ function Settings() {
     return <Text>error</Text>;
   }
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, tw`w-full`]}>
       <SettingsHeader userId={user.getUserByID.id} />
       <View style={tw`w-full flex flex-col items-center mt-2`}>
         <ProfilPicture
@@ -63,6 +64,7 @@ function Settings() {
           {user.getUserByID.email}
         </Text>
       </View>
+      <UpdateInfosUser userId={id} />
     </View>
   );
 }

@@ -29,7 +29,9 @@ export default function SettingsHeader({ userId }: IProps) {
     },
   });
   return (
-    <View style={tw`flex flex-row w-full justify-between  items-center`}>
+    <View
+      style={tw`flex flex-row w-full justify-between px-2 pr-3 items-center`}
+    >
       <View style={tw`flex flex-row justify-between  items-center`}>
         <TouchableOpacity
           onPress={() => navigation.navigate('Root')}
