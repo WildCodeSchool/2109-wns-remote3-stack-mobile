@@ -37,10 +37,10 @@ export default function UserProfilHeader({ userId }: IProps) {
         <AntDesign name="left" size={32} color="#8790E0" style={tw``} />
       </TouchableOpacity>
       {userId === userFromStore.id && (
-        <View style={tw`mt-5`}>
+        <View style={tw`mt-5 flex flex-row`}>
           <TouchableOpacity
             style={[
-              tw`flex flex-row items-center px-8 py-2 rounded-md`,
+              tw`flex flex-row items-center px-4 mr-5 py-2 rounded-md`,
               styles.backgroundButton,
             ]}
             onPress={() => navigation.navigate('Settings')}
@@ -52,17 +52,13 @@ export default function UserProfilHeader({ userId }: IProps) {
           </TouchableOpacity>
           <TouchableOpacity
             style={[
-              tw`flex flex-row items-center justify-end  mt-2 rounded-md`,
+              tw`flex flex-row items-center justify-center px-4 py-2 rounded-md`,
+              styles.backgroundButton,
             ]}
             onPress={() => logoutMutation()}
           >
-            <Text style={tw`text-white text-sm font-bold`}>LogOut</Text>
-            <AntDesign
-              style={[tw`ml-2`]}
-              name="logout"
-              size={12}
-              color="white"
-            />
+            <Text style={tw`text-white text-sm mr-1 font-bold`}>LogOut</Text>
+            <AntDesign name="logout" size={12} color="white" />
           </TouchableOpacity>
         </View>
       )}
