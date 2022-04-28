@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import React from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { AntDesign } from '@expo/vector-icons';
@@ -13,11 +13,11 @@ interface IProps {
 export default function CloseModal({ path, id }: IProps) {
   const navigation = useNavigation();
   return (
-    <Pressable
+    <TouchableOpacity
       onPress={() => navigation.navigate(path, { id })}
       style={tw`flex items-center w-full bg-purple-300 bg-opacity-10 rounded-lg p-2 mb-5`}
     >
       <AntDesign name="caretdown" size={24} color="#8790E0" />
-    </Pressable>
+    </TouchableOpacity>
   );
 }

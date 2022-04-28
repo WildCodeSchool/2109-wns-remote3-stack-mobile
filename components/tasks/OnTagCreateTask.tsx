@@ -31,9 +31,9 @@ function OneTagCreateTask({ item, tags, setTags }: OneTagProps) {
         handleClick(item);
       }}
       style={[
-        tags.includes(item) ? tw`opacity-100` : tw`opacity-70`,
+        tags.includes(item) ? tw`opacity-100` : tw`opacity-30`,
         { backgroundColor: `${item.color}` },
-        tw`flex-row mb-4 mx-2 justify-between pl-3 pr-2`,
+        tw`flex-row mb-4 mx-2 rounded-md justify-between pl-3 pr-2`,
       ]}
     >
       <Text style={[{ color: '#ffff' }, tw`m-auto py-3`]}>{item.label}</Text>

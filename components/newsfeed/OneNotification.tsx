@@ -91,9 +91,9 @@ function OneNotification({ item }: IProps) {
     >
       {user.getUserByID.avatar ? (
         <Pressable
-          onPress={() =>
-            navigation.navigate('Userprofil', { id: user.getUserByID.id })
-          }
+          onPress={() => {
+            navigation.navigate('Userprofil', { id: user.getUserByID.id });
+          }}
         >
           <Image
             style={styles.image}

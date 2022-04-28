@@ -43,7 +43,7 @@ function InputDate({ setDate, date, label }: InputTextProps) {
     }
   };
   return (
-    <View style={tw`mt-3 w-11/12`}>
+    <View style={tw`w-full`}>
       <Text style={[styles.text, tw`text-left mb-2`]}>{label}</Text>
       <View style={styles.button}>
         <Button

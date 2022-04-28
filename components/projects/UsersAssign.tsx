@@ -1,4 +1,11 @@
-import { Pressable, StyleSheet, Text, View, Image } from 'react-native';
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {
   SwipeItem,
@@ -108,9 +115,12 @@ export default function UsersAssign({
           </SwipeButtonsContainer>
         }
       >
-        <Pressable
+        <TouchableOpacity
           style={tw` w-2/12`}
-          onPress={() => navigation.navigate('Userprofil', { id: userId })}
+          onPress={() => {
+            navigation.navigate('ProjectDetails', { id: projectId });
+            navigation.navigate('Userprofil', { id: userId });
+          }}
         >
           {user.getUserByID.avatar ? (
             <Image
@@ -125,7 +135,7 @@ export default function UsersAssign({
               userFirstName={user.getUserByID.firstName}
             />
           )}
-        </Pressable>
+        </TouchableOpacity>
         <View style={tw`flex flex-row items-start  justify-between w-10/12`}>
           <View>
             <Text style={[tw`text-base font-bold`, styles.text]}>

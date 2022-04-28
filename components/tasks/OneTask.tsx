@@ -55,7 +55,10 @@ function OneTask({ item }: OneTaskProps) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('TaskDetails', { id: item.id })}
+      onPress={() => {
+        navigation.navigate('ProjectDetails', { id: item.projectId });
+        navigation.navigate('TaskDetails', { id: item.id });
+      }}
       style={[styles.container, tw` p-5 border mt-3`]}
     >
       <View style={tw`flex-row w-full mb-2 justify-between`}>
