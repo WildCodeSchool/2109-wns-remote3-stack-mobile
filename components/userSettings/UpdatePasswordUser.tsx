@@ -37,8 +37,7 @@ export default function UpdatePasswordUser({ userId, setChoices }: IProps) {
   const [updateUserPassword, { error: errorPassword }] = useMutation(
     UPDATE_USER_PASSWORD,
     {
-      onCompleted: (data) => {
-        console.log(data);
+      onCompleted: () => {
         navigation.navigate('Userprofil', { id: userId });
       },
     }
