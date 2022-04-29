@@ -38,19 +38,23 @@ export default function UpdateNameTask({
     refetchQueries: [
       {
         query: GetOneTask,
-        variables: { id: data.id },
+        variables: { taskId: data.id },
       },
     ],
   });
   if (error) return <Text style={tw`text-white mb-2`}>{error.message}</Text>;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
+    const userIds: string[] = [];
+    data.users.map((u) => userIds.push(u.id));
+
     const dataTaskUpdate = {
       name: d.nameTask,
       description: data.description,
       projectId: data.projectId,
       advancement: data.advancement,
       endDate: data.endDate,
+      userIds,
       tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,

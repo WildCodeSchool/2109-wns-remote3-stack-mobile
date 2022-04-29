@@ -48,3 +48,28 @@ export const GET_USER_WITH_PROJECT = gql`
     }
   }
 `;
+
+export const GET_USER_WITH_TASKS = gql`
+  query GetUserWithTasks($getUserWithTasksId: String!) {
+    getUserWithTasks(id: $getUserWithTasksId) {
+      tasks {
+        name
+        id
+        projectId
+        startDate
+        estimeeSpentTime
+        endDate
+        description
+        advancement
+        comments {
+          id
+          text
+          createdAt
+          updatedAt
+          userId
+          taskId
+        }
+      }
+    }
+  }
+`;

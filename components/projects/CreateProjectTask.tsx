@@ -5,6 +5,8 @@ import {
   TouchableOpacity,
   View,
   Pressable,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
@@ -75,6 +77,7 @@ export default function CreateProjectTask({
       projectId,
       advancement: advancementTask,
       endDate: endDateTask,
+      userIds: [],
       tags: tagsWithoutTypename,
       estimeeSpentTime: parseFloat(`${d.estimeeSpentTime}`),
     };
@@ -83,7 +86,10 @@ export default function CreateProjectTask({
   };
 
   return (
-    <View style={tw`pb-10`}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={tw`pb-10`}
+    >
       <InputText control={control} label="Task Name" name="name" />
       <Controller
         name="description"
@@ -97,7 +103,7 @@ export default function CreateProjectTask({
             numberOfLines={10}
             placeholderTextColor="#8790E0"
             style={[styles.input, tw`p-3 h-24 w-full rounded-md`]}
-            placeholder="Desccription"
+            placeholder="Description"
             value={value}
             onChangeText={(newText) => onChange(newText)}
           />
@@ -137,6 +143,6 @@ export default function CreateProjectTask({
           Create task
         </Text>
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

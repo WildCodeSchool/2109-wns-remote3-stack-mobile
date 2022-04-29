@@ -10,6 +10,7 @@ import Loader from '../components/Loader';
 import UserProfilHeader from '../components/userProfil/UserProfilHeader';
 import ProfilPicture from '../components/userProfil/ProfilPicture';
 import UsersProjects from '../components/userProfil/UsersProjects';
+import UsersTasks from '../components/userProfil/UsersTasks';
 
 const styles = StyleSheet.create({
   container: {
@@ -68,9 +69,7 @@ export default function UserProfil() {
       </View>
       <UserProfilNavigation nav={nav} setNav={setNav} />
       {nav === 'projects' && <UsersProjects userId={id} />}
-      {nav === 'tasks' && (
-        <Text style={tw`text-white font-bold mt-5`}>User Tasks List</Text>
-      )}
+      {nav === 'tasks' && <UsersTasks userId={id} />}
     </View>
   );
 }

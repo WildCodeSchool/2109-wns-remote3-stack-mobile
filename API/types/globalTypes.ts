@@ -9,8 +9,8 @@
 
 export interface ITagPayload {
   id?: string | null;
-  label: string;
-  color: string;
+  label?: string | null;
+  color?: string | null;
 }
 
 //==============================================================

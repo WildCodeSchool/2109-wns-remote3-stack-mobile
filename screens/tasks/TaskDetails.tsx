@@ -15,6 +15,7 @@ import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
 import ButtonsNavigation from '../../components/tasks/ButtonsNavigation';
 import UpdateStatusTask from '../../components/tasks/UpdateStatusTask';
 import UpdateNameTask from '../../components/tasks/UpdateNameTask';
+import AssignUsers from '../../components/tasks/AssignUsers';
 
 type paramsProps = {
   id: { id: string };
@@ -85,7 +86,10 @@ function TaskDetails() {
       )}
       {!updateStatus ? (
         <>
-          <TagsTaskDetails data={dataTask.getTaskByID} />
+          <View style={tw`w-11/12 flex flex-row justify-between`}>
+            <TagsTaskDetails data={dataTask.getTaskByID} />
+            <AssignUsers data={dataTask.getTaskByID.users} />
+          </View>
           <EndDateTaskDetails data={dataTask.getTaskByID} />
           <DescriptionTaskDetails data={dataTask.getTaskByID} />
           <ButtonsNavigation task={dataTask.getTaskByID} />
@@ -103,7 +107,10 @@ function TaskDetails() {
           </Pressable>
         </>
       ) : (
-        <UpdateStatusTask data={dataTask.getTaskByID} />
+        <UpdateStatusTask
+          setUpdateStatus={setUpdateStatus}
+          data={dataTask.getTaskByID}
+        />
       )}
     </SafeAreaView>
   );

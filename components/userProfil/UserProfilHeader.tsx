@@ -37,7 +37,7 @@ export default function UserProfilHeader({ userId }: IProps) {
         <AntDesign name="left" size={32} color="#8790E0" style={tw``} />
       </TouchableOpacity>
       {userId === userFromStore.id && (
-        <View style={tw`mt-5 flex flex-row`}>
+        <View style={tw` flex flex-row`}>
           <TouchableOpacity
             style={[
               tw`flex flex-row items-center px-4 mr-5 py-2 rounded-md`,
