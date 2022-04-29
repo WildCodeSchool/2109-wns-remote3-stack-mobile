@@ -44,25 +44,27 @@ function Settings() {
   return (
     <View style={[styles.container, tw`w-full`]}>
       <SettingsHeader userId={id} />
-      <View style={tw`w-full flex flex-col items-center mt-2`}>
+      <View style={tw`w-full flex flex-row items-center mt-2`}>
         <ProfilPicture
           userFirstName={user.getUserByID.firstName}
           userAvatarUrl={user.getUserByID.avatar}
           userId={id}
         />
-        <View style={tw`text-white flex flex-row mt-5`}>
-          <Text style={tw`text-white font-bold text-xl mr-1`}>
-            {user.getUserByID.firstName.charAt(0).toUpperCase() +
-              user.getUserByID.firstName.substr(1)}
-          </Text>
-          <Text style={tw`text-white font-bold text-xl`}>
-            {user.getUserByID.lastName.charAt(0).toUpperCase() +
-              user.getUserByID.lastName.substr(1)}
+        <View style={tw`flex flex-col ml-2`}>
+          <View style={tw`text-white flex flex-row mt-5`}>
+            <Text style={tw`text-white font-bold text-xl mr-1`}>
+              {user.getUserByID.firstName.charAt(0).toUpperCase() +
+                user.getUserByID.firstName.substr(1)}
+            </Text>
+            <Text style={tw`text-white font-bold text-xl`}>
+              {user.getUserByID.lastName.charAt(0).toUpperCase() +
+                user.getUserByID.lastName.substr(1)}
+            </Text>
+          </View>
+          <Text style={tw`text-white text-xl opacity-80`}>
+            {user.getUserByID.email}
           </Text>
         </View>
-        <Text style={tw`text-white mt-1 text-xl opacity-80`}>
-          {user.getUserByID.email}
-        </Text>
       </View>
       <UpdateInfosUser userId={id} />
     </View>

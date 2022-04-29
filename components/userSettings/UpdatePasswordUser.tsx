@@ -98,7 +98,7 @@ export default function UpdatePasswordUser({ userId, setChoices }: IProps) {
         <View style={styles.inputAuth}>
           <InputAuth
             control={control}
-            label="Password"
+            label="Old Password"
             name="passwordUser"
             type="password"
           />
