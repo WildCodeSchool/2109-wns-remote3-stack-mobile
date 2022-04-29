@@ -1,4 +1,11 @@
-import { Pressable, Text, View, Image, StyleSheet } from 'react-native';
+import {
+  Pressable,
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import tw from 'tailwind-react-native-classnames';
@@ -132,9 +139,12 @@ export default function User({
             styles.border,
           ]}
         >
-          <Pressable
+          <TouchableOpacity
             style={tw` w-2/12`}
-            onPress={() => navigation.navigate('Userprofil', { id: user.id })}
+            onPress={() => {
+              navigation.navigate('ProjectDetails', { id: projectId });
+              navigation.navigate('Userprofil', { id: user.id });
+            }}
           >
             {user.avatar ? (
               <Image
@@ -146,7 +156,7 @@ export default function User({
             ) : (
               <DefaultAvatar userId={user.id} userFirstName={user.firstName} />
             )}
-          </Pressable>
+          </TouchableOpacity>
           <View style={tw`flex flex-row items-end  justify-between w-10/12`}>
             <View>
               <Text style={[tw`text-base font-bold`, styles.text]}>

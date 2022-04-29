@@ -41,7 +41,7 @@ const pickerStyle = StyleSheet.create({
     paddingTop: 13,
     paddingHorizontal: 10,
     paddingBottom: 12,
-    marginHorizontal: 17,
+    marginBottom: 16,
     marginTop: 10,
     height: 40,
     textAlign: 'left',
@@ -195,31 +195,39 @@ export default function CreateUpdateProject() {
           </Text>
         </Pressable>
       </View>
-      <InputText control={control} label="Project name" name="name" />
-      <InputText
-        control={control}
-        label="Project description"
-        name="description"
-      />
+      <View style={tw`w-11/12`}>
+        <InputText control={control} label="Project name" name="name" />
+        <InputText
+          control={control}
+          label="Project description"
+          name="description"
+        />
 
-      <InputNumeric
-        name="estimeeSpentTime"
-        label="Estimee Spent Time"
-        control={control}
-      />
-      <RNPickerSelect
-        style={pickerStyle}
-        placeholder={{
-          label: 'Select Status',
-        }}
-        value={status}
-        onValueChange={(value) => setStatus(value)}
-        items={projectStatus.map((item) => {
-          return { label: item, value: item };
-        })}
-      />
-      <InputDate label="Start Date" setDate={setStartDate} date={startDate} />
-      <InputDate label="End Date" setDate={setEndDate} date={endDate} />
+        <InputNumeric
+          name="estimeeSpentTime"
+          label="Estimee Spent Time"
+          control={control}
+        />
+        <RNPickerSelect
+          style={pickerStyle}
+          placeholder={{
+            label: 'Select Status',
+          }}
+          value={status}
+          onValueChange={(value) => setStatus(value)}
+          items={projectStatus.map((item) => {
+            return { label: item, value: item };
+          })}
+        />
+        <View style={tw`mb-5`}>
+          <InputDate
+            label="Start Date"
+            setDate={setStartDate}
+            date={startDate}
+          />
+        </View>
+        <InputDate label="End Date" setDate={setEndDate} date={endDate} />
+      </View>
       {dateError !== '' && <Text style={tw`text-red-300`}>{dateError}</Text>}
     </View>
   );

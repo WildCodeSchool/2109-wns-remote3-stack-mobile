@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 import {
   Text,
-  Pressable,
   FlatList,
   View,
   StyleSheet,
@@ -15,7 +14,6 @@ import { useQuery } from '@apollo/client';
 import { getTags_getAllTags } from '../../API/types/getTags';
 import OneTagCreateTask from './OnTagCreateTask';
 import { GET_ALL_TAGS } from '../../API/queries/tagsQueries';
-import OneTag from '../tag/OneTag';
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 
 interface SelectTagsProps {
@@ -34,9 +32,10 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     alignItems: 'center',
     position: 'absolute',
-    bottom: 10,
+    bottom: 0,
     backgroundColor: '#282D43',
     height: '80%',
+    width: '100%',
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
@@ -51,16 +50,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#7950EC',
-    width: 350,
-    borderRadius: 6,
-    height: 40,
   },
   modalView: {
     backgroundColor: '#282D43',
     marginTop: 10,
     borderRadius: 20,
+    width: 380,
     padding: 10,
-    width: 390,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -79,66 +75,29 @@ function SelectTags({ setIsModal, isModal, setTags, tags }: SelectTagsProps) {
       setDataTagsList(d.getAllTags);
     },
   });
-  const tagsActive = ({ item }: { item: getTaskByID_getTaskByID_tags }) => (
-    <OneTag item={item} />
-  );
+
   const renderItem = ({ item }: { item: getTaskByID_getTaskByID_tags }) => (
     <OneTagCreateTask tags={tags} setTags={setTags} item={item} />
   );
   return (
     <GestureRecognizer
-      style={{ flex: 1 }}
+      style={{ width: 200 }}
       onSwipeUp={() => setIsModal(true)}
       onSwipeDown={() => setIsModal(false)}
     >
-      {tags.length > 0 && (
-        <View style={tw`flex-col w-full`}>
-          <FlatList
-            numColumns={3}
-            style={tw`flex-wrap flex-col w-full mt-16`}
-            data={tags}
-            renderItem={tagsActive}
-            keyExtractor={(item) => item.label}
-          />
-        </View>
-      )}
-      <Pressable
-        style={[styles.button, tw`pt-1  mt-5`]}
-        onPress={() => setIsModal(!isModal)}
-      >
-        <Text style={tw`text-white text-lg text-center`}>
-          {tags.length === 0 ? `Select Tag(s)` : `Edit Tag(s)`}
-        </Text>
-      </Pressable>
       <Modal
         transparent
         visible={isModal}
         animationType="slide"
-        style={{ marginTop: 20 }}
+        style={tw`w-full `}
       >
         <View style={styles.centeredView}>
-          {tags.length > 0 && (
-            <Text
-              style={tw`text-white font-bold mb-1 text-xl font-bold text-center`}
-            >
-              Tags:
-            </Text>
-          )}
-          <View style={tw`flex flex-row flex-wrap w-11/12`}>
-            <FlatList
-              numColumns={3}
-              style={tw``}
-              data={tags}
-              renderItem={tagsActive}
-              keyExtractor={(item) => item.label}
-            />
-          </View>
           <Text
             style={tw`text-white font-bold mt-5 mb-1 text-xl font-bold text-center`}
           >
             Select Tag(s)
           </Text>
-          <View style={styles.modalView}>
+          <View style={tw`w-11/12 mt-2`}>
             <FlatList
               data={dataTagsList}
               renderItem={renderItem}
