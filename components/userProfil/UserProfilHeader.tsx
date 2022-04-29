@@ -5,13 +5,24 @@ import { AntDesign } from '@expo/vector-icons';
 import { useMutation } from '@apollo/client';
 import * as SecureStore from 'expo-secure-store';
 import tw from 'tailwind-react-native-classnames';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { useUserFromStore } from '../../store/slices/user.slice';
 import { LOGOUT_MUTATION } from '../../API/mutation/logout';
+import { RootStackParamList, RootTabParamList } from '../../types';
 
 interface IProps {
   userId: string;
 }
 
+type navUserProfilScreenProps = StackNavigationProp<
+  RootTabParamList,
+  'Settings'
+>;
+type navSettingsAndRootScreenProps = StackNavigationProp<
+  RootStackParamList,
+  'Root'
+> &
+  navUserProfilScreenProps;
 const styles = StyleSheet.create({
   backgroundButton: {
     backgroundColor: '#8790E0',
@@ -20,7 +31,7 @@ const styles = StyleSheet.create({
 
 export default function UserProfilHeader({ userId }: IProps) {
   const { user: userFromStore } = useUserFromStore();
-  const navigation = useNavigation();
+  const navigation = useNavigation<navSettingsAndRootScreenProps>();
   const { dispatchLogout } = useUserFromStore();
   const [logoutMutation] = useMutation(LOGOUT_MUTATION, {
     onCompleted: () => {
@@ -43,7 +54,7 @@ export default function UserProfilHeader({ userId }: IProps) {
               tw`flex flex-row items-center px-4 mr-5 py-2 rounded-md`,
               styles.backgroundButton,
             ]}
-            onPress={() => navigation.navigate('Settings')}
+            onPress={() => navigation.navigate('Settings', { id: userId })}
           >
             <Text style={tw`text-white text-sm mr-1 font-bold`}>
               Edit profil

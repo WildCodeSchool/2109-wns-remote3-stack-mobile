@@ -9,7 +9,7 @@ import UserIcon from './UserIcon';
 import HomeScreen from '../screens/HomeScreen';
 import TaskList from '../screens/tasks/TaskList';
 import ProjectList from '../screens/projects/ProjectList';
-import Settings from '../screens/Settings';
+import Settings from '../screens/userSettings/Settings';
 
 export default function BottomTabNavigator() {
   const BottomTab = createBottomTabNavigator<RootTabParamList>();
@@ -69,8 +69,6 @@ export default function BottomTabNavigator() {
         name="Settings"
         component={Settings}
         options={{
-          headerLeft: () => <HeaderLeft />,
-          headerRight: () => <UserIcon />,
           title: '',
           tabBarIcon: () => (
             <Ionicons name="settings-sharp" size={24} color="white" />
