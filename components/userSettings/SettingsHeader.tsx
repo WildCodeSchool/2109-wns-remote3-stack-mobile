@@ -34,7 +34,7 @@ export default function SettingsHeader({ userId }: IProps) {
     >
       <View style={tw`flex flex-row justify-between  items-center`}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Root')}
+          onPress={() => navigation.navigate('Userprofil', { id: userId })}
           style={tw`h-16 flex flex-row items-center mr-3`}
         >
           <AntDesign name="left" size={32} color="#8790E0" style={tw``} />
