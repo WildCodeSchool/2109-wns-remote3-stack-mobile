@@ -9,7 +9,6 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import tw from 'tailwind-react-native-classnames';
 import { useNavigation } from '@react-navigation/native';
-
 import { GET_ALL_PROJECTS } from '../API/queries/projectQueries';
 import OneProject from './projects/OneProject';
 import { GetAllProjects } from '../API/types/GetAllProjects';

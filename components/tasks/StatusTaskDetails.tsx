@@ -31,7 +31,7 @@ export default function StatusTaskDetails({
   updateStatus,
 }: StatusTaskDetailsProps) {
   return (
-    <View style={tw` `}>
+    <View>
       <TouchableOpacity onPress={() => setUpdateStatus(!updateStatus)}>
         <View
           style={[

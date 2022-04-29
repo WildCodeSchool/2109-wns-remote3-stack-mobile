@@ -11,19 +11,20 @@ interface TagsTaskDetailsProps {
 
 const styles = StyleSheet.create({
   list: {
-    height: 30,
     flexGrow: 0,
   },
 });
 
 function TagsTaskDetails({ data }: TagsTaskDetailsProps): JSX.Element {
   const renderItem = ({ item }: { item: GetTagByID_getTagByID }) => (
-    <OneTag item={item} />
+    <View style={tw`mt-2`}>
+      <OneTag item={item} />
+    </View>
   );
   return (
-    <View style={tw`w-11/12`}>
+    <View style={tw`w-8/12`}>
       <FlatList
-        horizontal
+        numColumns={2}
         data={data.tags}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

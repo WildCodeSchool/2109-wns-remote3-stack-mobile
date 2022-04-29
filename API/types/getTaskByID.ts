@@ -17,6 +17,14 @@ export interface getTaskByID_getTaskByID_comments {
   taskId: string;
 }
 
+export interface getTaskByID_getTaskByID_users {
+  __typename: "IUser";
+  id: string;
+  firstName: string;
+  lastName: string;
+  avatar: string | null;
+}
+
 export interface getTaskByID_getTaskByID_tags {
   __typename: "ITag";
   id: string;
@@ -35,6 +43,7 @@ export interface getTaskByID_getTaskByID {
   estimeeSpentTime: number;
   advancement: string;
   comments: getTaskByID_getTaskByID_comments[];
+  users: getTaskByID_getTaskByID_users[];
   tags: getTaskByID_getTaskByID_tags[];
 }
 

@@ -19,6 +19,12 @@ export const GET_ALL_TASKS = gql`
         userId
         taskId
       }
+      users {
+        id
+        firstName
+        lastName
+        avatar
+      }
       tags {
         id
         label
@@ -46,6 +52,12 @@ export const GetOneTask = gql`
         updatedAt
         userId
         taskId
+      }
+      users {
+        id
+        firstName
+        lastName
+        avatar
       }
       tags {
         id

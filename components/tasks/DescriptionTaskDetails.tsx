@@ -59,12 +59,16 @@ export default function DescriptionTaskDetails({
   if (error) return <Text>{error.message}</Text>;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
+    const userIds: string[] = [];
+    data.users.map((u) => userIds.push(u.id));
+
     const dataTaskUpdate = {
       name: data.name,
       description: d.description,
       projectId: data.projectId,
       advancement: data.advancement,
       endDate: data.endDate,
+      userIds,
       tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,
@@ -74,23 +78,12 @@ export default function DescriptionTaskDetails({
   };
 
   return (
-    <>
-      <View
-        style={[
-          styles.borderBottom,
-          tw`flex-row justify-between items-center mt-5 w-11/12 pb-1`,
-        ]}
-      >
-        <Text style={[styles.textGray, tw`text-lg`]}>Description</Text>
-        <Pressable onPress={() => setUpdateDescription(!updateDescription)}>
-          <AntDesign
-            style={tw`ml-2 mr-3`}
-            name="edit"
-            size={19}
-            color="white"
-          />
-        </Pressable>
-      </View>
+    <View
+      style={[
+        styles.borderBottom,
+        tw`flex-row justify-between items-center pb-2 mt-5 w-11/12 pb-2`,
+      ]}
+    >
       {!updateDescription ? (
         <Text style={[styles.text, tw`w-11/12 mt-3`]}>{data.description}</Text>
       ) : (
@@ -110,6 +103,9 @@ export default function DescriptionTaskDetails({
           </Pressable>
         </View>
       )}
-    </>
+      <Pressable onPress={() => setUpdateDescription(!updateDescription)}>
+        <AntDesign style={tw`ml-2 mr-3`} name="edit" size={19} color="white" />
+      </Pressable>
+    </View>
   );
 }

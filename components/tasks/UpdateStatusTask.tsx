@@ -1,8 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
-import { useNavigation } from '@react-navigation/native';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
@@ -21,13 +20,13 @@ const styles = StyleSheet.create({
 });
 interface UpdateStatusTaskProps {
   data: getTaskByID_getTaskByID;
+  setUpdateStatus: Dispatch<SetStateAction<boolean>>;
 }
 
 export default function UpdateStatusTask({
+  setUpdateStatus,
   data,
 }: UpdateStatusTaskProps): JSX.Element {
-  const navigation = useNavigation();
-
   const tagsWithoutTypename = data.tags.map((tag) => {
     const { __typename, ...item } = tag;
     return item;
@@ -36,7 +35,7 @@ export default function UpdateStatusTask({
   // UPDATE TASK
   const [updateTask, { error }] = useMutation(UPDATE_TASK, {
     onCompleted: () => {
-      navigation.navigate('TaskDetails', { id: data.id });
+      setUpdateStatus(false);
     },
     refetchQueries: [
       {
@@ -48,12 +47,16 @@ export default function UpdateStatusTask({
   if (error) return <Text>{error.message}</Text>;
 
   const onSubmit = (status: string) => {
+    const userIds: string[] = [];
+    data.users.map((u) => userIds.push(u.id));
+
     const dataTaskUpdate = {
       name: data.name,
       description: data.description,
       projectId: data.projectId,
       advancement: status,
       endDate: data.endDate,
+      userIds,
       tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,

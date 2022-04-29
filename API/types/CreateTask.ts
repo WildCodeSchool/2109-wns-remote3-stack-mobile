@@ -41,4 +41,5 @@ export interface createTaskVariables {
   endDate: string;
   advancement: string;
   estimeeSpentTime: number;
+  userIds: string[];
 }

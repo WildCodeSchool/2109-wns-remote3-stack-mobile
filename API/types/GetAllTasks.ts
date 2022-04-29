@@ -17,6 +17,14 @@ export interface GetAllTasks_getAllTasks_comments {
   taskId: string;
 }
 
+export interface GetAllTasks_getAllTasks_users {
+  __typename: "IUser";
+  id: string;
+  firstName: string;
+  lastName: string;
+  avatar: string | null;
+}
+
 export interface GetAllTasks_getAllTasks_tags {
   __typename: "ITag";
   id: string;
@@ -35,6 +43,7 @@ export interface GetAllTasks_getAllTasks {
   advancement: string;
   projectId: string;
   comments: GetAllTasks_getAllTasks_comments[];
+  users: GetAllTasks_getAllTasks_users[];
   tags: GetAllTasks_getAllTasks_tags[];
 }
 

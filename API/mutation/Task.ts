@@ -9,6 +9,7 @@ export const CREATE_TASK = gql`
     $endDate: String!
     $advancement: String!
     $estimeeSpentTime: Float!
+    $userIds: [String!]!
   ) {
     createTaskWithTags(
       tags: $tags
@@ -18,6 +19,7 @@ export const CREATE_TASK = gql`
       endDate: $endDate
       advancement: $advancement
       estimeeSpentTime: $estimeeSpentTime
+      userIds: $userIds
     ) {
       id
       name
@@ -66,6 +68,7 @@ export const UPDATE_TASK = gql`
     $advancement: String!
     $estimeeSpentTime: Float!
     $tags: [ITagPayload!]!
+    $userIds: [String!]!
   ) {
     updateTaskWithTagsById(
       id: $updateTaskWithTagsByIdId
@@ -76,6 +79,7 @@ export const UPDATE_TASK = gql`
       advancement: $advancement
       estimeeSpentTime: $estimeeSpentTime
       tags: $tags
+      userIds: $userIds
     ) {
       id
       name
@@ -90,6 +94,22 @@ export const UPDATE_TASK = gql`
         label
         color
       }
+      users {
+        id
+        firstName
+      }
+    }
+  }
+`;
+
+export const UPDATE_USERSASSIGNED_TASK = gql`
+  mutation UpdateTaskById(
+    $updateTaskByIdId: String!
+    $updateTaskByIdUserIds: [String!]
+  ) {
+    updateTaskById(id: $updateTaskByIdId, userIds: $updateTaskByIdUserIds) {
+      id
+      name
     }
   }
 `;

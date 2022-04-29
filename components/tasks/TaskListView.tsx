@@ -15,7 +15,7 @@ interface IResponse {
 
 const styles = StyleSheet.create({
   flatlist: {
-    height: '88%',
+    height: '75%',
     flexGrow: 0,
   },
 });

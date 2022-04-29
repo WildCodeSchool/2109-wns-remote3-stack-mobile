@@ -43,12 +43,16 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
   if (error) return <Text>{error.message}</Text>;
 
   const onSubmit = (date: Date) => {
+    const userIds: string[] = [];
+    data.users.map((u) => userIds.push(u.id));
+
     const dataTaskUpdate = {
       name: data.name,
       description: data.description,
       projectId: data.projectId,
       advancement: data.advancement,
       endDate: date,
+      userIds,
       tags: tagsWithoutTypename,
       estimeeSpentTime: data.estimeeSpentTime,
       updateTaskWithTagsByIdId: data.id,
@@ -72,12 +76,8 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
       </View>
       {isUpdate && (
         <View style={tw`w-full flex items-center`}>
-          <View style={tw`pl-6 w-full`}>
-            <InputDate
-              label="Edit Due Date"
-              setDate={setNewDate}
-              date={newDate}
-            />
+          <View style={tw`px-4 w-full`}>
+            <InputDate label="" setDate={setNewDate} date={newDate} />
           </View>
           <TouchableOpacity
             onPress={() => onSubmit(newDate)}
