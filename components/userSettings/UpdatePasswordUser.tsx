@@ -59,16 +59,36 @@ export default function UpdatePasswordUser({ userId, setChoices }: IProps) {
       password: d.newPassword,
     };
 
-    if (d.newPasswordConfirm === d.newPassword) {
-      updateUserPassword({ variables: dataPasswordUpdate });
+    const str = d.newPassword;
+    if (
+      str.match(/[0-9]/g) &&
+      str.match(/[A-Z]/g) &&
+      str.match(/[a-z]/g) &&
+      str.length >= 8
+    ) {
+      if (d.newPasswordConfirm === d.newPassword) {
+        updateUserPassword({ variables: dataPasswordUpdate });
+      } else {
+        Alert.alert('Oups !', 'Vos mots de passes ne sont pas identiques', [
+          {
+            text: 'Fermer',
+            style: 'cancel',
+          },
+          { text: 'OK' },
+        ]);
+      }
     } else {
-      Alert.alert('Oups !', 'Vos mots de passes ne sont pas identiques', [
-        {
-          text: 'Fermer',
-          style: 'cancel',
-        },
-        { text: 'OK' },
-      ]);
+      Alert.alert(
+        'Veuillez rééssayer',
+        'Votre mot de passe doit être de minimum 8 caractères. Il doit contenir au moins un chiffre, une mauscule.',
+        [
+          {
+            text: 'Fermer',
+            style: 'cancel',
+          },
+          { text: 'OK' },
+        ]
+      );
     }
   };
 
@@ -83,6 +103,10 @@ export default function UpdatePasswordUser({ userId, setChoices }: IProps) {
             type="password"
           />
         </View>
+        <Text style={tw` text-xs text-white`}>
+          Votre mot de passe doit être de minimum 8 caractères. Il doit contenir
+          au moins une majuscule, une minuscule et un chiffre
+        </Text>
         <View style={styles.inputAuth}>
           <InputAuth
             control={control}
