@@ -51,8 +51,8 @@ export default function UpdateProfilUser({ userId, setChoices }: IProps) {
 
   return (
     <>
-      <View style={tw`flex-row w-full items-center justify-between`}>
-        <View style={tw`w-2/4`}>
+      <View style={tw`flex-row w-11/12 items-center justify-between`}>
+        <View style={tw`w-2/4 mr-4`}>
           <InputText control={control} label="Firstname" name="firstName" />
         </View>
         <View style={tw`w-2/4`}>
