@@ -5,13 +5,16 @@ import { AntDesign } from '@expo/vector-icons';
 
 import tw from 'tailwind-react-native-classnames';
 
+interface IProps {
+  userId: string;
+}
 const styles = StyleSheet.create({
   textHeader: {
     color: '#8790E0',
   },
 });
 
-export default function SettingsHeader() {
+export default function SettingsHeader({ userId }: IProps) {
   const navigation = useNavigation();
 
   return (
@@ -20,7 +23,7 @@ export default function SettingsHeader() {
     >
       <View style={tw`flex flex-row justify-between  items-center`}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('Root')}
+          onPress={() => navigation.navigate('Userprofil', { id: userId })}
           style={tw`h-16 flex flex-row items-center mr-3`}
         >
           <AntDesign name="left" size={32} color="#8790E0" style={tw``} />

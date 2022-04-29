@@ -7,7 +7,6 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import HeaderUpdateProfilPicture from '../../components/userSettings/HeaderUpdateProfilPicture';
 import { RootTabParamList } from '../../types';
 
-// import * as ImageManipulator from 'expo-image-manipulator';
 type RootStackParam = {
   id: { id: string };
 };
