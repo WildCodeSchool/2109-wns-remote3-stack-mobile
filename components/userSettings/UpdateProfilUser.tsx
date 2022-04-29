@@ -15,7 +15,7 @@ interface IProps {
 
 const styles = StyleSheet.create({
   inputAuth: {
-    width: '105%',
+    width: '95%',
   },
   button: {
     backgroundColor: '#8790E0',

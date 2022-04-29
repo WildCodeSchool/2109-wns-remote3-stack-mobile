@@ -1,7 +1,7 @@
 import { useMutation } from '@apollo/client';
 import React from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
@@ -66,31 +66,41 @@ function SignUp() {
       <Text style={tw`text-white font-bold text-2xl mt-10 mb-5`}>
         Create your account
       </Text>
-      <InputAuth
-        control={control}
-        label="First name"
-        name="firstName"
-        type="text"
-      />
-      <InputAuth
-        control={control}
-        label="Last name"
-        name="lastName"
-        type="text"
-      />
-      <InputAuth control={control} label="Email" name="email" type="email" />
-      <InputAuth
-        control={control}
-        label="Password"
-        name="password"
-        type="password"
-      />
-      <InputAuth
-        control={control}
-        label="Confirm password"
-        name="confirmPassword"
-        type="password"
-      />
+      <View style={tw`w-11/12`}>
+        <InputAuth
+          control={control}
+          label="First name"
+          name="firstName"
+          type="text"
+        />
+      </View>
+      <View style={tw`w-11/12`}>
+        <InputAuth
+          control={control}
+          label="Last name"
+          name="lastName"
+          type="text"
+        />
+      </View>
+      <View style={tw`w-11/12`}>
+        <InputAuth control={control} label="Email" name="email" type="email" />
+      </View>
+      <View style={tw`w-11/12`}>
+        <InputAuth
+          control={control}
+          label="Password"
+          name="password"
+          type="password"
+        />
+      </View>
+      <View style={tw`w-11/12`}>
+        <InputAuth
+          control={control}
+          label="Confirm password"
+          name="confirmPassword"
+          type="password"
+        />
+      </View>
       <Pressable
         style={[tw`my-5 w-11/12 py-3 rounded-md`, styles.button]}
         onPress={handleSubmit(onSubmit)}

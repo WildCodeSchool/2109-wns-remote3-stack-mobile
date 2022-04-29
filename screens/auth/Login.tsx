@@ -74,13 +74,22 @@ function LogIn() {
           style={tw`h-20 w-60 mt-14 mb-6`}
           source={require('../../assets/images/logohome.png')}
         />
-        <InputAuth control={control} label="Email" name="email" type="email" />
-        <InputAuth
-          control={control}
-          label="Password"
-          name="password"
-          type="password"
-        />
+        <View style={tw`w-11/12`}>
+          <InputAuth
+            control={control}
+            label="Email"
+            name="email"
+            type="email"
+          />
+        </View>
+        <View style={tw`w-11/12`}>
+          <InputAuth
+            control={control}
+            label="Password"
+            name="password"
+            type="password"
+          />
+        </View>
         <Pressable
           style={[tw`mt-5 w-11/12 py-3 rounded-md`, styles.button]}
           onPress={handleSubmit(onSubmit)}

@@ -13,9 +13,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 10,
   },
-  inputAuth: {
-    width: '105%',
-  },
   button: {
     backgroundColor: '#8790E0',
   },

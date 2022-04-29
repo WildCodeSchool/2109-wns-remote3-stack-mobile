@@ -27,7 +27,7 @@ function InputAuth({ label, name, type, control }: InputAuthProps) {
         <TextInput
           placeholderTextColor="#8790E0"
           secureTextEntry={type === 'password'}
-          style={[styles.input, tw`py-3 pl-3 w-11/12 my-3 rounded-md`]}
+          style={[styles.input, tw`py-3 pl-3 w-full my-3 rounded-md`]}
           placeholder={label}
           value={value}
           onChangeText={(newText) => onChange(newText)}
