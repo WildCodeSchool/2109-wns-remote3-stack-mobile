@@ -43,7 +43,7 @@ function Settings() {
   }
   return (
     <View style={[styles.container, tw`w-full`]}>
-      <SettingsHeader userId={user.getUserByID.id} />
+      <SettingsHeader />
       <View style={tw`w-full flex flex-col items-center mt-2`}>
         <ProfilPicture
           userFirstName={user.getUserByID.firstName}
