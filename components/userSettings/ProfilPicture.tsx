@@ -11,8 +11,8 @@ interface IProps {
 
 const styles = StyleSheet.create({
   image: {
-    height: 120,
-    width: 120,
+    height: 80,
+    width: 80,
     borderRadius: 100,
     borderWidth: 2,
     borderColor: '#8790E0',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#8790E0',
   },
   letter: {
-    fontSize: 70,
+    fontSize: 40,
   },
   camera: {
     flex: 1,
@@ -60,7 +60,7 @@ export default function ProfilPicture({
         <View style={tw`relative`}>
           <View
             style={[
-              tw`h-32 w-32  rounded-full flex items-center justify-center`,
+              tw`h-20 w-20  rounded-full flex items-center justify-center`,
               styles.defaultAvatar,
             ]}
           >
@@ -72,7 +72,7 @@ export default function ProfilPicture({
             }
           >
             <Image
-              style={tw`absolute right-5 bottom-0`}
+              style={tw`absolute right-0 bottom-0`}
               source={require('../../assets/images/EditProfilPicture.png')}
             />
           </Pressable>

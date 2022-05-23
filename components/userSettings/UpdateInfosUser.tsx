@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 
 import UpdatePasswordUser from './UpdatePasswordUser';
@@ -28,11 +28,12 @@ export default function UpdateInfosUser({ userId }: IProps) {
 
   const choices = ['Change Profil', 'Change Password'];
   return (
-    <View style={[styles.container, tw`w-full pl-3`]}>
+    <ScrollView style={[styles.container, tw`w-full pl-3 mb-24`]}>
       {!isChoice ? (
         <>
           {choices.map((choice) => (
             <Pressable
+              key={choice}
               style={[styles.buttonChange, tw`mt-6 rounded-lg py-5 mr-4`]}
               onPress={() => {
                 setIsPassword(choice !== 'Change Profil');
@@ -54,6 +55,6 @@ export default function UpdateInfosUser({ userId }: IProps) {
           )}
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }
