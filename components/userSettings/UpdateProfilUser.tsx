@@ -44,7 +44,10 @@ export default function UpdateProfilUser({ userId, setChoices }: IProps) {
       email: d.email,
     };
 
-    if (d.newPasswordConfirm === d.newPassword) {
+    if (
+      d.newPasswordConfirm === d.newPassword &&
+      d.email.match(/[a-z0-9_\-.]+@[a-z0-9_\-.]+\.[a-z]+/i)
+    ) {
       updateUser({ variables: dataUserUpdate });
     }
   };
