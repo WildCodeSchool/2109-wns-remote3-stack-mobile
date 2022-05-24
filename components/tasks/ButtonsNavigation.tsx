@@ -8,6 +8,7 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import Loader from '../Loader';
+import Error from '../Error';
 
 interface ButtonsNavigationProps {
   task: getTaskByID_getTaskByID | undefined;
@@ -39,7 +40,7 @@ export default function ButtonsNavigation({ task }: ButtonsNavigationProps) {
     return <Loader />;
   }
   if (error || !dataProject) {
-    return <Text>error</Text>;
+    return <Error />;
   }
 
   const dataButtons = ['New Feed', 'Comments', 'Assign User'];

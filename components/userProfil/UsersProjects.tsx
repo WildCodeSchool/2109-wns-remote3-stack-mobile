@@ -4,8 +4,8 @@ import tw from 'tailwind-react-native-classnames';
 import { useQuery } from '@apollo/client';
 import { GET_USER_WITH_PROJECT } from '../../API/queries/userQueries';
 import { GetUserWithProjects } from '../../API/types/GetUserWithProjects';
-import Loader from '../Loader';
 import Project from './Project';
+import CardListLoader from '../animated/cardsLoader/CardListLoader';
 
 interface IProps {
   userId: string;
@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   flatlist: {
     height: '75%',
     flexGrow: 0,
+    paddingHorizontal: 14,
   },
 });
 
@@ -27,7 +28,7 @@ export default function UsersProjects({ userId }: IProps) {
   );
 
   if (loading) {
-    return <Loader />;
+    return <CardListLoader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

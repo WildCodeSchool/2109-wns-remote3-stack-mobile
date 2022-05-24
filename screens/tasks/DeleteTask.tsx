@@ -9,6 +9,7 @@ import { GetOneTask, GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { DELETE_TASK } from '../../API/mutation/Task';
 import Loader from '../../components/Loader';
+import Page404 from '../Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,7 +55,7 @@ export default function DeleteTask() {
     return <Loader />;
   }
   if (error || !data || deleteError) {
-    return <Text>error</Text>;
+    return <Page404 />;
   }
 
   return (

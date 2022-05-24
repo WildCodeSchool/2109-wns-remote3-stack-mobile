@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import React, { Dispatch, SetStateAction } from 'react';
 import tw from 'tailwind-react-native-classnames';
 import { useMutation } from '@apollo/client';
@@ -6,6 +6,7 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import Status from '../Status';
+import Error from '../Error';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +45,7 @@ export default function UpdateStatusTask({
       },
     ],
   });
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Error error={error} />;
 
   const onSubmit = (status: string) => {
     const userIds: string[] = [];

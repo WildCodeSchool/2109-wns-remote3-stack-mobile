@@ -19,7 +19,7 @@ interface IProps {
 
 export default function UserProfilNavigation({ nav, setNav }: IProps) {
   return (
-    <View style={[tw`mt-5 rounded-lg flex flex-row w-full`, styles.container]}>
+    <View style={[tw`mt-5 rounded-lg flex flex-row w-11/12`, styles.container]}>
       <Pressable
         onPress={() => setNav('projects')}
         style={[

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, SafeAreaView } from 'react-native';
+import { StyleSheet, SafeAreaView } from 'react-native';
 import React from 'react';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
@@ -7,9 +7,10 @@ import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import HeaderOneProject from '../../components/projects/HeaderOneProject';
 import ProjectInformations from '../../components/projects/ProjectInformations';
 import ProjectDescription from '../../components/projects/ProjectDescription';
-import Loader from '../../components/Loader';
 import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import ButtonsNavigation from '../../components/projects/ButtonsNavigation';
+import PageLoader from '../../components/animated/pageLoader/PageLoader';
+import Page404 from '../Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -44,10 +45,10 @@ export default function ProjectDetails() {
   });
 
   if (loading) {
-    return <Loader />;
+    return <PageLoader />;
   }
   if (error || !data) {
-    return <Text>error</Text>;
+    return <Page404 />;
   }
 
   return (

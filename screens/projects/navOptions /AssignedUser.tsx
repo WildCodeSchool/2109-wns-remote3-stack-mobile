@@ -13,11 +13,11 @@ import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 import User from '../../../components/projects/User';
 import { useUserFromStore } from '../../../store/slices/user.slice';
 import { GET_ONE_PROJECT } from '../../../API/queries/projectQueries';
-import Loader from '../../../components/Loader';
 import { GET_ALL_USERS } from '../../../API/queries/userQueries';
 import { GetAllUsers } from '../../../API/types/GetAllUsers';
 import CloseModal from '../../../components/CloseModal';
 import UsersAssign from '../../../components/projects/UsersAssign';
+import ContainerLoader from '../../../components/animated/newsFeedLoaders/ContainerLoader';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +65,7 @@ export default function AssignedUser() {
   });
 
   if (loading || usersLoading) {
-    return <Loader />;
+    return <ContainerLoader />;
   }
   if (error || !data || usersError || !usersList) {
     return <Text>error</Text>;

@@ -4,10 +4,10 @@ import { Text, View, FlatList, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
-import Loader from '../Loader';
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import StatusNavigation from '../StatusNavigation';
+import CardListLoader from '../animated/cardsLoader/CardListLoader';
 
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
@@ -25,7 +25,7 @@ function TaskList() {
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
 
   if (loading) {
-    return <Loader />;
+    return <CardListLoader />;
   }
   if (error || !data) {
     return <Text> error </Text>;

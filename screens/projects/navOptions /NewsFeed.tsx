@@ -5,10 +5,11 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
 
 import { GET_ALL_NOTIFICATION_PROJECT } from '../../../API/queries/projectQueries';
-import Loader from '../../../components/Loader';
+
 import CloseModal from '../../../components/CloseModal';
 import OneNotification from '../../../components/newsfeed/OneNotification';
 import { getAllNotifactionProject } from '../../../API/types/getAllNotifactionProject';
+import ContainerLoader from '../../../components/animated/newsFeedLoaders/ContainerLoader';
 
 const styles = StyleSheet.create({
   container: {
@@ -40,7 +41,7 @@ export default function NewsFeed() {
   );
 
   if (loading) {
-    return <Loader />;
+    return <ContainerLoader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

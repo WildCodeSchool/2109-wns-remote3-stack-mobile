@@ -12,7 +12,9 @@ declare global {
 
 export type RootStackParamList = {
   Root: undefined;
+  Homepage: undefined;
   Userprofil: { id: string | undefined };
+  Settings: { id: string | undefined };
   Createtask: undefined;
   Login: undefined;
   Signup: undefined;

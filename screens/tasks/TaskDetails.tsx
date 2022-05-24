@@ -10,12 +10,13 @@ import HeaderTaskDetails from '../../components/tasks/HeaderTaskDetails';
 import DescriptionTaskDetails from '../../components/tasks/DescriptionTaskDetails';
 import EndDateTaskDetails from '../../components/tasks/EndDateTaskDetails';
 import StatusTaskDetails from '../../components/tasks/StatusTaskDetails';
-import Loader from '../../components/Loader';
 import TagsTaskDetails from '../../components/tasks/TagsTaskDetails';
 import ButtonsNavigation from '../../components/tasks/ButtonsNavigation';
 import UpdateStatusTask from '../../components/tasks/UpdateStatusTask';
 import UpdateNameTask from '../../components/tasks/UpdateNameTask';
 import AssignUsers from '../../components/tasks/AssignUsers';
+import PageLoader from '../../components/animated/pageLoader/PageLoader';
+import Page404 from '../Page404';
 
 type paramsProps = {
   id: { id: string };
@@ -56,10 +57,10 @@ function TaskDetails() {
   });
 
   if (loadingTask) {
-    return <Loader />;
+    return <PageLoader />;
   }
   if (errorTask || !dataTask) {
-    return <Text>erreur</Text>;
+    return <Page404 />;
   }
 
   return (

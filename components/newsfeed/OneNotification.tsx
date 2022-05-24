@@ -15,7 +15,7 @@ import { GetAllNotifications_getAllNotifications } from '../../API/types/GetAllN
 import { GetUserByID } from '../../API/types/GetUserByID';
 import { GET_USER_BY_ID } from '../../API/queries/userQueries';
 import DefaultAvatar from '../DefaultAvatar';
-import Loader from '../Loader';
+import SkeletonCard from '../animated/newsFeedLoaders/OneFeedLoader';
 
 interface IProps {
   item: GetAllNotifications_getAllNotifications;
@@ -79,7 +79,7 @@ function OneNotification({ item }: IProps) {
   };
 
   if (loading) {
-    return <Loader />;
+    return <SkeletonCard />;
   }
   if (!user || error) {
     return <Text>error</Text>;

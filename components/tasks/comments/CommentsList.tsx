@@ -2,10 +2,10 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_COMMENTS } from '../../../API/mutation/Comments';
-import Loader from '../../Loader';
 import OneComment from './OneComment';
 import { GetAllComments_getAllComments } from '../../../API/types/GetAllComments';
 import { getOneComment_getCommentByID } from '../../../API/types/getOneComment';
+import ContainerLoader from '../../animated/newsFeedLoaders/ContainerLoader';
 
 interface CommentsListProps {
   idTask: string | undefined;
@@ -23,7 +23,7 @@ export default function CommentsList({ idTask }: CommentsListProps) {
   const { loading, error, data } = useQuery(GET_ALL_COMMENTS);
 
   if (loading) {
-    return <Loader />;
+    return <ContainerLoader />;
   }
   if (error || !data) {
     return <Text> error </Text>;

@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  Text,
   View,
   Pressable,
   TextInput,
@@ -26,6 +25,7 @@ import {
 } from '../../../API/mutation/Comments';
 import { GetOneTask, GET_ALL_TASKS } from '../../../API/queries/taskQueries';
 import { GetUserByID_getUserByID } from '../../../API/types/GetUserByID';
+import Error from '../../Error';
 
 interface AddCommentProps {
   idTask: string;
@@ -68,7 +68,7 @@ export default function AddComment({ idTask }: AddCommentProps) {
     },
   });
   if (loading) return <Loader />;
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Error error={error} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const dataComments = {

@@ -12,6 +12,7 @@ import {
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import Cheap from '../Cheap';
+import Page404 from '../../screens/Page404';
 
 interface OneTaskProps {
   item: getTaskByID_getTaskByID | getProjectByIdId_getProjectByID_tasks;
@@ -50,7 +51,7 @@ function OneTask({ item }: OneTaskProps) {
   });
   if (loadingProject) return null;
   if (errorProject || !dataProject) {
-    return <Text> error </Text>;
+    return <Page404 />;
   }
 
   return (
