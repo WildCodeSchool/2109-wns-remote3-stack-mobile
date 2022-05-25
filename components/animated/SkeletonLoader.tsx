@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 });
 
 interface ISkeletonLoader {
-  // eslint-disable-next-line react/require-default-props
   variant?: 'box' | 'circle';
   width: string | number;
   height: number;
@@ -62,3 +61,7 @@ export default function SkeletonLoader({
     />
   );
 }
+
+SkeletonLoader.defaultProps = {
+  variant: 'box',
+};

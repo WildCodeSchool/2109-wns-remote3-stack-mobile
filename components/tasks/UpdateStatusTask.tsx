@@ -45,7 +45,7 @@ export default function UpdateStatusTask({
       },
     ],
   });
-  if (error) return <Error error={error} />;
+  if (error) return <Error errorMessage={error.message} />;
 
   const onSubmit = (status: string) => {
     const userIds: string[] = [];

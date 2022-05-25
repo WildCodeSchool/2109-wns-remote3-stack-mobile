@@ -5,7 +5,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER_WITH_PROJECT } from '../../API/queries/userQueries';
 import { GetUserWithProjects } from '../../API/types/GetUserWithProjects';
 import Project from './Project';
-import CardListLoader from '../animated/cardsLoader/CardListLoader';
+import Loader from '../Loader';
 
 interface IProps {
   userId: string;
@@ -28,7 +28,7 @@ export default function UsersProjects({ userId }: IProps) {
   );
 
   if (loading) {
-    return <CardListLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

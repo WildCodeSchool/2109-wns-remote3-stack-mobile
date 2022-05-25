@@ -7,7 +7,7 @@ import OneTask from './OneTask';
 import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import StatusNavigation from '../StatusNavigation';
-import CardListLoader from '../animated/cardsLoader/CardListLoader';
+import Loader from '../Loader';
 
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
@@ -25,7 +25,7 @@ function TaskList() {
   const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
 
   if (loading) {
-    return <CardListLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text> error </Text>;

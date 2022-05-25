@@ -17,7 +17,7 @@ import { GET_ALL_USERS } from '../../../API/queries/userQueries';
 import { GetAllUsers } from '../../../API/types/GetAllUsers';
 import CloseModal from '../../../components/CloseModal';
 import UsersAssign from '../../../components/projects/UsersAssign';
-import ContainerLoader from '../../../components/animated/newsFeedLoaders/ContainerLoader';
+import Loader from '../../../components/Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +65,7 @@ export default function AssignedUser() {
   });
 
   if (loading || usersLoading) {
-    return <ContainerLoader />;
+    return <Loader />;
   }
   if (error || !data || usersError || !usersList) {
     return <Text>error</Text>;

@@ -9,7 +9,7 @@ import { GET_ALL_NOTIFICATION_PROJECT } from '../../../API/queries/projectQuerie
 import CloseModal from '../../../components/CloseModal';
 import OneNotification from '../../../components/newsfeed/OneNotification';
 import { getAllNotifactionProject } from '../../../API/types/getAllNotifactionProject';
-import ContainerLoader from '../../../components/animated/newsFeedLoaders/ContainerLoader';
+import Loader from '../../../components/Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +41,7 @@ export default function NewsFeed() {
   );
 
   if (loading) {
-    return <ContainerLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

@@ -68,7 +68,7 @@ export default function AddComment({ idTask }: AddCommentProps) {
     },
   });
   if (loading) return <Loader />;
-  if (error) return <Error error={error} />;
+  if (error) return <Error errorMessage={error.message} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const dataComments = {

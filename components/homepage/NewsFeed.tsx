@@ -11,8 +11,8 @@ import { ALL_NOTIFICATIONS_SUBSCRIPTION } from '../../API/subscriptions/notifica
 import { AllNotificationsSubscription } from '../../API/types/AllNotificationsSubscription';
 import { useExpoTokenFromStore } from '../../store/slices/expoToken.slice';
 import { sendPushNotification } from '../../utils/expo/notifications';
-import ContainerLoader from '../animated/newsFeedLoaders/ContainerLoader';
 import Error from '../Error';
+import Loader from '../Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -73,7 +73,7 @@ export default function NewsFeed() {
           borderTopColor: '#8790E0',
         }}
       >
-        <ContainerLoader />
+        <Loader />
       </View>
     );
 

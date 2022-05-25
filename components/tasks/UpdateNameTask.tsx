@@ -43,7 +43,7 @@ export default function UpdateNameTask({
       },
     ],
   });
-  if (error) return <Error error={error} />;
+  if (error) return <Error errorMessage={error.message} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const userIds: string[] = [];

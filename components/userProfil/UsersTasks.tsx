@@ -5,7 +5,7 @@ import tw from 'tailwind-react-native-classnames';
 import { GET_USER_WITH_TASKS } from '../../API/queries/userQueries';
 import { GetUserWithTasks } from '../../API/types/GetUserWithTasks';
 import OneTask from '../tasks/OneTask';
-import CardListLoader from '../animated/cardsLoader/CardListLoader';
+import Loader from '../Loader';
 
 const styles = StyleSheet.create({
   flatlist: {
@@ -28,7 +28,7 @@ export default function UsersTasks({ userId }: IProps) {
   );
 
   if (loading) {
-    return <CardListLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

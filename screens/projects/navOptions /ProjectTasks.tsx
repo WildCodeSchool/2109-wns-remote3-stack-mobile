@@ -10,7 +10,7 @@ import OneTask from '../../../components/tasks/OneTask';
 import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 import CloseModal from '../../../components/CloseModal';
 import CreateProjectTask from '../../../components/projects/CreateProjectTask';
-import ContainerLoader from '../../../components/animated/newsFeedLoaders/ContainerLoader';
+import Loader from '../../../components/Loader';
 
 type RootStackParam = {
   id: { id: string };
@@ -33,7 +33,7 @@ export default function ProjectTasks() {
   });
 
   if (loading) {
-    return <ContainerLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

@@ -12,8 +12,8 @@ import tw from 'tailwind-react-native-classnames';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import { getTaskByID } from '../../API/types/getTaskByID';
-import ContainerLoader from '../../components/animated/newsFeedLoaders/ContainerLoader';
 import CloseModal from '../../components/CloseModal';
+import Loader from '../../components/Loader';
 import AssignTaskUser from '../../components/tasks/AssignTaskUser';
 import { useUserFromStore } from '../../store/slices/user.slice';
 
@@ -54,7 +54,7 @@ export default function AssignUsersTaskDetails() {
   });
 
   if (loading) {
-    return <ContainerLoader />;
+    return <Loader />;
   }
   if (error || !data) {
     return <Text>error</Text>;

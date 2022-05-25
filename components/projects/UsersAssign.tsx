@@ -91,7 +91,7 @@ export default function UsersAssign({
     return <Loader />;
   }
   if (deleteError || !user || error) {
-    return <Error error={error} />;
+    return <Error errorMessage={error?.message} />;
   }
 
   return (
