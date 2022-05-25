@@ -47,7 +47,7 @@ export default function UpdateProfilUser({ userId, setChoices }: IProps) {
     if (d.email.match(/[a-z0-9_\-.]+@[a-z0-9_\-.]+\.[a-z]+/i)) {
       updateUser({ variables: dataUserUpdate });
     } else {
-      Alert.alert('Oups !', "Votre adresse mail n'est pas correct.", [
+      Alert.alert('Oups !', 'Une erreur est survenue dans la mise à jour.', [
         {
           text: 'Fermer',
           style: 'cancel',
