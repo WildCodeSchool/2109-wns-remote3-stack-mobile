@@ -1,37 +1,65 @@
-import { Pressable, StyleSheet, View } from 'react-native';
-import React from 'react';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import tw from 'tailwind-react-native-classnames';
-import { AntDesign } from '@expo/vector-icons';
-import { StackNavigationProp } from '@react-navigation/stack';
-import HeaderUpdateProfilPicture from '../../components/userSettings/HeaderUpdateProfilPicture';
-import { RootTabParamList } from '../../types';
+import React, { useEffect, useState } from 'react';
+import { Button, Image, View } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+import { useMutation } from '@apollo/client';
+import Constants from 'expo-constants';
+import UPLOAD_FILE from '../../API/mutation/File';
+import { UploadFile, UploadFileVariables } from '../../API/types/UploadFile';
+import generateRNFile from '../../utils/expo/generateRnFiles';
 
-type RootStackParam = {
-  id: { id: string };
-};
-type navProps = StackNavigationProp<RootTabParamList, 'Settings'>;
+export default function ImagePickerExample() {
+  const [image, setImage] = useState('');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#15192C',
-    alignItems: 'flex-start',
-  },
-});
-export default function UpdateProfilPicture() {
-  const route = useRoute<RouteProp<RootStackParam>>();
-  const navigation = useNavigation<navProps>();
-  const { id } = route.params;
+  useEffect(() => {
+    (async () => {
+      if (Constants.platform.ios) {
+        const { status } =
+          await ImagePicker.requestCameraRollPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const [uploadFile] = useMutation<UploadFile, UploadFileVariables>(
+    UPLOAD_FILE,
+    {
+      onCompleted: (d) => {
+        console.log(d);
+      },
+    }
+  );
+
+  async function onUploadPress() {
+    const file = generateRNFile(image, `picture-${Date.now()}`);
+    console.log(file);
+    uploadFile({
+      variables: { file },
+    });
+  }
+
   return (
-    <View style={styles.container}>
-      <Pressable
-        onPress={() => navigation.navigate('Settings', { id })}
-        style={tw`flex items-center w-full bg-purple-300 bg-opacity-10 rounded-lg p-2 mb-5`}
-      >
-        <AntDesign name="caretdown" size={24} color="#8790E0" />
-      </Pressable>
-      <HeaderUpdateProfilPicture userId={id} />
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <Button title="Pick an image from camera roll" onPress={pickImage} />
+      {image !== '' && (
+        <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />
+      )}
+      <Button title="Confirm" onPress={() => onUploadPress()} />
     </View>
   );
 }
