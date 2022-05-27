@@ -9,7 +9,6 @@ import { GetOneTask, GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import { getTaskByID } from '../../API/types/getTaskByID';
 import { DELETE_TASK } from '../../API/mutation/Task';
 import Loader from '../../components/Loader';
-import Page404 from '../Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -55,14 +54,14 @@ export default function DeleteTask() {
     return <Loader />;
   }
   if (error || !data || deleteError) {
-    return <Page404 />;
+    navigation.navigate('notFound');
   }
 
   return (
     <View style={styles.container}>
       <View style={tw`flex`}>
         <Text style={tw`text-white text-2xl font-bold text-center`}>
-          Are you sure you want to delete the task: {data.getTaskByID.name} ?
+          Are you sure you want to delete the task: {data?.getTaskByID.name} ?
         </Text>
         <TouchableOpacity
           onPress={() => {

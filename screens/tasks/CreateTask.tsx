@@ -69,7 +69,9 @@ export default function CreateTask() {
     refetchQueries: [GET_ALL_TASKS],
   });
   if (loading) return <Loader />;
-  if (error) return <Page404 />;
+  if (error) {
+    return <Page404 />;
+  }
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const tagsWithoutTypename = dataTags.map((tag) => {

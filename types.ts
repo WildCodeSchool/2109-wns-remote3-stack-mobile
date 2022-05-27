@@ -17,6 +17,7 @@ export type RootStackParamList = {
   Settings: { id: string | undefined };
   Createtask: undefined;
   Login: undefined;
+  notFound: undefined;
   Signup: undefined;
   TaskDetails: { id: string | undefined };
   DeleteProject: { id: string };

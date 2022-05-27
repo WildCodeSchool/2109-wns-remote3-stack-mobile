@@ -80,7 +80,7 @@ export default function NewsFeed() {
   if (error || !data)
     return (
       <View style={styles.container}>
-        <Error />;
+        <Error />
       </View>
     );
 
