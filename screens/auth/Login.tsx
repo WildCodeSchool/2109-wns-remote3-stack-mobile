@@ -10,6 +10,7 @@ import {
   Platform,
   Keyboard,
   View,
+  Alert,
 } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -47,12 +48,15 @@ function LogIn() {
   const { handleSubmit, control } = useForm();
   const { dispatchLogin } = useUserFromStore();
   const navigation = useNavigation<SignupScreenProps>();
-  const [loginMutation] = useMutation<Login, LoginVariables>(LOGIN_MUTATION, {
-    onCompleted: async (data: Login) => {
-      await SecureStore.setItemAsync('token', data.login.token);
-      dispatchLogin(data.login);
-    },
-  });
+  const [loginMutation, { error }] = useMutation<Login, LoginVariables>(
+    LOGIN_MUTATION,
+    {
+      onCompleted: async (data: Login) => {
+        await SecureStore.setItemAsync('token', data.login.token);
+        dispatchLogin(data.login);
+      },
+    }
+  );
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     Keyboard.dismiss();
@@ -63,6 +67,20 @@ function LogIn() {
       },
     });
   };
+
+  if (error) {
+    Alert.alert(
+      'Oups !',
+      "L'adresse mail ou le mot de passe saisi est incorrect",
+      [
+        {
+          text: 'Fermer',
+          style: 'cancel',
+        },
+        { text: 'OK' },
+      ]
+    );
+  }
 
   return (
     <KeyboardAvoidingView

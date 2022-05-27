@@ -2,7 +2,7 @@ import { useMutation } from '@apollo/client';
 import { useNavigation } from '@react-navigation/native';
 import React, { Dispatch, SetStateAction } from 'react';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { UPDATE_USER } from '../../API/mutation/settings';
 import InputAuth from '../form/InputAuth';
@@ -44,8 +44,16 @@ export default function UpdateProfilUser({ userId, setChoices }: IProps) {
       email: d.email,
     };
 
-    if (d.newPasswordConfirm === d.newPassword) {
+    if (d.email.match(/[a-z0-9_\-.]+@[a-z0-9_\-.]+\.[a-z]+/i)) {
       updateUser({ variables: dataUserUpdate });
+    } else {
+      Alert.alert('Oups !', 'Une erreur est survenue dans la mise à jour.', [
+        {
+          text: 'Fermer',
+          style: 'cancel',
+        },
+        { text: 'OK' },
+      ]);
     }
   };
 
