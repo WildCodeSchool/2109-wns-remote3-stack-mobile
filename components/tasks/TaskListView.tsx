@@ -1,0 +1,54 @@
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { View, FlatList, StyleSheet } from 'react-native';
+import tw from 'tailwind-react-native-classnames';
+import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
+import OneTask from './OneTask';
+import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
+import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
+import StatusNavigation from '../StatusNavigation';
+import Loader from '../Loader';
+import Error from '../Error';
+
+interface IResponse {
+  getAllTasks: GetAllTasks_getAllTasks[];
+}
+
+const styles = StyleSheet.create({
+  flatlist: {
+    height: '75%',
+    flexGrow: 0,
+  },
+});
+function TaskList() {
+  const [nav, setNav] = useState('IN_PROGRESS');
+  // FETCH THE TASK LIST
+  const { loading, error, data } = useQuery<IResponse>(GET_ALL_TASKS);
+
+  if (loading) {
+    return <Loader />;
+  }
+  if (error || !data) {
+    return <Error />;
+  }
+  const renderItem = ({ item }: { item: getTaskByID_getTaskByID }) => (
+    <OneTask item={item} isLoading={loading} />
+  );
+
+  const reversedData = [...data.getAllTasks].reverse();
+
+  return (
+    <View style={{ flex: 1, height: '100%' }}>
+      <View style={tw`mx-4 my-2 mb-4`}>
+        <StatusNavigation backgroundColor="light" nav={nav} setNav={setNav} />
+      </View>
+      <FlatList
+        data={reversedData.filter((item) => item.advancement === nav)}
+        style={[styles.flatlist, tw`mx-3`]}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
+    </View>
+  );
+}
+export default TaskList;

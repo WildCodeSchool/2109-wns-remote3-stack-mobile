@@ -12,7 +12,7 @@ export const GET_ALL_PROJECTS = gql`
     }
   }
 `;
-export const GetOneProject = gql`
+export const GET_ONE_PROJECT = gql`
   query getProjectByIdId($getProjectByIdId: String!) {
     getProjectByID(id: $getProjectByIdId) {
       id
@@ -21,14 +21,25 @@ export const GetOneProject = gql`
       status
       tasks {
         id
-        subject
+        name
+        description
         projectId
         startDate
         endDate
+        comments {
+          id
+          text
+          createdAt
+          updatedAt
+          userId
+          taskId
+        }
         estimeeSpentTime
         advancement
       }
       members {
+        projectId
+        projectRole
         userId
       }
       startDate
@@ -38,32 +49,48 @@ export const GetOneProject = gql`
   }
 `;
 
-export const UPDATE_PROJECT = gql`
-  mutation Mutation(
-    $updateProjectId: String!
-    $name: String!
-    $description: String!
-    $status: String!
-    $startDate: DateTime!
-    $endDate: String!
-    $estimeeSpentTime: Float!
+export const DELETE_USER_PROJECT = gql`
+  mutation DeleteUserProject($projectId: String!, $userId: String!) {
+    deleteUserProject(projectId: $projectId, userId: $userId) {
+      userId
+      projectId
+      projectRole
+    }
+  }
+`;
+
+export const CREATE_USER_PROJECT = gql`
+  mutation CreateUserProject(
+    $userId: String!
+    $projectId: String!
+    $projectRole: String!
   ) {
-    updateProject(
-      id: $updateProjectId
-      name: $name
-      description: $description
-      status: $status
-      startDate: $startDate
-      endDate: $endDate
-      estimeeSpentTime: $estimeeSpentTime
+    createUserProject(
+      userId: $userId
+      projectId: $projectId
+      projectRole: $projectRole
     ) {
+      userId
+      projectId
+      projectRole
+    }
+  }
+`;
+
+export const GET_ALL_NOTIFICATION_PROJECT = gql`
+  query getAllNotifactionProject($objectId: String!) {
+    getAllNotificationsFromObject(objectId: $objectId) {
       id
-      name
-      description
-      status
-      startDate
-      endDate
-      estimeeSpentTime
+      editorName
+      editorId
+      actionType
+      modifiedObjectName
+      modifiedObjectId
+      onName
+      onId
+      type
+      createdAt
+      viewedBy
     }
   }
 `;
