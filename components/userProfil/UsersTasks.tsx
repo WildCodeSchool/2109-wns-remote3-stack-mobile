@@ -4,13 +4,14 @@ import { useQuery } from '@apollo/client';
 import tw from 'tailwind-react-native-classnames';
 import { GET_USER_WITH_TASKS } from '../../API/queries/userQueries';
 import { GetUserWithTasks } from '../../API/types/GetUserWithTasks';
-import Loader from '../Loader';
 import OneTask from '../tasks/OneTask';
+import Loader from '../Loader';
 
 const styles = StyleSheet.create({
   flatlist: {
     height: '75%',
     flexGrow: 0,
+    paddingHorizontal: 14,
   },
 });
 
@@ -33,7 +34,7 @@ export default function UsersTasks({ userId }: IProps) {
     return <Text>error</Text>;
   }
   return (
-    <View style={[tw`pb-5 w-full`, styles.flatlist]}>
+    <View style={[tw`pb-5`, styles.flatlist]}>
       <FlatList
         contentInset={{ bottom: 130 }}
         data={data.getUserWithTasks.tasks}

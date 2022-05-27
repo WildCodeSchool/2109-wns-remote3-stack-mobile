@@ -10,8 +10,10 @@ import HomeScreen from '../screens/HomeScreen';
 import TaskList from '../screens/tasks/TaskList';
 import ProjectList from '../screens/projects/ProjectList';
 import Settings from '../screens/userSettings/Settings';
+import { useUserFromStore } from '../store/slices/user.slice';
 
 export default function BottomTabNavigator() {
+  const { user } = useUserFromStore();
   const BottomTab = createBottomTabNavigator<RootTabParamList>();
   return (
     <BottomTab.Navigator
@@ -68,6 +70,7 @@ export default function BottomTabNavigator() {
       <BottomTab.Screen
         name="Settings"
         component={Settings}
+        initialParams={{ id: user.id }}
         options={{
           title: '',
           tabBarIcon: () => (

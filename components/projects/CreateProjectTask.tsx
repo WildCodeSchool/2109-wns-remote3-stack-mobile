@@ -25,6 +25,7 @@ import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 import Loader from '../Loader';
 import { CREATE_TASK } from '../../API/mutation/Task';
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
+import Error from '../Error';
 
 const styles = StyleSheet.create({
   input: {
@@ -64,7 +65,7 @@ export default function CreateProjectTask({
     refetchQueries: [GET_ONE_PROJECT],
   });
   if (loading) return <Loader />;
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Error errorMessage={error.message} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const tagsWithoutTypename = dataTags.map((tag) => {

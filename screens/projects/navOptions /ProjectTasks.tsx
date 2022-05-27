@@ -6,11 +6,11 @@ import { useQuery } from '@apollo/client';
 import { Entypo } from '@expo/vector-icons';
 import StatusNavigation from '../../../components/StatusNavigation';
 import { GET_ONE_PROJECT } from '../../../API/queries/projectQueries';
-import Loader from '../../../components/Loader';
 import OneTask from '../../../components/tasks/OneTask';
 import { getProjectByIdId } from '../../../API/types/getProjectByIdId';
 import CloseModal from '../../../components/CloseModal';
 import CreateProjectTask from '../../../components/projects/CreateProjectTask';
+import Loader from '../../../components/Loader';
 
 type RootStackParam = {
   id: { id: string };

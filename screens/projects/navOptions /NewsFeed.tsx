@@ -5,10 +5,11 @@ import { RouteProp, useRoute } from '@react-navigation/native';
 import { useQuery } from '@apollo/client';
 
 import { GET_ALL_NOTIFICATION_PROJECT } from '../../../API/queries/projectQueries';
-import Loader from '../../../components/Loader';
+
 import CloseModal from '../../../components/CloseModal';
 import OneNotification from '../../../components/newsfeed/OneNotification';
 import { getAllNotifactionProject } from '../../../API/types/getAllNotifactionProject';
+import Loader from '../../../components/Loader';
 
 const styles = StyleSheet.create({
   container: {

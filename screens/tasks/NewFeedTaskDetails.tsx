@@ -6,9 +6,9 @@ import { Text } from 'react-native-elements';
 import tw from 'tailwind-react-native-classnames';
 import { GET_NEW_FEED_TASK } from '../../API/queries/newFeedTasks';
 import CloseModal from '../../components/CloseModal';
-import Loader from '../../components/Loader';
 import OneFeedTask from '../../components/tasks/newfeed/OneFeedTask';
 import { getNewFeedTask_getAllNotificationsFromObject } from '../../API/types/getNewFeedTask';
+import Loader from '../../components/Loader';
 
 type paramsProps = {
   id: { id: string; nameProject: string };

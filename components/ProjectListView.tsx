@@ -12,8 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 import { GET_ALL_PROJECTS } from '../API/queries/projectQueries';
 import OneProject from './projects/OneProject';
 import { GetAllProjects } from '../API/types/GetAllProjects';
-import Loader from './Loader';
 import StatusNavigation from './StatusNavigation';
+import Loader from './Loader';
 
 const styles = StyleSheet.create({
   card: {

@@ -11,6 +11,8 @@ import {
   GET_ONE_PROJECT,
 } from '../../API/queries/projectQueries';
 import { RootStackParamList } from '../../types';
+import Loader from '../../components/Loader';
+import Page404 from '../Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -54,10 +56,10 @@ export default function DeleteProject() {
     });
 
   if (loading || deleteLoad) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (error || !data || deleteError) {
-    return <Text>error</Text>;
+    return <Page404 />;
   }
 
   return (

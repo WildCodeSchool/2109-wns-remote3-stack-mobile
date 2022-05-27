@@ -5,10 +5,10 @@ import { Text, StyleSheet, View } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { GET_USER_BY_ID } from '../../API/queries/userQueries';
 import { GetUserByID } from '../../API/types/GetUserByID';
-import Loader from '../../components/Loader';
 import SettingsHeader from '../../components/userSettings/SettingsHeader';
 import ProfilPicture from '../../components/userSettings/ProfilPicture';
 import UpdateInfosUser from '../../components/userSettings/UpdateInfosUser';
+import PageLoader from '../../components/animated/pageLoader/PageLoader';
 
 const styles = StyleSheet.create({
   container: {
@@ -36,11 +36,12 @@ function Settings() {
   });
 
   if (loading) {
-    return <Loader />;
+    return <PageLoader />;
   }
   if (error || !user) {
     return <Text>error</Text>;
   }
+
   return (
     <View style={[styles.container, tw`w-full`]}>
       <SettingsHeader userId={id} />

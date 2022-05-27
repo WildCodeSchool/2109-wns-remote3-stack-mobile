@@ -19,6 +19,7 @@ import {
   GET_ONE_PROJECT,
 } from '../../API/queries/projectQueries';
 import Loader from '../Loader';
+import Error from '../Error';
 
 interface IProps {
   user: GetAllUsers_getAllUsers;
@@ -127,7 +128,7 @@ export default function User({
     return <Loader />;
   }
   if (createError) {
-    return <Text>error</Text>;
+    return <Error />;
   }
 
   return (

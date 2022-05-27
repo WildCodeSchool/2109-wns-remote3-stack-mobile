@@ -40,7 +40,7 @@ export default function UserProfilHeader({ userId }: IProps) {
     },
   });
   return (
-    <View style={tw`flex flex-row w-full justify-between  items-center`}>
+    <View style={tw`flex flex-row w-11/12 justify-between  items-center`}>
       <TouchableOpacity
         onPress={() => navigation.navigate('Root')}
         style={tw`h-16 flex flex-row items-center mr-1`}

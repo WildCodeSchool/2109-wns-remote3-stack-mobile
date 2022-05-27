@@ -9,6 +9,7 @@ import moment from 'moment';
 import { GET_USER_BY_ID } from '../../../API/queries/userQueries';
 import { getOneComment_getCommentByID } from '../../../API/types/getOneComment';
 import { GetUserByID_getUserByID } from '../../../API/types/GetUserByID';
+import Error from '../../Error';
 
 interface OneCommentProps {
   item: getOneComment_getCommentByID;
@@ -50,7 +51,7 @@ export default function OneComment({ item }: OneCommentProps) {
   });
   if (loadingUser) return null;
   if (errorUser) {
-    return <Text> error </Text>;
+    return <Error />;
   }
   return (
     <View style={[styles.container, tw` mt-4 mx-4 w-11/12 rounded-lg`]}>

@@ -19,6 +19,7 @@ import { RootTabParamList } from '../../types';
 import { getTaskByID_getTaskByID_tags } from '../../API/types/getTaskByID';
 import SelectProject from '../../components/tasks/SelectProject';
 import SelectStatus from '../../components/tasks/SelectStatus';
+import Page404 from '../Page404';
 
 interface IResponseProjects {
   getAllProjects: GetAllProjects_getAllProjects[];
@@ -68,7 +69,7 @@ export default function CreateTask() {
     refetchQueries: [GET_ALL_TASKS],
   });
   if (loading) return <Loader />;
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Page404 />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const tagsWithoutTypename = dataTags.map((tag) => {

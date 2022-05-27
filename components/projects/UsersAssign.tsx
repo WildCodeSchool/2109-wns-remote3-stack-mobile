@@ -25,6 +25,7 @@ import {
 import Loader from '../Loader';
 import { GetUserByID } from '../../API/types/GetUserByID';
 import { GET_USER_BY_ID } from '../../API/queries/userQueries';
+import Error from '../Error';
 
 const styles = StyleSheet.create({
   image: {
@@ -90,7 +91,7 @@ export default function UsersAssign({
     return <Loader />;
   }
   if (deleteError || !user || error) {
-    return <Text>error</Text>;
+    return <Error errorMessage={error?.message} />;
   }
 
   return (

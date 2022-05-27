@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ALL_NOTIFICATIONS } from '../../API/queries/notificationQueries';
@@ -11,6 +11,8 @@ import { ALL_NOTIFICATIONS_SUBSCRIPTION } from '../../API/subscriptions/notifica
 import { AllNotificationsSubscription } from '../../API/types/AllNotificationsSubscription';
 import { useExpoTokenFromStore } from '../../store/slices/expoToken.slice';
 import { sendPushNotification } from '../../utils/expo/notifications';
+import Error from '../Error';
+import Loader from '../Loader';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,8 +62,27 @@ export default function NewsFeed() {
     });
   }, []);
 
-  if (loading) return <Text>Loading...</Text>;
-  if (error || !data) return <Text>{error}</Text>;
+  if (loading)
+    return (
+      <View
+        style={{
+          height: '44%',
+          width: '100%',
+          marginTop: 20,
+          borderTopWidth: 1,
+          borderTopColor: '#8790E0',
+        }}
+      >
+        <Loader />
+      </View>
+    );
+
+  if (error || !data)
+    return (
+      <View style={styles.container}>
+        <Error />;
+      </View>
+    );
 
   return (
     <View style={styles.container}>

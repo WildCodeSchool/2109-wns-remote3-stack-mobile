@@ -9,6 +9,7 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import InputDate from '../form/InputDate';
+import Page404 from '../../screens/Page404';
 
 interface EndDateTaskDetailsProps {
   data: getTaskByID_getTaskByID;
@@ -40,7 +41,7 @@ export default function EndDateTaskDetails({ data }: EndDateTaskDetailsProps) {
       },
     ],
   });
-  if (error) return <Text>{error.message}</Text>;
+  if (error) return <Page404 />;
 
   const onSubmit = (date: Date) => {
     const userIds: string[] = [];

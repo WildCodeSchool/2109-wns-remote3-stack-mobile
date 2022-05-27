@@ -9,6 +9,8 @@ import { getProjectByIdId } from '../API/types/getProjectByIdId';
 import { GET_ONE_PROJECT } from '../API/queries/projectQueries';
 import { GetAllProjects_getAllProjects } from '../API/types/GetAllProjects';
 import UPDATE_PROJECT from '../API/mutation/updateProject';
+import Loader from '../components/Loader';
+import Page404 from './Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +48,10 @@ export default function UpdateStatus() {
   });
 
   if (loading || updateLoading) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (error || !data || updateError) {
-    return <Text>error</Text>;
+    return <Page404 />;
   }
 
   const onSubmit = (modifedStatus: string) => {

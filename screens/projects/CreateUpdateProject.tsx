@@ -30,6 +30,8 @@ import {
 } from '../../API/queries/projectQueries';
 import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
+import Page404 from '../Page404';
+import Loader from '../../components/Loader';
 
 const pickerStyle = StyleSheet.create({
   inputIOS: {
@@ -161,14 +163,10 @@ export default function CreateUpdateProject() {
   };
 
   if (createLoading || isLoading || updateLoading) {
-    return <Text>...loading</Text>;
+    return <Loader />;
   }
   if (createError || isError || updateError) {
-    return (
-      <Text style={tw`flex-1 items-center justify-center font-bold`}>
-        ...Error Hello
-      </Text>
-    );
+    return <Page404 />;
   }
 
   return (

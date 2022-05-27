@@ -8,6 +8,7 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
 import InputText from '../form/InputText';
+import Error from '../Error';
 
 interface UpdateNameTaskProps {
   data: getTaskByID_getTaskByID;
@@ -42,7 +43,7 @@ export default function UpdateNameTask({
       },
     ],
   });
-  if (error) return <Text style={tw`text-white mb-2`}>{error.message}</Text>;
+  if (error) return <Error errorMessage={error.message} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const userIds: string[] = [];

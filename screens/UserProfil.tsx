@@ -6,19 +6,18 @@ import { useQuery } from '@apollo/client';
 import UserProfilNavigation from '../components/userProfil/UserProfilNavigation';
 import { GetUserByID } from '../API/types/GetUserByID';
 import { GET_USER_BY_ID } from '../API/queries/userQueries';
-import Loader from '../components/Loader';
 import UserProfilHeader from '../components/userProfil/UserProfilHeader';
 import ProfilPicture from '../components/userProfil/ProfilPicture';
 import UsersProjects from '../components/userProfil/UsersProjects';
 import UsersTasks from '../components/userProfil/UsersTasks';
+import PageLoader from '../components/animated/pageLoader/PageLoader';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#15192C',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     paddingTop: 40,
-    paddingHorizontal: 20,
   },
 });
 
@@ -40,7 +39,7 @@ export default function UserProfil() {
   });
 
   if (loading) {
-    return <Loader />;
+    return <PageLoader />;
   }
   if (error || !user) {
     return <Text>error</Text>;
@@ -50,7 +49,7 @@ export default function UserProfil() {
     <View style={styles.container}>
       <UserProfilHeader userId={user.getUserByID.id} />
 
-      <View style={tw`w-full flex flex-row items-center mt-2`}>
+      <View style={tw`flex flex-row items-center mt-2 w-11/12`}>
         <ProfilPicture
           userFirstName={user.getUserByID.firstName}
           userAvatarUrl={user.getUserByID.avatar}
