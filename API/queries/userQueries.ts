@@ -29,7 +29,6 @@ export const GET_USER_BY_ID = gql`
     getUserByID(id: $getUserByIdId) {
       id
       email
-      password
       firstName
       lastName
       avatar

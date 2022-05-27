@@ -4,22 +4,26 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GetUserByID
+// GraphQL mutation operation: UpdateUserPassword
 // ====================================================
 
-export interface GetUserByID_getUserByID {
+export interface UpdateUserPassword_updateUserPassword {
   __typename: "IUser";
   id: string;
   email: string;
   firstName: string;
   lastName: string;
   avatar: string | null;
+  createdAt: any;
+  updatedAt: any;
 }
 
-export interface GetUserByID {
-  getUserByID: GetUserByID_getUserByID;
+export interface UpdateUserPassword {
+  updateUserPassword: UpdateUserPassword_updateUserPassword;
 }
 
-export interface GetUserByIDVariables {
-  getUserByIdId: string;
+export interface UpdateUserPasswordVariables {
+  updateUserPasswordId: string;
+  password: string;
+  lastPassword: string;
 }

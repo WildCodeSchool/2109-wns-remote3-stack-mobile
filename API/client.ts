@@ -1,5 +1,6 @@
 import {
   ApolloClient,
+  ApolloLink,
   createHttpLink,
   InMemoryCache,
   split,
@@ -43,7 +44,7 @@ const splitLink = split(
     );
   },
   wsLink,
-  authLink.concat(httpLink)
+  ApolloLink.from([authLink, httpLink])
 );
 
 // Initialize Apollo Client
