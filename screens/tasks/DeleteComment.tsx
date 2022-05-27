@@ -10,7 +10,7 @@ import Loader from '../../components/Loader';
 import { DELETE_COMMENT, GET_ALL_COMMENTS } from '../../API/mutation/Comments';
 import { GET_ONE_COMMENT } from '../../API/queries/Comment';
 import { getOneComment } from '../../API/types/getOneComment';
-import Page404 from '../Page404';
+import Error from '../../components/Error';
 
 const styles = StyleSheet.create({
   container: {
@@ -60,7 +60,11 @@ export default function DeleteComment() {
     return <Loader />;
   }
   if (error || !data || deleteError) {
-    return <Page404 />;
+    navigation.navigate('notFound');
+  }
+
+  if (!data) {
+    return <Error />;
   }
 
   return (

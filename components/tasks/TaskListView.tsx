@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
-import { Text, View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import tw from 'tailwind-react-native-classnames';
 import { GET_ALL_TASKS } from '../../API/queries/taskQueries';
 import OneTask from './OneTask';
@@ -8,6 +8,7 @@ import { GetAllTasks_getAllTasks } from '../../API/types/GetAllTasks';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import StatusNavigation from '../StatusNavigation';
 import Loader from '../Loader';
+import Error from '../Error';
 
 interface IResponse {
   getAllTasks: GetAllTasks_getAllTasks[];
@@ -28,10 +29,10 @@ function TaskList() {
     return <Loader />;
   }
   if (error || !data) {
-    return <Text> error </Text>;
+    return <Error />;
   }
   const renderItem = ({ item }: { item: getTaskByID_getTaskByID }) => (
-    <OneTask item={item} />
+    <OneTask item={item} isLoading={loading} />
   );
 
   const reversedData = [...data.getAllTasks].reverse();

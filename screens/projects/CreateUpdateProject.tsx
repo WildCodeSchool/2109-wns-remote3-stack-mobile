@@ -30,7 +30,6 @@ import {
 } from '../../API/queries/projectQueries';
 import { getProjectByIdId } from '../../API/types/getProjectByIdId';
 import { GetAllProjects_getAllProjects } from '../../API/types/GetAllProjects';
-import Page404 from '../Page404';
 import Loader from '../../components/Loader';
 
 const pickerStyle = StyleSheet.create({
@@ -165,8 +164,8 @@ export default function CreateUpdateProject() {
   if (createLoading || isLoading || updateLoading) {
     return <Loader />;
   }
-  if (createError || isError || updateError) {
-    return <Page404 />;
+  if (createError || !isError || !updateError) {
+    navigation.navigate('notFound');
   }
 
   return (

@@ -27,6 +27,7 @@ import NewsFeed from '../screens/projects/navOptions /NewsFeed';
 import ProjectTasks from '../screens/projects/navOptions /ProjectTasks';
 import UpdateProfilPicture from '../screens/userSettings/UpdateProfilPicure';
 import CameraUpdatePicture from '../screens/userSettings/CameraUpdatePicture';
+import Page404 from '../screens/Page404';
 
 const styles = StyleSheet.create({
   container: {
@@ -136,6 +137,12 @@ export default function RootNavigator() {
               headerShown: false,
             }}
           />
+          <Stack.Screen
+            name="notFound"
+            component={Page404}
+            options={{ headerShown: false }}
+          />
+
           <Stack.Group screenOptions={{ presentation: 'modal' }}>
             <Stack.Screen
               name="DeleteProject"

@@ -12,10 +12,12 @@ import {
 import { GET_ONE_PROJECT } from '../../API/queries/projectQueries';
 import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import Cheap from '../Cheap';
-import Page404 from '../../screens/Page404';
+import Error from '../Error';
+import CardLoader from '../animated/cardsLoader/CardLoader';
 
 interface OneTaskProps {
   item: getTaskByID_getTaskByID | getProjectByIdId_getProjectByID_tasks;
+  isLoading: boolean;
 }
 const styles = StyleSheet.create({
   container: {
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function OneTask({ item }: OneTaskProps) {
+function OneTask({ item, isLoading }: OneTaskProps) {
   const navigation = useNavigation();
 
   // Fetch Project Name by ProjectId
@@ -51,37 +53,45 @@ function OneTask({ item }: OneTaskProps) {
   });
   if (loadingProject) return null;
   if (errorProject || !dataProject) {
-    return <Page404 />;
+    return <Error />;
   }
 
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('ProjectDetails', { id: item.projectId });
-        navigation.navigate('TaskDetails', { id: item.id });
-      }}
-      style={[styles.container, tw` p-5 border mt-3`]}
-    >
-      <View style={tw`flex-row w-full mb-2 justify-between`}>
-        <View>
-          <Text style={[tw`text-base font-bold w-44`, styles.text]}>
-            {item.name}
-          </Text>
-          <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
-        </View>
-        <Cheap status={item.advancement} />
-      </View>
-      <View style={tw`flex-row justify-between`}>
-        <Text style={styles.text}>
-          Created at:{' '}
-          {dateFormat(new Date(item.startDate), 'dddd dd mmmm yyyy')}
-        </Text>
-        <View style={tw`flex-row items-center`}>
-          <Ionicons name="mail" size={20} color="white" />
-          <Text style={[tw`ml-1`, styles.text]}> {item.comments.length} </Text>
-        </View>
-      </View>
-    </TouchableOpacity>
+    <View>
+      {isLoading ? (
+        <CardLoader />
+      ) : (
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('TaskDetails', { id: item.id });
+          }}
+          style={[styles.container, tw` p-5 border mt-3`]}
+        >
+          <View style={tw`flex-row w-full mb-2 justify-between`}>
+            <View>
+              <Text style={[tw`text-base font-bold w-44`, styles.text]}>
+                {item.name}
+              </Text>
+              <Text style={styles.text}>{dataProject.getProjectByID.name}</Text>
+            </View>
+            <Cheap status={item.advancement} />
+          </View>
+          <View style={tw`flex-row justify-between`}>
+            <Text style={styles.text}>
+              Created at:{' '}
+              {dateFormat(new Date(item.startDate), 'dddd dd mmmm yyyy')}
+            </Text>
+            <View style={tw`flex-row items-center`}>
+              <Ionicons name="mail" size={20} color="white" />
+              <Text style={[tw`ml-1`, styles.text]}>
+                {' '}
+                {item.comments.length}{' '}
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      )}
+    </View>
   );
 }
 export default OneTask;

@@ -10,7 +10,7 @@ import { GET_ONE_PROJECT } from '../API/queries/projectQueries';
 import { GetAllProjects_getAllProjects } from '../API/types/GetAllProjects';
 import UPDATE_PROJECT from '../API/mutation/updateProject';
 import Loader from '../components/Loader';
-import Page404 from './Page404';
+import Error from '../components/Error';
 
 const styles = StyleSheet.create({
   container: {
@@ -50,9 +50,11 @@ export default function UpdateStatus() {
   if (loading || updateLoading) {
     return <Loader />;
   }
-  if (error || !data || updateError) {
-    return <Page404 />;
+  if (error || updateError) {
+    navigation.navigate('notFound');
   }
+
+  if (!data) return <Error />;
 
   const onSubmit = (modifedStatus: string) => {
     const projectData = {

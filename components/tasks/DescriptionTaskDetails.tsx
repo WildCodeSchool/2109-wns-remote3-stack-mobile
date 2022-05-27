@@ -9,7 +9,7 @@ import { getTaskByID_getTaskByID } from '../../API/types/getTaskByID';
 import InputText from '../form/InputText';
 import { UPDATE_TASK } from '../../API/mutation/Task';
 import { GetOneTask } from '../../API/queries/taskQueries';
-import Page404 from '../../screens/Page404';
+import Error from '../Error';
 
 interface DescriptionTaskDetailsProps {
   data: getTaskByID_getTaskByID;
@@ -57,7 +57,7 @@ export default function DescriptionTaskDetails({
       },
     ],
   });
-  if (error) return <Page404 />;
+  if (error) return <Error errorMessage={error?.message} />;
 
   const onSubmit: SubmitHandler<FieldValues> = (d) => {
     const userIds: string[] = [];

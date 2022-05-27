@@ -12,7 +12,7 @@ import {
 } from '../../API/queries/projectQueries';
 import { RootStackParamList } from '../../types';
 import Loader from '../../components/Loader';
-import Page404 from '../Page404';
+import Error from '../../components/Error';
 
 const styles = StyleSheet.create({
   container: {
@@ -58,8 +58,12 @@ export default function DeleteProject() {
   if (loading || deleteLoad) {
     return <Loader />;
   }
-  if (error || !data || deleteError) {
-    return <Page404 />;
+  if (error || deleteError) {
+    navigation.navigate('notFound');
+  }
+
+  if (!data) {
+    return <Error />;
   }
 
   return (
