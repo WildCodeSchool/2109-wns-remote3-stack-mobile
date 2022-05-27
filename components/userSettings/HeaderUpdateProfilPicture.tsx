@@ -25,7 +25,7 @@ export default function HeaderUpdateProfilPicture() {
       ]}
     >
       <TouchableOpacity onPress={() => navigation.navigate('Root')}>
-        <AntDesign name="close" size={30} color="#8790E0" style={tw``} />
+        <AntDesign name="close" size={30} color="#8790E0" />
       </TouchableOpacity>
       <Text style={[tw`text-xl font-bold`, styles.textHeader]}>
         Choose Profil Picture

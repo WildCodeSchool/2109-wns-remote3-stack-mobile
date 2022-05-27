@@ -128,12 +128,10 @@ export default function ImagePickerExample() {
         >
           {image?.localUri ? (
             <View style={tw`w-full flex flex-col items-center`}>
-              <View style={tw`border-2 rounded-full border-white`}>
-                <Image
-                  source={{ uri: image?.localUri }}
-                  style={{ width: 200, height: 200, borderRadius: 100 }}
-                />
-              </View>
+              <Image
+                style={styles.image}
+                source={{ uri: image?.localUri as string }}
+              />
               <Pressable
                 style={[
                   tw`flex flex-row items-center mt-5 justify-center rounded-md w-10/12 py-4`,

@@ -11,7 +11,6 @@ export interface updateUser_updateUser {
   __typename: "IUser";
   id: string;
   email: string;
-  password: string;
   firstName: string;
   lastName: string;
   avatar: string | null;
@@ -28,4 +27,5 @@ export interface updateUserVariables {
   email: string;
   firstName: string;
   lastName: string;
+  avatar?: string | null;
 }

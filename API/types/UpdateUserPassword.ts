@@ -11,7 +11,6 @@ export interface UpdateUserPassword_updateUserPassword {
   __typename: "IUser";
   id: string;
   email: string;
-  password: string;
   firstName: string;
   lastName: string;
   avatar: string | null;

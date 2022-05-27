@@ -17,7 +17,6 @@ export const UPDATE_USER = gql`
     ) {
       id
       email
-      password
       firstName
       lastName
       avatar
@@ -40,7 +39,6 @@ export const UPDATE_USER_PASSWORD = gql`
     ) {
       id
       email
-      password
       firstName
       lastName
       avatar
