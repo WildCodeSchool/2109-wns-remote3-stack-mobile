@@ -5,7 +5,6 @@ import {
   InMemoryCache,
   split,
 } from '@apollo/client';
-import { createUploadLink } from 'apollo-upload-client';
 import Constants from 'expo-constants';
 import { GraphQLWsLink } from '@apollo/client/link/subscriptions';
 import { createClient } from 'graphql-ws';
@@ -36,8 +35,6 @@ const authLink = setContext(async (_, { headers }) => {
   };
 });
 
-const uploadLink = createUploadLink({ uri: API_KEY });
-
 const splitLink = split(
   ({ query }) => {
     const definition = getMainDefinition(query);
@@ -47,7 +44,7 @@ const splitLink = split(
     );
   },
   wsLink,
-  ApolloLink.from([authLink, httpLink, uploadLink as any])
+  ApolloLink.from([authLink, httpLink])
 );
 
 // Initialize Apollo Client

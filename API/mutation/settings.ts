@@ -6,12 +6,14 @@ export const UPDATE_USER = gql`
     $email: String!
     $firstName: String!
     $lastName: String!
+    $avatar: String
   ) {
     updateUser(
       id: $updateUserId
       email: $email
       firstName: $firstName
       lastName: $lastName
+      avatar: $avatar
     ) {
       id
       email

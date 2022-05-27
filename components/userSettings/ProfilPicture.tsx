@@ -49,12 +49,6 @@ export default function ProfilPicture({
               uri: userAvatarUrl,
             }}
           />
-          <Pressable>
-            <Image
-              style={tw`absolute right-5 bottom-0`}
-              source={require('../../assets/images/EditProfilPicture.png')}
-            />
-          </Pressable>
         </View>
       ) : (
         <View style={tw`relative`}>
@@ -66,18 +60,16 @@ export default function ProfilPicture({
           >
             <Text style={[tw`text-white`, styles.letter]}>{letter}</Text>
           </View>
-          <Pressable
-            onPress={() =>
-              navigation.navigate('UpdateProfilPicture', { id: userId })
-            }
-          >
-            <Image
-              style={tw`absolute right-0 bottom-0`}
-              source={require('../../assets/images/EditProfilPicture.png')}
-            />
-          </Pressable>
         </View>
       )}
+      <Pressable
+        style={tw`absolute right-0 bottom-0`}
+        onPress={() =>
+          navigation.navigate('UpdateProfilPicture', { id: userId })
+        }
+      >
+        <Image source={require('../../assets/images/EditProfilPicture.png')} />
+      </Pressable>
     </View>
   );
 }
